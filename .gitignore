@@ -1,0 +1,7 @@
+tmp_wp_explore/
+debug_logos/
+*.py
+*.jsonl
+PLAN.md
+gallery-anchor-inject.js
+favicon.ico

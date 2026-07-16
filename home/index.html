@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interiors3D — Virtual Tours Immersivi</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20260714-ui11">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+     ══════════════════════════════════════════ -->
+<header id="navbar">
+  <div class="nav-logo">
+    <img src="assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img">
+    <span class="logo-sub">IMMERSIVE SOLUTIONS</span>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="/galleria-virtual-tours/" data-t="nav_galleria">GALLERIA</a></li>
+      <li><a href="/tecnologie/" data-t="nav_tecnologie">TECNOLOGIE</a></li>
+      <li><a href="#contatti" class="nav-cta" data-t="nav_contattaci">CONTATTACI</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ══════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg">
+    <!-- SLOT: Replace with actual hero interior photo -->
+    <div class="hero-bg-img"></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <h1 class="hero-h1">
+        <span data-t="hero_h1a">Trasformiamo</span><br>
+        <span data-t="hero_h1b">spazi reali in</span><br>
+        <span class="accent" data-t="hero_h1c">esperienze digitali immersive.</span>
+      </h1>
+      <p class="hero-sub" data-t="hero_sub">
+        Piattaforme interattive che aiutano aziende, enti e istituzioni a comunicare, vendere, formare e coinvolgere le persone.
+      </p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">
+          <span data-t="hero_cta1">GUARDA UNA DEMO</span> →
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="play-btn" title="Play video">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <p class="play-label" data-t="hero_play">
+        SCOPRI IL POTENZIALE DELLE NOSTRE ESPERIENZE
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     LOGOS
+     ══════════════════════════════════════════ -->
+<section id="logos">
+  <div class="logos-inner">
+    <p class="logos-label" data-t="logos_label">AZIENDE E ISTITUZIONI CHE HANNO SCELTO INTERIORS3D</p>
+    <div class="logos-track">
+      <div class="logos-strip">
+        <div class="logo-item"><img src="assets/img/logos/sap.svg" alt="SAP" class="logo-client logo-client--color"></div>
+        <div class="logo-item"><img src="assets/img/logos/hfarm.png" alt="H-FARM" class="logo-client logo-client--sm"></div>
+        <div class="logo-item"><img src="assets/img/logos/colombini.png" alt="Colombini Group" class="logo-client logo-client--wide"></div>
+        <div class="logo-item"><span class="logo-text">Euromobil</span></div>
+        <div class="logo-item"><span class="logo-text logo-text--xs">FEA<br><span class="logo-sub-line">LIGHT UP YOUR IDEAS</span></span></div>
+        <div class="logo-item"><img src="assets/img/logos/unibo.png" alt="Università di Bologna" class="logo-client logo-client--sq"></div>
+        <div class="logo-item"><span class="logo-text logo-text--xs">PromoTurismo<strong>FVG</strong></span></div>
+        <!-- Duplicate set for seamless loop -->
+        <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/sap.svg" alt="" class="logo-client logo-client--color"></div>
+        <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/hfarm.png" alt="" class="logo-client logo-client--sm"></div>
+        <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/colombini.png" alt="" class="logo-client logo-client--wide"></div>
+        <div class="logo-item" aria-hidden="true"><span class="logo-text">Euromobil</span></div>
+        <div class="logo-item" aria-hidden="true"><span class="logo-text logo-text--xs">FEA<br><span class="logo-sub-line">LIGHT UP YOUR IDEAS</span></span></div>
+        <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/unibo.png" alt="" class="logo-client logo-client--sq"></div>
+        <div class="logo-item" aria-hidden="true"><span class="logo-text logo-text--xs">PromoTurismo<strong>FVG</strong></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN: SOLUZIONI PER OGNI ESIGENZA
+     Fondo blanco. Cards unificadas (texto + imagen = una sola card).
+     Hover: highlight; mouseleave: rotateY(360deg) + translateY(-6px)
+     ══════════════════════════════════════════ -->
+<section id="solutions">
+  <div class="solutions-inner">
+
+    <!-- Título de sección -->
+    <h2 class="section-title">
+      <span data-t="sol_title1">SOLUZIONI PER</span>
+      <span class="accent" data-t="sol_accent"> OGNI</span>
+      <span data-t="sol_title2"> ESIGENZA</span>
+    </h2>
+
+    <!-- Grid de 6 cards unificadas (texto arriba + imagen abajo = una sola card) -->
+    <!-- SLOT: reemplazar .card-img-placeholder con <img src="..."> cuando el cliente pase imágenes -->
+    <div class="sol-cards-grid">
+
+      <!-- Card 1: Comunicare -->
+      <div class="sol-card">
+        <div class="sol-card-info">
+          <div class="sol-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+          </div>
+          <h3 data-t="c1t">COMUNICARE MEGLIO</h3>
+          <p data-t="c1d">Racconta la tua azienda e i tuoi valori in modo coinvolgente e memorabile.</p>
+        </div>
+        <div class="sol-card-img">
+          <img src="assets/img/cards/card1_comunicare.jpg" alt="Comunicare meglio — Colombini Office">
+        </div>
+        <div class="sol-card-back"></div>
+      </div>
+
+      <!-- Card 2: Vendere -->
+      <div class="sol-card">
+        <div class="sol-card-info">
+          <div class="sol-icon">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <h3 data-t="c2t">VENDERE MEGLIO</h3>
+          <p data-t="c2d">Mostra prodotti e spazi in modo immersivo e riduci il ciclo di vendita.</p>
+        </div>
+        <div class="sol-card-img">
+          <img src="assets/img/cards/card2_vendere.jpg" alt="Vendere meglio — Showroom Desiree Salotti">
+        </div>
+        <div class="sol-card-back"></div>
+      </div>
+
+      <!-- Card 3: Formare -->
+      <div class="sol-card">
+        <div class="sol-card-info">
+          <div class="sol-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5zM6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3 data-t="c3t">FORMARE MEGLIO</h3>
+          <p data-t="c3d">Crea percorsi formativi interattivi e migliora l'onboarding e la sicurezza.</p>
+        </div>
+        <div class="sol-card-img">
+          <img src="assets/img/cards/card3_formare.jpg" alt="Formare meglio — Università di Bologna">
+        </div>
+        <div class="sol-card-back"></div>
+      </div>
+
+      <!-- Card 4: Coinvolgere -->
+      <div class="sol-card">
+        <div class="sol-card-info">
+          <div class="sol-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3 data-t="c4t">COINVOLGERE LE PERSONE</h3>
+          <p data-t="c4d">Rafforza engagement, recruiting e comunicazione interna con esperienze immersive.</p>
+        </div>
+        <div class="sol-card-img">
+          <img src="assets/img/cards/card4_coinvolgere.jpg" alt="Coinvolgere le persone — Hotel Spa Thai Si">
+        </div>
+        <div class="sol-card-back"></div>
+      </div>
+
+      <!-- Card 5: Valorizzare -->
+      <div class="sol-card">
+        <div class="sol-card-info">
+          <div class="sol-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3 data-t="c5t">VALORIZZARE IL TERRITORIO</h3>
+          <p data-t="c5d">Racconta luoghi, cultura e itinerari con esperienze digitali ad alto impatto.</p>
+        </div>
+        <div class="sol-card-img">
+          <img src="assets/img/cards/card5_valorizzare.jpg" alt="Valorizzare il territorio — Malga del Montasio HDR">
+        </div>
+        <div class="sol-card-back"></div>
+      </div>
+
+      <!-- Card 6: Educare -->
+      <div class="sol-card">
+        <div class="sol-card-info">
+          <div class="sol-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2zM9 22V12h6v10"/></svg>
+          </div>
+          <h3 data-t="c6t">EDUCARE E ISPIRARE</h3>
+          <p data-t="c6d">Porta studenti e visitatori in percorsi digitali interattivi e accessibili.</p>
+        </div>
+        <div class="sol-card-img">
+          <img src="assets/img/cards/card6_educare.jpg" alt="Educare e ispirare — Musme Padova">
+        </div>
+        <div class="sol-card-back"></div>
+      </div>
+
+    </div><!-- /sol-cards-grid -->
+
+  </div><!-- /solutions-inner -->
+</section>
+<!-- ── Fin sección Soluzioni ──────────────── -->
+
+<!-- ══════════════════════════════════════════
+     TECH PANEL — Two Technologies
+     (Three.js 3D models go here in next phase)
+     ══════════════════════════════════════════ -->
+<section id="tech">
+  <canvas id="tech-canvas" aria-hidden="true"></canvas><!-- Interactive 3D scan field -->
+
+  <div class="tech-inner">
+    <div class="tech-header">
+      <h2>
+        <span data-t="tech_h">DUE TECNOLOGIE.</span>
+        <span class="accent" data-t="tech_h_accent"> UN UNICO OBIETTIVO.</span>
+      </h2>
+    </div>
+
+    <div class="tech-panels">
+
+      <!-- Left: Scanner 3D -->
+      <div class="tech-panel-wrap">
+        <div class="tech-img-col">
+          <canvas id="canvas-scanner"></canvas>
+        </div>
+        <div class="tech-panel" id="panel-scanner">
+          <span class="tech-badge" data-t="sc_badge">SCANNER 3D</span>
+          <h3 data-t="sc_title">PIATTAFORMA DI SCANSIONE 3D</h3>
+          <p data-t="sc_desc">La soluzione rapida e affidabile per digitalizzare ogni ambiente in 24 ore.</p>
+          <ul class="tech-feats">
+            <li data-t="sc_f1">Scanner 3D proprietario esclusivo</li>
+            <li data-t="sc_f2">Consegna in 24 ore</li>
+            <li data-t="sc_f3">Modello digitale navigabile</li>
+            <li data-t="sc_f4">White Label e Self Hosting</li>
+            <li data-t="sc_f5">Proprietà dei dati</li>
+            <li data-t="sc_f6">Scelta da SAP per il suo HQ di Milano</li>
+          </ul>
+          <a href="/galleria-virtual-tours/#scanner3d" class="tech-link">
+            <span data-t="sc_cta">SCOPRI DI PIÙ</span> →
+          </a>
+        </div>
+      </div>
+
+      <!-- VS -->
+      <div class="vs-col">
+        <div class="vs-circle">VS</div>
+      </div>
+
+      <!-- Right: Immersive Platform -->
+      <div class="tech-panel-wrap right">
+        <canvas id="immersive-canvas" aria-hidden="true"></canvas>
+        <div class="tech-panel" id="panel-immersive">
+          <span class="tech-badge" data-t="im_badge">IMMERSIVE PLATFORM</span>
+          <h3 data-t="im_title">PIATTAFORMA IMMERSIVA</h3>
+          <p data-t="im_desc">Esperienze interattive avanzate senza <br class="tech-desktop-break">limiti creativi.</p>
+          <ul class="tech-feats">
+            <li data-t="im_f1">Foto e video 360° HDR ultra HD</li>
+            <li data-t="im_f2">Ambassador interattivi e AI</li>
+            <li data-t="im_f3">Integrazioni JavaScript e API</li>
+            <li data-t="im_f4">Analytics e comportamento utente</li>
+            <li data-t="im_f5">UI/UX personalizzabile e storytelling</li>
+            <li data-t="im_f6">Sviluppi custom e integrazioni avanzate</li>
+          </ul>
+          <a href="/galleria-virtual-tours/#immersive" class="tech-link">
+            <span data-t="im_cta">SCOPRI DI PIÙ</span> →
+          </a>
+        </div>
+        <div class="tech-img-col">
+          <canvas id="canvas-tablet"></canvas>
+        </div>
+      </div>
+
+    </div><!-- /tech-panels -->
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SUCCESS STORIES
+     ══════════════════════════════════════════ -->
+<section id="stories">
+  <div class="stories-inner">
+    <div class="stories-header">
+      <h2 data-t="st_title">STORIE DI <span>SUCCESSO</span></h2>
+      <p data-t="st_sub">Progetti reali. Risultati concreti.</p>
+    </div>
+
+    <div class="stories-grid">
+
+      <div class="story-card">
+        <div class="story-card-bg">
+          <img src="assets/img/stories/story1_hfarm.jpg" alt="H-Farm Campus Virtual Tour">
+        </div>
+        <div class="story-overlay"></div>
+        <div class="story-content">
+          <h3 data-t="s1t">H-FARM CAMPUS</h3>
+          <p data-t="s1s">Virtual Experience del Campus</p>
+          <a href="https://virtualtours.interiors3d.com/3d-model/h-farm_virtual_tour-copy/" target="_blank" rel="noopener" class="story-link"><span data-t="s1c">SCOPRI IL PROGETTO</span> →</a>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-card-bg">
+          <img src="assets/img/stories/story2_sap.jpg" alt="SAP Headquarters Milan Virtual Tour">
+        </div>
+        <div class="story-overlay"></div>
+        <div class="story-content">
+          <h3 data-t="s2t">SAP HEADQUARTERS</h3>
+          <p data-t="s2s">Digital Experience dell'Headquarters di Milano</p>
+          <a href="https://virtualtours.interiors3d.com/3d-model/sap-ground-floor/" target="_blank" rel="noopener" class="story-link"><span data-t="s2c">SCOPRI IL PROGETTO</span> →</a>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-card-bg">
+          <img src="assets/img/stories/story3_promoturismo.jpg" alt="PromoTurismo FVG UNESCO Virtual Tour">
+        </div>
+        <div class="story-overlay"></div>
+        <div class="story-content">
+          <h3 data-t="s3t">PROMOTURISMO FVG</h3>
+          <p data-t="s3s">Valorizzazione dei 5 siti UNESCO del Friuli Venezia Giulia</p>
+          <a href="https://virtualtours.interiors3d.com/3d-model/fvg-unesco/" target="_blank" rel="noopener" class="story-link"><span data-t="s3c">SCOPRI IL PROGETTO</span> →</a>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-card-bg">
+          <img src="assets/img/stories/story4_unibo.jpg" alt="Università di Bologna Virtual Tour">
+        </div>
+        <div class="story-overlay"></div>
+        <div class="story-content">
+          <h3 data-t="s4t">UNIVERSITÀ DI BOLOGNA</h3>
+          <p data-t="s4s">Virtual Experience degli spazi dell'Ateneo</p>
+          <a href="https://virtualtours.interiors3d.com/3d-model/universita-di-bologna-fondo-cultura-cicu-hdr/" target="_blank" rel="noopener" class="story-link"><span data-t="s4c">SCOPRI IL PROGETTO</span> →</a>
+        </div>
+      </div>
+
+    </div><!-- /stories-grid -->
+
+    <div class="stories-gallery-cta">
+      <canvas id="cta-mesh-canvas" aria-hidden="true"></canvas>
+      <span class="stories-gallery-label">
+        <strong data-t="st_more_h">Questi sono solo alcuni esempi.</strong>
+        <span data-t="st_more_sub">Scopri tutti i progetti nel nostro portfolio.</span>
+      </span>
+      <a href="https://interiors3d.com/galleria-virtual-tours/" target="_blank" rel="noopener" class="stories-gallery-btn">
+        <span data-t="st_gallery">VISITA LA GALLERIA COMPLETA</span> →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER (CTA integrado + brand + links + contatti)
+     ══════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="footer-inner">
+
+    <!-- CTA row: integrado desde el antiguo pre-footer -->
+    <div class="footer-cta">
+      <div class="footer-cta-left">
+        <h2 data-t="cta_h">Pronto a trasformare il tuo spazio in un'esperienza immersiva?</h2>
+        <p data-t="cta_sub">Parliamo del tuo progetto e scopriamo insieme la soluzione più adatta ai tuoi obiettivi.</p>
+      </div>
+      <a href="#contatti" class="btn-accent">
+        <span data-t="cta_btn">CONTATTACI ORA</span> →
+      </a>
+    </div>
+
+    <div class="footer-top">
+
+      <!-- Brand col -->
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img logo-img--footer">
+          <span class="logo-sub">IMMERSIVE SOLUTIONS</span>
+        </div>
+        <p data-t="ft_tag">Tecnologie immersive per aziende, territori e istituzioni che vogliono comunicare, formare e innovare.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon">in</a>
+          <a href="#" class="social-icon">▶</a>
+          <a href="#" class="social-icon">📷</a>
+        </div>
+      </div>
+
+      <!-- Links col -->
+      <div class="footer-col">
+        <h4 data-t="ft_c5">ESPLORA</h4>
+        <ul>
+          <li><a href="https://interiors3d.com/galleria-virtual-tours/" target="_blank" rel="noopener" data-t="ft_c5l1">Galleria Virtual Tours</a></li>
+          <li><a href="/tecnologie/" data-t="ft_c5l2">Tecnologie</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col" id="contatti">
+        <h4 data-t="ft_c6">CONTATTI</h4>
+        <p class="footer-addr" data-t="ft_addr">
+          Interiors3D S.r.l.<br>
+          Via Treviso, 56/B<br>
+          31020 San Vendemiano (TV) – Italia<br>
+          +39 0438 412 360<br>
+          info@interiors3d.it
+        </p>
+      </div>
+
+    </div><!-- /footer-top -->
+
+    <div class="footer-bottom">
+      <span data-t="ft_copy">© 2026 Interiors3D S.r.l. – PIVA 04472240269 – Privacy Policy – Cookie Policy</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  document.querySelectorAll('.sol-card').forEach(function (card) {
+    function finishFlip(event) {
+      if (event.target !== card || event.animationName !== 'sol-spin') return;
+      card.classList.remove('is-flipping');
+    }
+
+    card.addEventListener('mouseleave', function () {
+      if (card.classList.contains('is-flipping')) return;
+      card.classList.add('is-flipping');
+    });
+    card.addEventListener('animationend', finishFlip);
+    card.addEventListener('animationcancel', finishFlip);
+  });
+})();
+</script>
+<!-- Three.js + GLTFLoader para modelos 3D de tecnología -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="js/scan-field.js?v=20260713-10"></script>
+<script src="js/gallery-cta-mesh.js?v=20260716-2"></script>
+<script src="js/immersive-field.js?v=20260713-3"></script>
+<script src="js/tech-models.js?v=20260714-8"></script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interiors3D — Tecnologie Virtual Tour Proprietarie</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../home/assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../home/assets/img/favicon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../home/css/style.css?v=20260714-ui11">
+  <link rel="stylesheet" href="css/tech-page.css?v=20260716-1">
+</head>
+<body data-asset-base="../home/">
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION (idéntica al home)
+     ══════════════════════════════════════════ -->
+<header id="navbar">
+  <div class="nav-logo">
+    <a href="../home/">
+      <img src="../home/assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img">
+    </a>
+    <span class="logo-sub">IMMERSIVE SOLUTIONS</span>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="https://interiors3d.com/galleria-virtual-tours/" target="_blank" rel="noopener">GALLERIA</a></li>
+      <li><a href="index.html" class="nav-active">TECNOLOGIE</a></li>
+      <li><a href="#contatti" class="nav-cta">CONTATTACI</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ══════════════════════════════════════════
+     HERO — Leader in Tecnologie Virtual Tour
+     Malla interactiva full-width de fondo
+     ══════════════════════════════════════════ -->
+<section id="tech-hero">
+  <canvas id="tech-hero-canvas" aria-hidden="true"></canvas>
+  <div class="th-inner">
+    <span class="th-eyebrow">TECNOLOGIE PROPRIETARIE</span>
+    <h1 class="th-title">LEADER IN TECNOLOGIE <span class="accent">VIRTUAL TOUR</span></h1>
+    <p class="th-sub">
+      Interiors3D utilizza tecnologie proprietarie uniche in Italia che permettono di
+      personalizzare i Virtual Tours in ogni dettaglio, così da soddisfare le richieste
+      delle aziende che richiedono un prodotto <em>Tailor-Made</em>, più performante
+      e più sicuro rispetto ad altri Virtual Tours.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     STATS — count-up animado al scroll
+     ══════════════════════════════════════════ -->
+<section id="tech-stats">
+  <div class="stats-inner">
+    <div class="stat reveal">
+      <span class="stat-num" data-target="500" data-prefix="+">0</span>
+      <span class="stat-label">VIRTUAL TOURS REALIZZATI</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat-num" data-target="10">0</span>
+      <span class="stat-label">ANNI DI ESPERIENZA</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat-num" data-target="100" data-suffix="%">0</span>
+      <span class="stat-label">CLIENTI SODDISFATTI</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     COMPARATIVA — Matterport vs Interiors3D
+     ══════════════════════════════════════════ -->
+<section id="compare">
+  <canvas id="compare-canvas" aria-hidden="true"></canvas>
+  <div class="cmp-rays" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="compare-inner">
+    <h2 class="section-title-dark">PERCHÉ <span class="accent">INTERIORS3D</span>?</h2>
+    <p class="compare-sub">Un confronto diretto tra la nostra tecnologia proprietaria e la piattaforma più diffusa sul mercato.</p>
+
+    <div class="cmp-table">
+      <div class="cmp-head">
+        <span class="cmp-h-feature"></span>
+        <span class="cmp-h-them">MATTERPORT</span>
+        <span class="cmp-h-us">INTERIORS3D</span>
+      </div>
+      <div class="cmp-row reveal"><span class="cmp-feature">Versione Offline</span><span class="cmp-no">NO</span><span class="cmp-yes">✓</span></div>
+      <div class="cmp-row reveal"><span class="cmp-feature">Self-Hosting</span><span class="cmp-no">NO</span><span class="cmp-yes">✓</span></div>
+      <div class="cmp-row reveal"><span class="cmp-feature">Modello 3D Esterni</span><span class="cmp-no">NO</span><span class="cmp-yes">✓</span></div>
+      <div class="cmp-row reveal"><span class="cmp-feature">Immagini Editabili</span><span class="cmp-no">NO</span><span class="cmp-yes">✓</span></div>
+      <div class="cmp-row reveal"><span class="cmp-feature">Mappa in Overlay</span><span class="cmp-no">NO</span><span class="cmp-yes">✓</span></div>
+      <div class="cmp-row reveal"><span class="cmp-feature">Wishlist / e-Commerce</span><span class="cmp-no">NO</span><span class="cmp-yes">✓</span></div>
+      <div class="cmp-row reveal"><span class="cmp-feature">Background Custom</span><span class="cmp-no">NO</span><span class="cmp-yes">✓</span></div>
+      <div class="cmp-row reveal"><span class="cmp-feature">Logo Cliente</span><span class="cmp-no">NO</span><span class="cmp-yes">✓</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FEATURES — bloques grandes alternados con
+     imágenes reales de los tours del cliente
+     ══════════════════════════════════════════ -->
+<section id="tech-features">
+  <div class="feats-inner">
+    <h2 class="section-title-dark">COSA RENDE <span class="accent">UNICI</span> I NOSTRI VIRTUAL TOURS</h2>
+    <p class="feats-sub">Funzionalità reali, catturate direttamente dai nostri progetti.</p>
+
+    <!-- 01 · Wishlist -->
+    <div class="featx-row reveal">
+      <div class="featx-media">
+        <img src="assets/img/feat_wishlist_popup.jpg" alt="Wish-List integrata in un Virtual Tour — scheda prodotto con prezzo e Add to Wishlist">
+        <span class="featx-caption">Showroom reale: scheda prodotto e carrello dentro il tour</span>
+      </div>
+      <div class="featx-copy">
+        <span class="featx-num">01</span>
+        <h3>WISH-LIST &amp; e-COMMERCE INTEGRATI</h3>
+        <p>
+          Nei nostri Virtual Tours è possibile integrare un sistema di Wish-List: gli utenti
+          selezionano gli articoli che più li interessano e li memorizzano in un carrello
+          virtuale inviabile via email. Tutti i dati raccolti confluiscono in un back-end
+          dedicato, pronti per il tuo team commerciale.
+        </p>
+        <p class="featx-example">
+          Nell'immagine: un visitatore clicca su un divano dello showroom e lo aggiunge alla
+          propria wish-list — con prezzo, foto e dettagli — senza mai uscire dal tour.
+        </p>
+      </div>
+    </div>
+
+    <!-- 02 · Analytics -->
+    <div class="featx-row featx-row--flip reveal">
+      <div class="featx-media">
+        <img src="assets/img/feat_a1.jpg" alt="Google Analytics collegato a un Virtual Tour — eventi tour_item, tour_scene, tour_hotspot">
+        <span class="featx-caption">Dashboard reale: eventi del tour tracciati in Google Analytics</span>
+      </div>
+      <div class="featx-copy">
+        <span class="featx-num">02</span>
+        <h3>COLLEGAMENTO A GOOGLE ANALYTICS</h3>
+        <p>
+          Colleghiamo i Virtual Tours a Google Analytics o ad altre piattaforme, da cui è
+          possibile estrarre dati sul traffico. Il Tour diventa uno strumento di analisi:
+          quali prodotti vengono visualizzati di più, da quali nazioni, per quanto tempo.
+        </p>
+        <p class="featx-example">
+          Nel pannello: eventi reali tracciati in un nostro tour — scene visitate, hotspot
+          cliccati, prodotti aperti — pronti per le tue decisioni di marketing.
+        </p>
+      </div>
+    </div>
+
+    <!-- 03 · Self hosting -->
+    <div class="featx-row reveal">
+      <div class="featx-media">
+        <img src="assets/img/feat_selfhosting.jpg" alt="Files proprietari e self hosting — i dati del tour restano al cliente">
+        <span class="featx-caption">I tuoi file, il tuo server: nessuna piattaforma di terze parti</span>
+      </div>
+      <div class="featx-copy">
+        <span class="featx-num">03</span>
+        <h3>FILES PROPRIETARI &amp; SELF HOSTING</h3>
+        <p>
+          Gli assets dei nostri Virtual Tours vengono consegnati al cliente, che potrà in
+          tutta autonomia pubblicarli sulla propria pagina web, con una copia di back-up e
+          senza canoni verso piattaforme esterne. Nessun logo di altri providers: un prodotto
+          completamente <em>White-Label</em>, di tua proprietà per sempre.
+        </p>
+      </div>
+    </div>
+
+    <!-- 04 · JavaScripts & AI -->
+    <div class="featx-row featx-row--flip reveal">
+      <div class="featx-media">
+        <img src="assets/img/feat_heatmap.jpg" alt="Analisi comportamentale dei visitatori su planimetria — JavaScript personalizzato">
+        <span class="featx-caption">Analisi JavaScript personalizzata: comportamento reale dei visitatori sul tour</span>
+      </div>
+      <div class="featx-copy">
+        <span class="featx-num">04</span>
+        <h3>JAVASCRIPTS &amp; AI</h3>
+        <p>
+          Iniettando specifici JavaScripts all'interno dei Virtual Tours aggiungiamo
+          molteplici contenuti personalizzati, sia sotto forma di grafiche che di funzioni
+          di engagement: tra questi test con punteggi, progresso del tour, chat bot e
+          integrazione di intelligenza artificiale.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA GALLERIA — recuadro con malla escaneable
+     ══════════════════════════════════════════ -->
+<section id="tech-cta">
+  <div class="tech-cta-inner">
+    <div class="stories-gallery-cta">
+      <canvas id="cta-mesh-canvas" aria-hidden="true"></canvas>
+      <span class="stories-gallery-label">
+        <strong>Vuoi vedere queste tecnologie in azione?</strong>
+        <span>Esplora i nostri progetti reali nella galleria completa.</span>
+      </span>
+      <a href="https://interiors3d.com/galleria-virtual-tours/" target="_blank" rel="noopener" class="stories-gallery-btn">
+        <span>VISITA LA GALLERIA</span> →
+      </a>
+    </div>
+    <p class="tech-cta-home">
+      <a href="../home/">← Torna alla Home</a>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER (idéntico al home)
+     ══════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="footer-inner">
+
+    <div class="footer-cta">
+      <div class="footer-cta-left">
+        <h2>Pronto a trasformare il tuo spazio in un'esperienza immersiva?</h2>
+        <p>Parliamo del tuo progetto e scopriamo insieme la soluzione più adatta ai tuoi obiettivi.</p>
+      </div>
+      <a href="#contatti" class="btn-accent">
+        <span>CONTATTACI ORA</span> →
+      </a>
+    </div>
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="../home/assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img logo-img--footer">
+          <span class="logo-sub">IMMERSIVE SOLUTIONS</span>
+        </div>
+        <p>Tecnologie immersive per aziende, territori e istituzioni che vogliono comunicare, formare e innovare.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon">in</a>
+          <a href="#" class="social-icon">▶</a>
+          <a href="#" class="social-icon">📷</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>ESPLORA</h4>
+        <ul>
+          <li><a href="https://interiors3d.com/galleria-virtual-tours/" target="_blank" rel="noopener">Galleria Virtual Tours</a></li>
+          <li><a href="../home/">Home</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col" id="contatti">
+        <h4>CONTATTI</h4>
+        <p class="footer-addr">
+          Interiors3D S.r.l.<br>
+          Via Treviso, 56/B<br>
+          31020 San Vendemiano (TV) – Italia<br>
+          +39 0438 412 360<br>
+          info@interiors3d.it
+        </p>
+      </div>
+
+    </div><!-- /footer-top -->
+
+    <div class="footer-bottom">
+      <span>© 2026 Interiors3D S.r.l. – PIVA 04472240269 – Privacy Policy – Cookie Policy</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Three.js + GLTFLoader -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="js/tech-hero-mesh.js?v=20260716-2"></script>
+<script src="js/tech-page.js?v=20260714-3"></script>
+<script src="js/compare-particles.js?v=20260714-2"></script>
+<script src="../home/js/gallery-cta-mesh.js?v=20260716-2"></script>
+</body>
+</html>

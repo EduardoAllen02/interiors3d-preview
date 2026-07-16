@@ -1,0 +1,394 @@
+/* =============================================
+   TECNOLOGIE PAGE — estilos específicos
+   Hereda paleta/tipografía de ../home/css/style.css
+   ============================================= */
+
+/* ── Nav active state ── */
+.nav-active { color: var(--accent) !important; }
+
+/* ── HERO ──────────────────────────────────── */
+#tech-hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: calc(var(--nav-h) + 40px) 40px 60px;
+  background:
+    radial-gradient(circle at 78% 30%, rgba(0,173,180,0.10), transparent 42%),
+    linear-gradient(115deg, #060a0b 0%, #0a1213 55%, #0e1e20 100%);
+}
+#tech-hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  z-index: 1;
+}
+.th-inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  width: 100%;
+}
+.th-eyebrow {
+  display: inline-block;
+  background: var(--accent);
+  color: #061012;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  padding: 5px 13px;
+  border-radius: 1px;
+  margin-bottom: 18px;
+}
+.th-title {
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+  max-width: 640px;
+}
+.th-title .accent { color: var(--accent); }
+.th-sub {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.74);
+  max-width: 560px;
+}
+.th-sub em { color: var(--accent); font-style: italic; }
+
+/* ── STATS ─────────────────────────────────── */
+#tech-stats {
+  background: var(--bg-light);
+  padding: 52px 40px;
+  border-bottom: 1px solid #e2e5e4;
+}
+.stats-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+/* Entrada animada de cada dato (además del count-up) */
+.stat.reveal {
+  opacity: 0;
+  transform: translateY(24px) scale(0.94);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+.stat.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+/* Hover lift sobre la estadística ya revelada */
+.stat.reveal.is-visible:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 32px rgba(0,173,180,0.11);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.65s ease;
+}
+.stat-num {
+  display: block;
+  font-size: clamp(40px, 5vw, 62px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+  line-height: 1;
+  margin-bottom: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.stat-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+/* ── COMPARATIVA ───────────────────────────── */
+#compare {
+  position: relative;
+  overflow: hidden;
+  padding: 64px 40px;
+  /* Negro-verde oscuro + luz volumétrica entrando por la esquina derecha */
+  background:
+    radial-gradient(ellipse 60% 48% at 100% 0%, rgba(160,255,246,0.17), transparent 68%),
+    radial-gradient(ellipse 46% 36% at 88% 8%, rgba(0,183,190,0.14), transparent 62%),
+    linear-gradient(158deg, #04080a 0%, #071013 42%, #0a1a16 100%);
+}
+#compare-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Rayos de luz volumétrica desde la esquina superior derecha */
+.cmp-rays {
+  position: absolute;
+  top: -12%;
+  right: -40px;
+  width: 58%;
+  height: 130%;
+  z-index: 0;
+  pointer-events: none;
+}
+.cmp-rays span {
+  position: absolute;
+  top: -8%;
+  height: 125%;
+  background: linear-gradient(to bottom, rgba(190,255,250,0.30) 0%, rgba(190,255,250,0.07) 46%, transparent 74%);
+  transform: rotate(37deg);
+  transform-origin: top right;
+  filter: blur(20px);
+}
+.cmp-rays span:nth-child(1) { right: 30px;  width: 110px; opacity: 0.55; }
+.cmp-rays span:nth-child(2) { right: 210px; width: 64px;  opacity: 0.38; }
+.cmp-rays span:nth-child(3) { right: 350px; width: 42px;  opacity: 0.26; }
+.compare-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+.section-title-dark {
+  font-size: clamp(19px, 2.2vw, 26px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.section-title-dark .accent { color: var(--accent); }
+.compare-sub {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 36px;
+}
+/* Cristal: semitraslúcido con blur, deja ver partículas y luz detrás */
+.cmp-table {
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(9,15,16,0.46);
+  backdrop-filter: blur(10px) saturate(1.15);
+  -webkit-backdrop-filter: blur(10px) saturate(1.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.07),
+    0 18px 44px rgba(0,0,0,0.35);
+}
+/* Acabado noised sutil sobre el cristal */
+.cmp-table::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.cmp-head,
+.cmp-row {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  align-items: center;
+}
+.cmp-head {
+  background: rgba(16,24,26,0.55);
+  padding: 14px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.cmp-h-them {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.45);
+}
+.cmp-h-us {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+.cmp-row {
+  padding: 13px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.cmp-row.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cmp-row:last-child { border-bottom: none; }
+.cmp-feature {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  text-align: left;
+}
+.cmp-no {
+  font-size: 11px;
+  font-weight: 800;
+  color: #e05c5c;
+  letter-spacing: 0.08em;
+}
+.cmp-yes {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--accent);
+  transform: scale(0);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s;
+}
+.cmp-row.is-visible .cmp-yes { transform: scale(1); }
+
+/* ── FEATURES — bloques grandes con imagen real ── */
+#tech-features {
+  background: var(--bg-light);
+  padding: 72px 40px;
+}
+.feats-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+#tech-features .section-title-dark {
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 8px;
+}
+.feats-sub {
+  text-align: center;
+  font-size: 12.5px;
+  color: #6c7779;
+  margin-bottom: 56px;
+}
+.featx-row {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 52px;
+  align-items: center;
+  margin-bottom: 72px;
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.featx-row.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.featx-row:last-child { margin-bottom: 8px; }
+/* Alternar: imagen a la derecha en filas --flip */
+.featx-row--flip .featx-media { order: 2; }
+.featx-row--flip .featx-copy  { order: 1; }
+.featx-media {
+  position: relative;
+}
+.featx-media img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid #dbe1e0;
+  box-shadow: 0 16px 44px rgba(14,28,30,0.14);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.featx-media:hover img {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 26px 58px rgba(14,28,30,0.22);
+}
+.featx-caption {
+  display: block;
+  margin-top: 10px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #8a9496;
+  text-align: center;
+}
+.featx-num {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  border: 1.5px solid rgba(0,173,180,0.4);
+  border-radius: 999px;
+  padding: 4px 14px;
+  margin-bottom: 14px;
+}
+.featx-copy h3 {
+  font-size: clamp(16px, 1.8vw, 21px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+.featx-copy p {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #5d6769;
+  margin-bottom: 12px;
+}
+.featx-copy em { color: var(--accent-dim); font-style: italic; }
+.featx-example {
+  border-left: 3px solid var(--accent);
+  padding: 10px 16px;
+  background: rgba(0,173,180,0.06);
+  border-radius: 0 6px 6px 0;
+  font-size: 12px !important;
+  color: #4c5556 !important;
+}
+
+/* ── CTA GALLERIA ──────────────────────────── */
+#tech-cta {
+  background: var(--bg-light);
+  padding: 0 40px 56px;
+}
+.tech-cta-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+#tech-cta .stories-gallery-cta { margin-top: 0; }
+.tech-cta-home {
+  text-align: center;
+  margin-top: 22px;
+}
+.tech-cta-home a {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #6c7779;
+  transition: color 0.2s;
+}
+.tech-cta-home a:hover { color: var(--accent-dim); }
+
+/* ── RESPONSIVE ────────────────────────────── */
+@media (max-width: 768px) {
+  #tech-hero { padding: calc(var(--nav-h) + 28px) 20px 44px; min-height: 440px; }
+  #tech-stats { padding: 40px 20px; }
+  .stats-inner { gap: 20px; }
+  #compare { padding: 48px 20px; }
+  .cmp-head, .cmp-row { padding-inline: 14px; }
+  #tech-features { padding: 48px 20px; }
+  .featx-row {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-bottom: 52px;
+  }
+  .featx-row--flip .featx-media { order: 1; }
+  .featx-row--flip .featx-copy  { order: 2; }
+  #tech-cta { padding: 0 20px 44px; }
+}
+@media (max-width: 540px) {
+  .stats-inner { grid-template-columns: 1fr; gap: 30px; }
+  .cmp-head, .cmp-row { grid-template-columns: 1.3fr 0.8fr 0.9fr; }
+}
