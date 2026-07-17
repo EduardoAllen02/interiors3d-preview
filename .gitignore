@@ -5,3 +5,6 @@ debug_logos/
 PLAN.md
 gallery-anchor-inject.js
 favicon.ico
+home/assets/models/originals/
+convert_webp.py
+preview_*.png

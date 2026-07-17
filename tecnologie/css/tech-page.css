@@ -392,3 +392,30 @@
   .stats-inner { grid-template-columns: 1fr; gap: 30px; }
   .cmp-head, .cmp-row { grid-template-columns: 1.3fr 0.8fr 0.9fr; }
 }
+
+
+/* ══════════════════════════════════════════════════
+   MOBILE REFINEMENT — tecnologie
+   ══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .th-sub { font-size: 14px; }
+  .stat-label { font-size: 12px; }
+  .compare-sub { font-size: 12px; margin-bottom: 28px; }
+  .cmp-feature, .cmp-no { font-size: 12px; }
+  .cmp-h-them, .cmp-h-us { font-size: 10.5px; }
+  .feats-sub { font-size: 12px; margin-bottom: 40px; }
+  .featx-row { gap: 20px; margin-bottom: 52px; }
+  .featx-caption { font-size: 12px; }
+  .featx-copy p { font-size: 13px; }
+  .tech-cta-home a { display: inline-block; font-size: 12px; padding: 12px; }
+}
+@media (max-width: 540px) {
+  #tech-hero { min-height: 0; padding: calc(var(--nav-h) + 24px) 20px 40px; }
+  .th-title { font-size: 28px; }
+  .stats-inner { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .stat-num { font-size: 34px; }
+  .stat-label { font-size: 10px; letter-spacing: 0.06em; }
+  .cmp-head, .cmp-row { grid-template-columns: 1.4fr 0.7fr 0.9fr; padding-inline: 12px; }
+  .cmp-feature { font-size: 11.5px; }
+  .stories-gallery-cta { flex-direction: column; align-items: stretch; text-align: center; }
+}

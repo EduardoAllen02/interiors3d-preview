@@ -163,7 +163,7 @@ nav ul li a .caret { font-size: 8px; opacity: 0.6; }
 .hero-bg-img {
   position: absolute;
   inset: 0;
-  background-image: url('../assets/img/hero_bg.jpg');
+  background-image: url('../assets/img/hero_bg.webp');
   background-size: cover;
   background-position: center right;
   opacity: 0.78;
@@ -1507,4 +1507,95 @@ nav ul li a {
     --immersive-fade-end: 58%;
   }
   .footer-top { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+/* ══════════════════════════════════════════════════
+   MOBILE REFINEMENT — solo <=768px
+   ══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Nav: conservar el CTA de contacto (el menú desaparecía entero) */
+  nav ul { display: flex; gap: 0; }
+  nav ul li { display: none; }
+  nav ul li:last-child { display: block; }
+  .nav-cta { min-height: 40px; display: inline-flex; align-items: center; padding: 10px 20px; }
+
+  #hero { min-height: 560px; }
+  .hero-content { padding: 88px 20px 52px; }
+  .hero-h1 { font-size: clamp(30px, 8.5vw, 38px); }
+  .hero-sub { font-size: 14px; }
+
+  #solutions { padding: 40px 20px 36px; }
+  .sol-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .sol-card h3 { font-size: 12px; min-height: 0; }
+  .sol-card p { font-size: 12px; line-height: 1.55; }
+  .sol-card-info { padding: 20px 14px 16px; }
+  .sol-card-img { flex-basis: 150px; }
+
+  #tech { padding: 48px 20px 40px; }
+  .tech-header { margin-bottom: 32px; }
+  .tech-panel > p { font-size: 13px; }
+  .tech-feats li { font-size: 12px; line-height: 1.45; }
+  .tech-link { font-size: 11px; padding-block: 12px; }
+
+  .story-content h3 { font-size: 14px; }
+  .story-content p { font-size: 12px; }
+  .story-link { font-size: 10.5px; padding-block: 10px; }
+  .stories-gallery-cta { padding: 22px 20px; }
+  .stories-gallery-label strong { font-size: 15px; }
+  .stories-gallery-btn { min-height: 44px; width: 100%; justify-content: center; }
+
+  .btn-accent { min-height: 44px; }
+  .footer-cta-left h2 { font-size: 21px; }
+  .footer-cta-left p, .footer-brand p, .footer-addr, .footer-col ul li a { font-size: 12px; }
+  .footer-col ul { gap: 10px; }
+  .footer-col ul li a { display: inline-block; padding-block: 4px; }
+  .social-icon { width: 40px; height: 40px; font-size: 13px; }
+}
+
+/* ══════════════════════════════════════════════════
+   DUE TECNOLOGIE — LAYOUT DIAGONAL EXPERIMENTAL (<=540px)
+   Escáner arriba-izquierda, tablet abajo-derecha,
+   VS al centro sobre una diagonal luminosa.
+   ══════════════════════════════════════════════════ */
+@media (max-width: 540px) {
+  .hero-h1 { font-size: 29px; }
+  .sol-card-img { flex-basis: 170px; }
+  .footer-top { grid-template-columns: repeat(2, 1fr); }
+
+  .tech-panels { display: block; position: relative; }
+
+  /* Escáner: esquina superior izquierda (canvas izq, texto der) */
+  .tech-panel-wrap { min-height: 0; }
+  .tech-panel-wrap:not(.right) { min-height: 300px; }
+  .tech-panel-wrap:not(.right) .tech-img-col {
+    top: 0; left: 0 !important; right: auto !important;
+    transform: none; width: 160px; height: 250px;
+  }
+  #canvas-scanner { width: 160px; height: 250px; }
+  .tech-panel-wrap:not(.right) .tech-panel { max-width: none; padding: 0 0 0 172px; }
+
+  /* Separador diagonal + VS al centro */
+  .tech-panels::before {
+    content: '';
+    position: absolute; left: -12%; width: 124%; top: 50%; height: 1.5px;
+    background: linear-gradient(90deg, transparent 4%, rgba(0,173,180,0.5) 28%,
+                                rgba(0,173,180,0.5) 72%, transparent 96%);
+    transform: rotate(-14deg); pointer-events: none;
+  }
+  .vs-col {
+    display: flex; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); padding: 0; z-index: 6;
+  }
+  .vs-circle { background: #080a0b; box-shadow: 0 0 0 10px #080a0b; }
+
+  /* Tablet: esquina inferior derecha (texto izq, canvas der) */
+  .tech-panel-wrap.right { min-height: 300px; margin-top: 96px; }
+  .tech-panel-wrap.right .tech-img-col {
+    top: auto; bottom: 0; left: auto !important; right: 0 !important;
+    transform: none; width: 160px; height: 250px;
+  }
+  #canvas-tablet { width: 160px; height: 250px; }
+  .tech-panel-wrap.right .tech-panel { max-width: none; padding: 0 172px 0 0; }
+  #immersive-canvas { display: none; }
 }

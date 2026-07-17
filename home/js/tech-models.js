@@ -152,7 +152,7 @@ const TABLET_CFG = {
   pointerMode: 'z',
 
   /* Imagen que se aplicará a la pantalla. */
-  screenImg: 'assets/img/TabletTour.png',
+  screenImg: 'assets/img/TabletTour.webp',
 
   /* ────────────────────────────────────────────────
      Posición 3D inicial
@@ -218,6 +218,26 @@ const TABLET_CFG = {
   triggerStart: 0.2,
   triggerEnd: 0.4,
 };
+
+
+/* ────────────────────────────────────────────────
+   Ajustes móviles: modelos más pequeños y centrados.
+   Solo escala/posición; el timing del scroll no se toca.
+   ──────────────────────────────────────────────── */
+if (window.matchMedia('(max-width: 768px)').matches) {
+  SCANNER_CFG.startScale = 1.45;
+  SCANNER_CFG.endScale = 1.6;
+  SCANNER_CFG.startPosY = -0.35;
+  SCANNER_CFG.endPosY = 0.1;
+  SCANNER_CFG.startY = 90;
+
+  TABLET_CFG.startScale = 1.5;
+  TABLET_CFG.endScale = 3.6;
+  TABLET_CFG.startPosY = 0;
+  TABLET_CFG.endPosY = 0.3;
+  TABLET_CFG.endPosX = 0;
+  TABLET_CFG.startY = 120;
+}
 
 
 /* ════════════════════════════════════════════════════
