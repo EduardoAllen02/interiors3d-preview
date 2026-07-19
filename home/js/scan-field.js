@@ -134,8 +134,10 @@
       float pointerFadeStart = mix(0.43, 0.62, pointerLowerZone);
       float pointerFadeEnd = mix(0.73, 0.88, pointerLowerZone);
       float pointerFade = 1.0 - smoothstep(pointerFadeStart, pointerFadeEnd, uMouse.x);
-      const float BASE = 0.07;
-      return max(max(core, halo) * uReveal * copyFade * pointerFade, BASE);
+      // Piso de visibilidad dentro de las zonas de fade: la malla queda
+      // levemente iluminada en reposo sin sangrar hacia el resto de la página.
+      const float BASE = 0.10;
+      return max(max(core, halo), BASE) * uReveal * copyFade * pointerFade;
     }
   `;
 
@@ -397,13 +399,28 @@
   window.addEventListener('blur', returnLightToDefault);
 
   function resize() {
-    const widthPx = Math.max(section.clientWidth, 1);
-    const heightPx = Math.max(section.clientHeight || canvas.clientHeight || 400, 1);
+    // El canvas define su propio alto en móvil (CSS lo recorta a la zona del
+    // escáner); usar la sección aquí estiraría el buffer y deformaría la malla.
+    const widthPx = Math.max(canvas.clientWidth || section.clientWidth, 1);
+    const heightPx = Math.max(canvas.clientHeight || section.clientHeight || 400, 1);
     const ratio = renderer.getPixelRatio();
     if (canvas.width !== Math.floor(widthPx * ratio) || canvas.height !== Math.floor(heightPx * ratio)) {
       renderer.setSize(widthPx, heightPx, false);
       camera.aspect = widthPx / heightPx;
       camera.updateProjectionMatrix();
+
+      // En pantallas angostas el campo original (centrado en x=-2.5) queda
+      // fuera del encuadre: se recentra y se escala al ancho visible.
+      if (window.innerWidth <= 540) {
+        const visibleHeight = 2 * camera.position.z * Math.tan((camera.fov * Math.PI) / 360);
+        const visibleWidth = visibleHeight * camera.aspect;
+        const fieldScale = (visibleWidth * 1.12) / width;
+        field.position.set(0, 0.15, 0);
+        field.scale.setScalar(fieldScale);
+      } else {
+        field.position.set(-2.5, -0.1, 0);
+        field.scale.setScalar(1);
+      }
     }
   }
 
