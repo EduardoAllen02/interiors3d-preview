@@ -113,7 +113,9 @@ img { max-width: 100%; display: block; }
   align-self: flex-start; /* evita stretch horizontal dentro de .nav-logo (flex column) */
 }
 .logo-img--footer {
-  height: 28px;
+  max-height: 20px;
+  width: auto;
+  object-fit: contain;
   opacity: 0.9;
 }
 nav ul {
@@ -1069,6 +1071,7 @@ nav ul li a {
   border-color: rgba(0,173,180,0.7);
   border-radius: 2px;
 }
+.nav-hamburger { display: none; }
 
 #hero {
   min-height: 650px;
@@ -1425,7 +1428,7 @@ nav ul li a {
   padding-bottom: 30px;
   margin-bottom: 18px;
 }
-.logo-img--footer { height: 32px; }
+.logo-img--footer { max-height: 26px; width: auto; }
 .footer-brand p {
   margin-bottom: 14px;
   font-size: 9.5px;
@@ -1514,11 +1517,17 @@ nav ul li a {
    MOBILE REFINEMENT — solo <=768px
    ══════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  /* Nav: conservar el CTA de contacto (el menú desaparecía entero) */
-  nav ul { display: flex; gap: 0; }
-  nav ul li { display: none; }
-  nav ul li:last-child { display: block; }
-  .nav-cta { min-height: 40px; display: inline-flex; align-items: center; padding: 10px 20px; }
+  nav ul { display: none; }
+  .nav-hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 1px; }
+  .nav-mobile-panel { position: fixed; top: 0; right: -100%; width: 220px; height: 100vh; background: #080a0b; border-left: 1px solid rgba(0,173,180,0.2); padding: 60px 24px 24px; z-index: 1000; transition: right 0.3s ease; }
+  .nav-mobile-panel ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+  .nav-mobile-panel li a { display: block; padding: 16px 0; font-size: 13px; letter-spacing: 0.1em; color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .nav-panel-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; line-height: 1; }
+  .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; }
+  body.nav-open .nav-overlay { display: block; }
+  body.nav-open .nav-mobile-panel { right: 0; }
+  .logo-img--footer { max-height: 18px; }
 
   #hero { min-height: 560px; }
   .hero-content { padding: 88px 20px 52px; }
@@ -1597,5 +1606,4 @@ nav ul li a {
   }
   #canvas-tablet { width: 160px; height: 250px; }
   .tech-panel-wrap.right .tech-panel { max-width: none; padding: 0 172px 0 0; }
-  #immersive-canvas { display: none; }
 }

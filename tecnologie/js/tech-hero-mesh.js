@@ -304,8 +304,8 @@
   }
 
   function resize() {
-    const widthPx = Math.max(section.clientWidth, 1);
-    const heightPx = Math.max(section.clientHeight, 1);
+    const widthPx = Math.max(canvas.offsetWidth, 1);
+    const heightPx = Math.max(canvas.offsetHeight, 1);
     const ratio = renderer.getPixelRatio();
     if (canvas.width !== Math.floor(widthPx * ratio) || canvas.height !== Math.floor(heightPx * ratio)) {
       renderer.setSize(widthPx, heightPx, false);
@@ -331,6 +331,10 @@
     uniforms.uMouse.value.y += (targetY - uniforms.uMouse.value.y) * speed;
     if (!reducedMotion) field.rotation.y = -0.07 + Math.sin(elapsed * 0.24) * 0.02;
     renderer.render(scene, camera);
+  }
+
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(() => resize()).observe(canvas);
   }
 
   render();

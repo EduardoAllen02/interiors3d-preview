@@ -102,3 +102,25 @@
   window.addEventListener('resize', sweepReveals, { passive: true });
   window.addEventListener('load', () => setTimeout(sweepReveals, 400));
 })();
+
+/* ── Mobile: feature image auto-lift on scroll ── */
+document.addEventListener('DOMContentLoaded', function () {
+  if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+  const featRows = document.querySelectorAll('.featx-row');
+
+  const liftObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        featRows.forEach(function (row) {
+          var img = row.querySelector('.featx-media img');
+          if (img) img.classList.remove('img-lifted');
+        });
+        var img = entry.target.querySelector('.featx-media img');
+        if (img) img.classList.add('img-lifted');
+      }
+    });
+  }, { threshold: 0.35 });
+
+  featRows.forEach(function (row) { liftObserver.observe(row); });
+});

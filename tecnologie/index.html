@@ -31,6 +31,16 @@
       <li><a href="#contatti" class="nav-cta">CONTATTACI</a></li>
     </ul>
   </nav>
+  <button class="nav-hamburger" aria-label="Apri menu"><span></span><span></span><span></span></button>
+  <div class="nav-overlay"></div>
+  <div class="nav-mobile-panel">
+    <button class="nav-panel-close" aria-label="Chiudi menu">×</button>
+    <ul>
+      <li><a href="https://interiors3d.com/galleria-virtual-tours/" target="_blank" rel="noopener">GALLERIA</a></li>
+      <li><a href="../home/">HOME</a></li>
+      <li><a href="#contatti">CONTATTI</a></li>
+    </ul>
+  </div>
 </header>
 
 <!-- ══════════════════════════════════════════
@@ -276,5 +286,18 @@
 <script src="js/tech-page.js?v=20260714-3"></script>
 <script src="js/compare-particles.js?v=20260714-2"></script>
 <script src="../home/js/gallery-cta-mesh.js?v=20260716-2"></script>
+<script>
+(function(){
+  var ham = document.querySelector('.nav-hamburger');
+  var closeBtn = document.querySelector('.nav-panel-close');
+  var overlay = document.querySelector('.nav-overlay');
+  function openMenu(){ document.body.classList.add('nav-open'); }
+  function closeMenu(){ document.body.classList.remove('nav-open'); }
+  ham.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  document.querySelectorAll('.nav-mobile-panel a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+}());
+</script>
 </body>
 </html>

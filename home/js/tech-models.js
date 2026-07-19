@@ -225,16 +225,16 @@ const TABLET_CFG = {
    Solo escala/posición; el timing del scroll no se toca.
    ──────────────────────────────────────────────── */
 if (window.matchMedia('(max-width: 768px)').matches) {
-  SCANNER_CFG.startScale = 1.45;
-  SCANNER_CFG.endScale = 1.6;
-  SCANNER_CFG.startPosY = -0.35;
-  SCANNER_CFG.endPosY = 0.1;
+  SCANNER_CFG.startScale = 2.18;
+  SCANNER_CFG.endScale = 2.4;
+  SCANNER_CFG.startPosY = -0.52;
+  SCANNER_CFG.endPosY = 0.15;
   SCANNER_CFG.startY = 90;
 
-  TABLET_CFG.startScale = 1.5;
-  TABLET_CFG.endScale = 3.6;
+  TABLET_CFG.startScale = 2.25;
+  TABLET_CFG.endScale = 4.5;
   TABLET_CFG.startPosY = 0;
-  TABLET_CFG.endPosY = 0.3;
+  TABLET_CFG.endPosY = 0.45;
   TABLET_CFG.endPosX = 0;
   TABLET_CFG.startY = 120;
 }
@@ -713,6 +713,10 @@ function initTechModel(canvasId, cfg) {
 
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
+  }
+
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(() => resize()).observe(canvas);
   }
 
 
