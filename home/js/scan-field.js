@@ -134,7 +134,8 @@
       float pointerFadeStart = mix(0.43, 0.62, pointerLowerZone);
       float pointerFadeEnd = mix(0.73, 0.88, pointerLowerZone);
       float pointerFade = 1.0 - smoothstep(pointerFadeStart, pointerFadeEnd, uMouse.x);
-      return max(core, halo) * uReveal * copyFade * pointerFade;
+      const float BASE = 0.07;
+      return max(max(core, halo) * uReveal * copyFade * pointerFade, BASE);
     }
   `;
 
@@ -397,13 +398,17 @@
 
   function resize() {
     const widthPx = Math.max(section.clientWidth, 1);
-    const heightPx = Math.max(section.clientHeight, 1);
+    const heightPx = Math.max(section.clientHeight || canvas.clientHeight || 400, 1);
     const ratio = renderer.getPixelRatio();
     if (canvas.width !== Math.floor(widthPx * ratio) || canvas.height !== Math.floor(heightPx * ratio)) {
       renderer.setSize(widthPx, heightPx, false);
       camera.aspect = widthPx / heightPx;
       camera.updateProjectionMatrix();
     }
+  }
+
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(resize).observe(canvas);
   }
 
   const clock = new THREE.Clock();
