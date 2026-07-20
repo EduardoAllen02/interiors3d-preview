@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260719-2">
+  <link rel="stylesheet" href="css/style.css?v=20260720-client1">
 </head>
 <body>
 
@@ -69,6 +69,24 @@
       </div>
     </div>
 
+    <div class="hero-mobile-portal" aria-hidden="true">
+      <div class="portal-stage">
+        <span class="portal-aura"></span>
+        <div class="portal-scene">
+          <span class="portal-frame portal-frame--back"></span>
+          <span class="portal-frame portal-frame--mid"></span>
+          <span class="portal-frame portal-frame--front"></span>
+          <span class="portal-plane portal-plane--floor"></span>
+          <span class="portal-plane portal-plane--left"></span>
+          <span class="portal-plane portal-plane--right"></span>
+          <span class="portal-core"><i></i><i></i><i></i></span>
+        </div>
+        <span class="portal-orbit portal-orbit--a"></span>
+        <span class="portal-orbit portal-orbit--b"></span>
+        <span class="portal-tap-wave"></span>
+      </div>
+    </div>
+
     <div class="hero-right">
       <div class="play-btn" title="Play video">
         <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -88,7 +106,7 @@
     <p class="logos-label" data-t="logos_label">AZIENDE E ISTITUZIONI CHE HANNO SCELTO INTERIORS3D</p>
     <div class="logos-track">
       <div class="logos-strip">
-        <div class="logo-item"><img src="assets/img/logos/sap.svg" alt="SAP" class="logo-client logo-client--color"></div>
+        <div class="logo-item"><img src="assets/img/logos/sap-white.svg" alt="SAP" class="logo-client logo-client--sap-white"></div>
         <div class="logo-item"><img src="assets/img/logos/hfarm.webp" alt="H-FARM" class="logo-client logo-client--sm"></div>
         <div class="logo-item"><img src="assets/img/logos/colombini.webp" alt="Colombini Group" class="logo-client logo-client--wide"></div>
         <div class="logo-item"><span class="logo-text">Euromobil</span></div>
@@ -96,7 +114,7 @@
         <div class="logo-item"><img src="assets/img/logos/unibo.webp" alt="Università di Bologna" class="logo-client logo-client--sq"></div>
         <div class="logo-item"><span class="logo-text logo-text--xs">PromoTurismo<strong>FVG</strong></span></div>
         <!-- Duplicate set for seamless loop -->
-        <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/sap.svg" alt="" class="logo-client logo-client--color"></div>
+        <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/sap-white.svg" alt="" class="logo-client logo-client--sap-white"></div>
         <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/hfarm.webp" alt="" class="logo-client logo-client--sm"></div>
         <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/colombini.webp" alt="" class="logo-client logo-client--wide"></div>
         <div class="logo-item" aria-hidden="true"><span class="logo-text">Euromobil</span></div>
@@ -218,9 +236,8 @@
       </div>
 
     </div><!-- /sol-cards-grid -->
-    <div class="swipe-hint" aria-hidden="true">
-      <span class="sh-arrow">→</span>
-      <span class="sh-label">scorri</span>
+    <div class="solutions-scroll-cue" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M7 4l8 8-8 8"/></svg>
     </div>
 
   </div><!-- /solutions-inner -->
@@ -426,8 +443,12 @@
         <h4 data-t="ft_c6">CONTATTI</h4>
         <p class="footer-addr" data-t="ft_addr">
           Interiors3D S.r.l.<br>
-          Via Treviso, 56/B<br>
-          31020 San Vendemiano (TV) – Italia<br>
+          <strong>Sede legale</strong><br>
+          Via A. Diaz, 34<br>
+          31029 Vittorio Veneto TV<br><br>
+          <strong>Sede legale</strong><br>
+          Via Lourdes 64<br>
+          31015 Conegliano TV<br><br>
           +39 0438 412 360<br>
           info@interiors3d.it
         </p>
@@ -465,6 +486,7 @@
 <script src="js/gallery-cta-mesh.js?v=20260719-2"></script>
 <script src="js/immersive-field.js?v=20260713-3"></script>
 <script src="js/tech-models.js?v=20260719-2"></script>
+<script src="js/mobile-experience.js?v=20260720-client1"></script>
 <script>
 (function(){
   var ham = document.querySelector('.nav-hamburger');

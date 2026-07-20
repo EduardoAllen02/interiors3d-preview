@@ -44,7 +44,7 @@ const T = {
     ft_c3l1:"Industria e Manufacturing",ft_c3l2:"Design e Arredo",ft_c3l3:"Turismo e Territorio",ft_c3l4:"Education e Università",ft_c3l5:"Musei e Cultura",ft_c3l6:"Real Estate",
     ft_c4l1:"Chi siamo",ft_c4l2:"Team",ft_c4l3:"Partner",ft_c4l4:"Lavora con noi",ft_c4l5:"Contatti",
     ft_c5l1:"Galleria Virtual Tours",ft_c5l2:"Tecnologie",
-    ft_addr: "Interiors3D S.r.l.<br>Via Treviso, 56/B<br>31020 San Vendemiano (TV) – Italia<br>+39 0438 412 360<br>info@interiors3d.it",
+    ft_addr: "Interiors3D S.r.l.<br><strong>Sede legale</strong><br>Via A. Diaz, 34<br>31029 Vittorio Veneto TV<br><br><strong>Sede legale</strong><br>Via Lourdes 64<br>31015 Conegliano TV<br><br>+39 0438 412 360<br>info@interiors3d.it",
     ft_copy: "© 2024 Interiors3D S.r.l. – PIVA 04472240269 – Privacy Policy – Cookie Policy",
     ft_made: "Made with ♥ in Italy",
   },
@@ -93,7 +93,7 @@ const T = {
     ft_c3l1:"Industria y Manufactura",ft_c3l2:"Diseño y Muebles",ft_c3l3:"Turismo y Territorio",ft_c3l4:"Educación y Universidades",ft_c3l5:"Museos y Cultura",ft_c3l6:"Inmobiliaria",
     ft_c4l1:"Quiénes somos",ft_c4l2:"Equipo",ft_c4l3:"Socios",ft_c4l4:"Trabaja con nosotros",ft_c4l5:"Contacto",
     ft_c5l1:"Galería Virtual Tours",ft_c5l2:"Tecnologías",
-    ft_addr: "Interiors3D S.r.l.<br>Via Treviso, 56/B<br>31020 San Vendemiano (TV) – Italia<br>+39 0438 412 360<br>info@interiors3d.it",
+    ft_addr: "Interiors3D S.r.l.<br><strong>Sede legal</strong><br>Via A. Diaz, 34<br>31029 Vittorio Veneto TV<br><br><strong>Sede legal</strong><br>Via Lourdes 64<br>31015 Conegliano TV<br><br>+39 0438 412 360<br>info@interiors3d.it",
     ft_copy: "© 2024 Interiors3D S.r.l. – PIVA 04472240269 – Política de Privacidad – Política de Cookies",
     ft_made: "Hecho con ♥ en Italia",
   }
