@@ -231,12 +231,15 @@ if (window.matchMedia('(max-width: 768px)').matches) {
   SCANNER_CFG.endPosY = 0.15;
   SCANNER_CFG.startY = 90;
 
-  TABLET_CFG.startScale = 2.25;
-  TABLET_CFG.endScale = 4.5;
+  TABLET_CFG.startScale = 3.4;
+  TABLET_CFG.endScale = 6.75;
   TABLET_CFG.startPosY = 0;
   TABLET_CFG.endPosY = 0.45;
   TABLET_CFG.endPosX = 0;
   TABLET_CFG.startY = 120;
+  /* La cámara se aleja para que la tablet agrandada no se recorte. */
+  TABLET_CFG.startCamZ = 12;
+  TABLET_CFG.endCamZ = 12;
 }
 
 

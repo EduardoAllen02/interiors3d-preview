@@ -29,16 +29,18 @@
     </ul>
   </nav>
   <button class="nav-hamburger" aria-label="Apri menu"><span></span><span></span><span></span></button>
-  <div class="nav-overlay"></div>
-  <div class="nav-mobile-panel">
-    <button class="nav-panel-close" aria-label="Chiudi menu">×</button>
-    <ul>
-      <li><a href="https://interiors3d.com/galleria-virtual-tours/" target="_blank" rel="noopener">GALLERIA</a></li>
-      <li><a href="../tecnologie/">TECNOLOGIE</a></li>
-      <li><a href="#contatti">CONTATTI</a></li>
-    </ul>
-  </div>
 </header>
+<!-- Fuera del header: su backdrop-filter crea un containing block
+     que rompería el position:fixed del panel y el overlay. -->
+<div class="nav-overlay"></div>
+<div class="nav-mobile-panel">
+  <button class="nav-panel-close" aria-label="Chiudi menu">×</button>
+  <ul>
+    <li><a href="https://interiors3d.com/galleria-virtual-tours/" target="_blank" rel="noopener">GALLERIA</a></li>
+    <li><a href="../tecnologie/">TECNOLOGIE</a></li>
+    <li><a href="#contatti">CONTATTI</a></li>
+  </ul>
+</div>
 
 <!-- ══════════════════════════════════════════
      HERO
@@ -462,7 +464,7 @@
 <script src="js/scan-field.js?v=20260719-2"></script>
 <script src="js/gallery-cta-mesh.js?v=20260719-2"></script>
 <script src="js/immersive-field.js?v=20260713-3"></script>
-<script src="js/tech-models.js?v=20260717-1"></script>
+<script src="js/tech-models.js?v=20260719-2"></script>
 <script>
 (function(){
   var ham = document.querySelector('.nav-hamburger');

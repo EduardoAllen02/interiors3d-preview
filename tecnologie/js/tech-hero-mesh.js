@@ -278,6 +278,14 @@
       Math.sin(t * 0.236 + 3.1) * 0.14 +
       (smoothNoise(t * 0.195 + 40.0) - 0.5) * 0.30;
     // Centrado hacia la zona visible de la malla (derecha del copy).
+    // En móvil solo se ve la franja central de la malla (escala uniforme),
+    // así que la luz se restringe a ese rango para no salir de cuadro.
+    if (window.innerWidth <= 768) {
+      return {
+        x: THREE.MathUtils.clamp(0.5 + wx * 0.35, 0.40, 0.60),
+        y: THREE.MathUtils.clamp(0.5 + wy, 0.12, 0.88),
+      };
+    }
     return {
       x: THREE.MathUtils.clamp(0.66 + wx, 0.34, 0.97),
       y: THREE.MathUtils.clamp(0.5 + wy, 0.12, 0.88),
@@ -300,6 +308,14 @@
   function layoutField() {
     const visibleHeight = 2 * camera.position.z * Math.tan((camera.fov * Math.PI) / 360);
     const visibleWidth = visibleHeight * camera.aspect;
+    if (window.innerWidth <= 768) {
+      // Portrait: el escalado por eje comprimía la malla horizontalmente.
+      // Escala uniforme ajustada al alto; el sobrante horizontal queda
+      // fuera de cámara y las celdas conservan la proporción de desktop.
+      const s = (visibleHeight * 1.15) / height;
+      field.scale.set(s, s, 1.5);
+      return;
+    }
     field.scale.set((visibleWidth * 1.06) / width, (visibleHeight * 1.3) / height, 1.5);
   }
 

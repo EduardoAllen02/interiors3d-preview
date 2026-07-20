@@ -1517,7 +1517,7 @@ nav ul li a {
   nav ul { display: none; }
   .nav-hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
   .nav-hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 1px; }
-  .nav-mobile-panel { position: fixed; top: 0; right: -100%; width: 220px; height: 100vh; background: #080a0b; border-left: 1px solid rgba(0,173,180,0.2); padding: 60px 24px 24px; z-index: 1000; transition: right 0.3s ease; }
+  .nav-mobile-panel { display: flex; flex-direction: column; position: fixed; top: 0; right: -100%; width: 220px; height: 100vh; background: #080a0b; border-left: 1px solid rgba(0,173,180,0.2); padding: 60px 24px 24px; z-index: 1000; transition: right 0.3s ease; }
   .nav-mobile-panel ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
   .nav-mobile-panel li a { display: block; padding: 16px 0; font-size: 13px; letter-spacing: 0.1em; color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
   .nav-panel-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; line-height: 1; }

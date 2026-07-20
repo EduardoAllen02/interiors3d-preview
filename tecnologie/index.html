@@ -32,16 +32,18 @@
     </ul>
   </nav>
   <button class="nav-hamburger" aria-label="Apri menu"><span></span><span></span><span></span></button>
-  <div class="nav-overlay"></div>
-  <div class="nav-mobile-panel">
-    <button class="nav-panel-close" aria-label="Chiudi menu">×</button>
-    <ul>
-      <li><a href="https://interiors3d.com/galleria-virtual-tours/" target="_blank" rel="noopener">GALLERIA</a></li>
-      <li><a href="../home/">HOME</a></li>
-      <li><a href="#contatti">CONTATTI</a></li>
-    </ul>
-  </div>
 </header>
+<!-- Fuera del header: su backdrop-filter crea un containing block
+     que rompería el position:fixed del panel y el overlay. -->
+<div class="nav-overlay"></div>
+<div class="nav-mobile-panel">
+  <button class="nav-panel-close" aria-label="Chiudi menu">×</button>
+  <ul>
+    <li><a href="https://interiors3d.com/galleria-virtual-tours/" target="_blank" rel="noopener">GALLERIA</a></li>
+    <li><a href="../home/">HOME</a></li>
+    <li><a href="#contatti">CONTATTI</a></li>
+  </ul>
+</div>
 
 <!-- ══════════════════════════════════════════
      HERO — Leader in Tecnologie Virtual Tour
@@ -282,7 +284,7 @@
 <!-- Three.js + GLTFLoader -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-<script src="js/tech-hero-mesh.js?v=20260716-2"></script>
+<script src="js/tech-hero-mesh.js?v=20260719-2"></script>
 <script src="js/tech-page.js?v=20260714-3"></script>
 <script src="js/compare-particles.js?v=20260714-2"></script>
 <script src="../home/js/gallery-cta-mesh.js?v=20260719-2"></script>
