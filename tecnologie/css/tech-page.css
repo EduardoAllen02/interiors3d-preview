@@ -437,6 +437,22 @@
   position: relative;
 }
 .featx-media, .featx-copy { position: relative; z-index: 2; }
+.featx-media {
+  isolation: isolate;
+}
+/* Placa opaca de separación: cubre los haces antes de que alcancen el
+   borde de cualquier captura y evita falsas continuidades con la foto. */
+.featx-media::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -8px;
+  right: -8px;
+  bottom: 24px;
+  left: -8px;
+  border-radius: 14px;
+  background: var(--bg-light);
+}
 #tech-features .section-title-dark,
 #tech-features .feats-sub { position: relative; z-index: 2; }
 
@@ -542,7 +558,7 @@
   }
 
   .feats-inner .featx-row:nth-of-type(1)::before { top: -310px; right: -70px; }
-  .feats-inner .featx-row:nth-of-type(1)::after  { bottom: -245px; left: -25px; }
+  .feats-inner .featx-row:nth-of-type(1)::after  { bottom: -245px; left: -140px; }
 
   .feats-inner .featx-row:nth-of-type(2)::before { top: -300px; left: -70px; }
   .feats-inner .featx-row:nth-of-type(2)::after  { bottom: -245px; right: -25px; }
@@ -587,5 +603,8 @@
     height: 350px;
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 9%, #000 84%, transparent 100%);
     mask-image: linear-gradient(to bottom, transparent 0%, #000 9%, #000 84%, transparent 100%);
+  }
+  .feats-inner .featx-row:nth-of-type(1)::after {
+    left: -55px;
   }
 }
