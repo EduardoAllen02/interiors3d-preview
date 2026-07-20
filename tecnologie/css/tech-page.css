@@ -426,13 +426,19 @@
 }
 
 /* ══════════════════════════════════════════════════
-   HACES DE LUZ TURQUESA — sección features
-   Degradados difuminados que entran en diagonal,
-   cada tecnología desde una dirección distinta.
-   Heredan el fade-in del reveal de cada fila.
+   DESTELLOS DIAGONALES — sección features
+   Misma técnica que .cmp-rays de la tabla comparativa:
+   haces angostos paralelos que se desvanecen a lo largo,
+   en azul petróleo oscuro para contrastar con el blanco.
+   Cada tecnología recibe la luz de una esquina distinta.
    ══════════════════════════════════════════════════ */
 #tech-features { position: relative; overflow: hidden; }
-.featx-media, .featx-copy { position: relative; z-index: 1; }
+.featx-row {
+  position: relative;
+}
+.featx-media, .featx-copy { position: relative; z-index: 2; }
+#tech-features .section-title-dark,
+#tech-features .feats-sub { position: relative; z-index: 2; }
 
 .featx-row::before,
 .featx-row::after {
@@ -440,63 +446,136 @@
   position: absolute;
   pointer-events: none;
   z-index: 0;
-  border-radius: 999px;
-  filter: blur(28px);
+  background-repeat: no-repeat;
 }
 
-/* 01 · Wishlist — luz desde arriba-derecha, eco abajo-izquierda */
+/* Tres haces con núcleo definido y halo corto: reflejo, no mancha. */
+.featx-row::before {
+  width: 220px;
+  height: 420px;
+  background-image:
+    linear-gradient(to bottom, rgba(6,48,102,0.28) 0%, rgba(8,66,130,0.11) 48%, transparent 82%),
+    linear-gradient(to bottom, rgba(20,104,190,0.72) 0%, rgba(12,79,157,0.22) 50%, transparent 88%),
+    linear-gradient(to bottom, rgba(6,48,102,0.22) 0%, rgba(8,66,130,0.08) 44%, transparent 76%),
+    linear-gradient(to bottom, rgba(20,104,190,0.60) 0%, rgba(12,79,157,0.18) 46%, transparent 82%),
+    linear-gradient(to bottom, rgba(6,48,102,0.17) 0%, rgba(8,66,130,0.06) 40%, transparent 68%),
+    linear-gradient(to bottom, rgba(20,104,190,0.48) 0%, rgba(12,79,157,0.14) 42%, transparent 74%);
+  background-size:
+    30px 100%, 3px 92%,
+    18px 82%, 2px 78%,
+    10px 66%, 1px 58%;
+  background-position:
+    0 0, 13px 0,
+    84px 0, 92px 0,
+    138px 0, 142px 0;
+  filter: blur(2.5px) drop-shadow(0 0 9px rgba(12,82,157,0.18));
+}
+
+/* Eco fino en la esquina opuesta para equilibrar la composición. */
+.featx-row::after {
+  width: 26px;
+  height: 260px;
+  background-image:
+    linear-gradient(to bottom, rgba(6,48,102,0.19) 0%, rgba(8,66,130,0.06) 48%, transparent 78%),
+    linear-gradient(to bottom, rgba(20,104,190,0.48) 0%, rgba(12,79,157,0.12) 50%, transparent 84%);
+  background-size: 18px 100%, 2px 88%;
+  background-position: 0 0, 8px 0;
+  filter: blur(2px) drop-shadow(0 0 7px rgba(12,82,157,0.14));
+}
+
+/* 01 · Wishlist — racimo colgando de arriba-derecha */
 .feats-inner .featx-row:nth-of-type(1)::before {
-  top: -70px; right: -120px; width: 58%; height: 120px;
-  transform: rotate(-16deg);
-  background: linear-gradient(90deg, transparent 0%, rgba(0,173,180,0.16) 45%, rgba(0,173,180,0.30) 100%);
+  top: -70px; right: -30px;
+  transform: rotate(33deg);
+  transform-origin: top right;
 }
 .feats-inner .featx-row:nth-of-type(1)::after {
-  bottom: -30px; left: -90px; width: 34%; height: 60px;
-  transform: rotate(-14deg);
-  background: linear-gradient(270deg, transparent 0%, rgba(0,173,180,0.14) 80%);
+  bottom: -50px; left: 30px;
+  transform: rotate(33deg) scaleY(-1);
 }
 
-/* 02 · Analytics — luz desde la izquierda, eco arriba-derecha */
+/* 02 · Analytics — racimo desde arriba-izquierda */
 .feats-inner .featx-row:nth-of-type(2)::before {
-  top: 20%; left: -130px; width: 52%; height: 110px;
-  transform: rotate(12deg);
-  background: linear-gradient(270deg, transparent 0%, rgba(0,173,180,0.15) 45%, rgba(0,173,180,0.28) 100%);
+  top: -70px; left: -30px;
+  transform: rotate(-33deg);
+  transform-origin: top left;
 }
 .feats-inner .featx-row:nth-of-type(2)::after {
-  top: -50px; right: -60px; width: 28%; height: 54px;
-  transform: rotate(18deg);
-  background: linear-gradient(90deg, transparent 0%, rgba(0,173,180,0.12) 85%);
+  bottom: -50px; right: 40px;
+  transform: rotate(-33deg) scaleY(-1);
 }
 
-/* 03 · Self hosting — luz desde abajo-derecha, eco arriba-izquierda */
+/* 03 · Self hosting — racimo subiendo desde abajo-derecha */
 .feats-inner .featx-row:nth-of-type(3)::before {
-  bottom: -60px; right: -110px; width: 55%; height: 110px;
-  transform: rotate(14deg);
-  background: linear-gradient(90deg, transparent 0%, rgba(0,173,180,0.15) 50%, rgba(0,173,180,0.26) 100%);
+  bottom: -70px; right: -20px;
+  transform: rotate(-33deg) scaleY(-1);
+  transform-origin: bottom right;
 }
 .feats-inner .featx-row:nth-of-type(3)::after {
-  top: -40px; left: -70px; width: 30%; height: 60px;
-  transform: rotate(12deg);
-  background: linear-gradient(270deg, transparent 0%, rgba(0,173,180,0.12) 85%);
+  top: -50px; left: 50px;
+  transform: rotate(-33deg);
 }
 
-/* 04 · JavaScripts & AI — luz desde arriba-izquierda, eco abajo-derecha */
+/* 04 · JavaScripts & AI — racimo desde arriba-izquierda, más vertical */
 .feats-inner .featx-row:nth-of-type(4)::before {
-  top: -60px; left: -120px; width: 60%; height: 120px;
-  transform: rotate(-13deg);
-  background: linear-gradient(270deg, transparent 0%, rgba(0,173,180,0.16) 45%, rgba(0,173,180,0.28) 100%);
+  top: -70px; left: -10px;
+  transform: rotate(-22deg);
+  transform-origin: top left;
 }
 .feats-inner .featx-row:nth-of-type(4)::after {
-  bottom: -40px; right: -80px; width: 32%; height: 58px;
-  transform: rotate(-15deg);
-  background: linear-gradient(90deg, transparent 0%, rgba(0,173,180,0.13) 85%);
+  bottom: -50px; right: 30px;
+  transform: rotate(-22deg) scaleY(-1);
 }
 
-/* Móvil: los haces se atenúan para no saturar el layout compacto */
-@media (max-width: 768px) {
-  .featx-row::before,
+/* Desktop: prolongar las trayectorias fuera de cada bloque para que el
+   origen y el final nunca aparezcan cortados dentro del lienzo visible. */
+@media (min-width: 769px) {
+  .featx-row::before {
+    height: 760px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 11%, #000 82%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 11%, #000 82%, transparent 100%);
+  }
   .featx-row::after {
-    filter: blur(20px);
-    opacity: 0.72;
+    height: 520px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 13%, #000 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 13%, #000 78%, transparent 100%);
+  }
+
+  .feats-inner .featx-row:nth-of-type(1)::before { top: -310px; right: -70px; }
+  .feats-inner .featx-row:nth-of-type(1)::after  { bottom: -245px; left: -25px; }
+
+  .feats-inner .featx-row:nth-of-type(2)::before { top: -300px; left: -70px; }
+  .feats-inner .featx-row:nth-of-type(2)::after  { bottom: -245px; right: -25px; }
+
+  .feats-inner .featx-row:nth-of-type(3)::before { bottom: -310px; right: -55px; }
+  .feats-inner .featx-row:nth-of-type(3)::after  { top: -245px; left: -20px; }
+
+  .feats-inner .featx-row:nth-of-type(4)::before { top: -300px; left: -55px; }
+  .feats-inner .featx-row:nth-of-type(4)::after  { bottom: -245px; right: -20px; }
+}
+
+/* Móvil: reflejos más cortos y con menor densidad visual. */
+@media (max-width: 768px) {
+  .featx-row::before {
+    width: 155px;
+    height: 250px;
+    background-size:
+      21px 100%, 2px 92%,
+      12px 82%, 1.5px 78%,
+      7px 66%, 1px 58%;
+    background-position:
+      0 0, 9px 0,
+      56px 0, 61px 0,
+      94px 0, 97px 0;
+    filter: blur(2px) drop-shadow(0 0 6px rgba(12,82,157,0.13));
+    opacity: 0.68;
+  }
+  .featx-row::after {
+    width: 18px;
+    height: 145px;
+    background-size: 12px 100%, 1.5px 88%;
+    background-position: 0 0, 5px 0;
+    filter: blur(1.5px) drop-shadow(0 0 5px rgba(12,82,157,0.10));
+    opacity: 0.55;
   }
 }
