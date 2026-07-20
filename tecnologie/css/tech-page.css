@@ -424,3 +424,79 @@
   transform: translateY(-6px) scale(1.015);
   box-shadow: 0 26px 58px rgba(14,28,30,0.22);
 }
+
+/* ══════════════════════════════════════════════════
+   HACES DE LUZ TURQUESA — sección features
+   Degradados difuminados que entran en diagonal,
+   cada tecnología desde una dirección distinta.
+   Heredan el fade-in del reveal de cada fila.
+   ══════════════════════════════════════════════════ */
+#tech-features { position: relative; overflow: hidden; }
+.featx-media, .featx-copy { position: relative; z-index: 1; }
+
+.featx-row::before,
+.featx-row::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 999px;
+  filter: blur(28px);
+}
+
+/* 01 · Wishlist — luz desde arriba-derecha, eco abajo-izquierda */
+.feats-inner .featx-row:nth-of-type(1)::before {
+  top: -70px; right: -120px; width: 58%; height: 120px;
+  transform: rotate(-16deg);
+  background: linear-gradient(90deg, transparent 0%, rgba(0,173,180,0.16) 45%, rgba(0,173,180,0.30) 100%);
+}
+.feats-inner .featx-row:nth-of-type(1)::after {
+  bottom: -30px; left: -90px; width: 34%; height: 60px;
+  transform: rotate(-14deg);
+  background: linear-gradient(270deg, transparent 0%, rgba(0,173,180,0.14) 80%);
+}
+
+/* 02 · Analytics — luz desde la izquierda, eco arriba-derecha */
+.feats-inner .featx-row:nth-of-type(2)::before {
+  top: 20%; left: -130px; width: 52%; height: 110px;
+  transform: rotate(12deg);
+  background: linear-gradient(270deg, transparent 0%, rgba(0,173,180,0.15) 45%, rgba(0,173,180,0.28) 100%);
+}
+.feats-inner .featx-row:nth-of-type(2)::after {
+  top: -50px; right: -60px; width: 28%; height: 54px;
+  transform: rotate(18deg);
+  background: linear-gradient(90deg, transparent 0%, rgba(0,173,180,0.12) 85%);
+}
+
+/* 03 · Self hosting — luz desde abajo-derecha, eco arriba-izquierda */
+.feats-inner .featx-row:nth-of-type(3)::before {
+  bottom: -60px; right: -110px; width: 55%; height: 110px;
+  transform: rotate(14deg);
+  background: linear-gradient(90deg, transparent 0%, rgba(0,173,180,0.15) 50%, rgba(0,173,180,0.26) 100%);
+}
+.feats-inner .featx-row:nth-of-type(3)::after {
+  top: -40px; left: -70px; width: 30%; height: 60px;
+  transform: rotate(12deg);
+  background: linear-gradient(270deg, transparent 0%, rgba(0,173,180,0.12) 85%);
+}
+
+/* 04 · JavaScripts & AI — luz desde arriba-izquierda, eco abajo-derecha */
+.feats-inner .featx-row:nth-of-type(4)::before {
+  top: -60px; left: -120px; width: 60%; height: 120px;
+  transform: rotate(-13deg);
+  background: linear-gradient(270deg, transparent 0%, rgba(0,173,180,0.16) 45%, rgba(0,173,180,0.28) 100%);
+}
+.feats-inner .featx-row:nth-of-type(4)::after {
+  bottom: -40px; right: -80px; width: 32%; height: 58px;
+  transform: rotate(-15deg);
+  background: linear-gradient(90deg, transparent 0%, rgba(0,173,180,0.13) 85%);
+}
+
+/* Móvil: los haces se atenúan para no saturar el layout compacto */
+@media (max-width: 768px) {
+  .featx-row::before,
+  .featx-row::after {
+    filter: blur(20px);
+    opacity: 0.72;
+  }
+}
