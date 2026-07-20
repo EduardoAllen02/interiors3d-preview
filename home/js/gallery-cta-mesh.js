@@ -189,6 +189,15 @@
   function layoutField() {
     const visibleHeight = 2 * camera.position.z * Math.tan((camera.fov * Math.PI) / 360);
     const visibleWidth = visibleHeight * camera.aspect;
+    if (window.innerWidth <= 768) {
+      // Caja alta en móvil: el escalado independiente por eje comprimía la
+      // malla horizontalmente. Escala casi uniforme a lo ancho, centrada,
+      // como la malla del escáner en móvil.
+      const s = (visibleWidth * 1.06) / width;
+      field.scale.set(s, s * 1.25, 1.6);
+      field.position.set(0, -0.1, 0);
+      return;
+    }
     const targetWidth = visibleWidth * MESH_WIDTH_RATIO;
     const scaleX = targetWidth / width;
     const scaleY = (visibleHeight * MESH_HEIGHT_RATIO) / height;

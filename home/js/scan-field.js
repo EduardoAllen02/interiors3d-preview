@@ -211,7 +211,10 @@
     return (dustSeed - 1) / 2147483646;
   }
 
-  for (let index = 0; index < 336; index += 1) {
+  // En móvil el campo se comprime a un área menor: con la densidad de
+  // desktop las partículas se ven forzadas — se reducen un 60%.
+  const DUST_COUNT = window.innerWidth <= 540 ? 134 : 336;
+  for (let index = 0; index < DUST_COUNT; index += 1) {
     const u = dustRandom();
     const v = dustRandom();
     const surface = samplePoint(u * (columns - 1), v * (rows - 1));
