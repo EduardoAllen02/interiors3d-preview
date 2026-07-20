@@ -578,4 +578,14 @@
     filter: blur(1.5px) drop-shadow(0 0 5px rgba(12,82,157,0.10));
     opacity: 0.55;
   }
+
+  /* El primer destello nace fuera del borde superior de la sección para
+     que en pantallas angostas no aparezca como un segmento recortado. */
+  .feats-inner .featx-row:nth-of-type(1)::before {
+    top: -175px;
+    right: -18px;
+    height: 350px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 9%, #000 84%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 9%, #000 84%, transparent 100%);
+  }
 }
