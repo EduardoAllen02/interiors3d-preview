@@ -1632,14 +1632,25 @@ nav ul li a {
      cubre la sección blanca de cards. #solutions queda fija (sticky)
      mientras #tech, con fondo sólido, se desliza por encima. Solo
      afecta el orden de apilado (z-index) — no toca tamaños ni el
-     resize de los canvases 3D de #tech. ── */
+     resize de los canvases 3D de #tech.
+
+     #solutions no tiene contenedor propio que acote su rango de
+     "pegado": su containing block es el body, que llega hasta el
+     final de la página, así que sigue siendo sticky mucho después de
+     #tech (bug: las cards reaparecían sobre historias/footer). Como
+     #tech ya lo tapa mientras dura su propia sección, basta con que
+     TODO lo que viene después también quede por encima en el orden
+     de apilado — sin necesidad de acotar el sticky con envoltorios
+     extra que además romperían el alto del documento. ── */
   #solutions {
     padding: 40px 20px 36px;
     position: sticky;
     top: 0;
     z-index: 1;
   }
-  #tech {
+  #tech,
+  #stories,
+  #footer {
     position: relative;
     z-index: 2;
   }
