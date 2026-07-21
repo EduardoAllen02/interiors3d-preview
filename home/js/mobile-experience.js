@@ -73,70 +73,92 @@
     if (!reduceMotion) requestAnimationFrame(renderPortal);
   }
 
-  /* ── Autoavance del carrusel de soluciones ── */
+  /* ── Carrusel infinito de soluciones ──
+     Desplazamiento continuo a velocidad constante y lenta (sin pausas
+     ni saltos rígidos entre cards). El set de cards se duplica una vez
+     para poder recortar el scroll de forma invisible y dar la vuelta
+     sin fin. El botón de flecha suma un empujón de una card de ancho
+     por encima del avance base, sin detenerlo. */
   var grid = document.querySelector('.sol-cards-grid');
   var cue = document.querySelector('.solutions-scroll-cue');
   if (!grid) return;
 
-  var cards = Array.prototype.slice.call(grid.querySelectorAll('.sol-card'));
-  if (cards.length < 2) return;
+  var originalCards = Array.prototype.slice.call(grid.querySelectorAll('.sol-card'));
+  if (originalCards.length < 2) return;
 
-  var carouselVisible = false;
-  var pauseUntil = 0;
-  var autoTimer = null;
-
-  function nearestCardIndex() {
-    var left = grid.scrollLeft;
-    var best = 0;
-    var distance = Infinity;
-    cards.forEach(function (card, index) {
-      var delta = Math.abs(card.offsetLeft - grid.offsetLeft - left);
-      if (delta < distance) {
-        distance = delta;
-        best = index;
-      }
-    });
-    return best;
-  }
-
-  function targetLeft(card) {
-    return Math.max(0, card.offsetLeft - grid.offsetLeft - 4);
-  }
-
-  function updateCue() {
-    if (!cue) return;
-    var atEnd = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 12;
-    cue.classList.toggle('is-hidden', atEnd);
-  }
-
-  function advanceCards() {
-    if (!carouselVisible || document.hidden || Date.now() < pauseUntil) return;
-    var current = nearestCardIndex();
-    var next = current + 1;
-    if (next >= cards.length) next = 0;
-    grid.scrollTo({ left: targetLeft(cards[next]), behavior: 'smooth' });
-  }
-
-  function startAutoScroll() {
-    if (reduceMotion || autoTimer) return;
-    autoTimer = window.setInterval(advanceCards, 3200);
-  }
-
-  function pauseForUser() {
-    pauseUntil = Date.now() + 6500;
-  }
-
-  ['pointerdown', 'touchstart', 'wheel'].forEach(function (eventName) {
-    grid.addEventListener(eventName, pauseForUser, { passive: true });
+  originalCards.forEach(function (card) {
+    var clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    grid.appendChild(clone);
   });
-  grid.addEventListener('scroll', updateCue, { passive: true });
+  var clonedCards = Array.prototype.slice.call(grid.querySelectorAll('.sol-card')).slice(originalCards.length);
+
+  var BASE_SPEED = 22; // px/s — constante y lenta
+  var carouselVisible = false;
+  var dragging = false;
+  var lastTs = null;
+  var scrollPos = grid.scrollLeft;
+  var boostRemaining = 0;
+  var setWidth = 0;
+  var stepWidth = 0;
+
+  function measure() {
+    setWidth = clonedCards[0].offsetLeft - originalCards[0].offsetLeft;
+    stepWidth = originalCards.length > 1
+      ? originalCards[1].offsetLeft - originalCards[0].offsetLeft
+      : setWidth;
+  }
+  measure();
+  window.addEventListener('resize', measure);
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+    if (lastTs === null) lastTs = ts;
+    var dt = Math.min(80, ts - lastTs) / 1000;
+    lastTs = ts;
+
+    if (dragging || !carouselVisible || document.hidden || reduceMotion || setWidth <= 0) {
+      scrollPos = grid.scrollLeft;
+      return;
+    }
+
+    var delta = BASE_SPEED * dt;
+    if (boostRemaining > 0) {
+      var boostStep = Math.min(boostRemaining, boostRemaining * 8 * dt + 90 * dt);
+      delta += boostStep;
+      boostRemaining -= boostStep;
+    }
+
+    scrollPos += delta;
+    while (scrollPos >= setWidth) scrollPos -= setWidth;
+    grid.scrollLeft = scrollPos;
+  }
+  requestAnimationFrame(frame);
+
+  function onDragStart() {
+    dragging = true;
+  }
+  function onDragEnd() {
+    dragging = false;
+    scrollPos = grid.scrollLeft;
+  }
+  ['pointerdown', 'touchstart'].forEach(function (eventName) {
+    grid.addEventListener(eventName, onDragStart, { passive: true });
+  });
+  ['pointerup', 'pointercancel', 'touchend', 'touchcancel'].forEach(function (eventName) {
+    grid.addEventListener(eventName, onDragEnd, { passive: true });
+  });
+
+  if (cue) {
+    cue.addEventListener('click', function () {
+      boostRemaining += stepWidth || grid.clientWidth * 0.8;
+    });
+  }
 
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       carouselVisible = entry.isIntersecting && entry.intersectionRatio > 0.12;
-      if (carouselVisible) startAutoScroll();
     });
   }, { threshold: [0, 0.12, 0.4] });
   observer.observe(grid);
-  updateCue();
 }());

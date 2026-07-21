@@ -40,9 +40,18 @@
   background: linear-gradient(105deg, transparent 22%, rgba(255,255,255,0.055) 48%, transparent 72%);
 }
 #logos .logos-inner { position: relative; z-index: 1; }
-#logos .logos-label { color: rgba(255,255,255,0.82); }
-#logos .logo-item { opacity: 0.76; }
-#logos .logo-item:hover { opacity: 1; }
+#logos .logos-label { color: #fff; }
+/* Logos siempre a opacidad plena; el hover/tap solo los levanta,
+   nunca atenúa ni resalta con transparencia. */
+#logos .logo-item {
+  opacity: 1;
+  transition: transform 0.25s ease;
+}
+#logos .logo-item:hover,
+#logos .logo-item:active {
+  opacity: 1;
+  transform: translateY(-3px) scale(1.07);
+}
 #logos .logo-client,
 #logos .logo-client--color,
 #logos .logo-item:hover .logo-client--color {
@@ -247,36 +256,44 @@
   }
 
   .solutions-inner { position: relative; }
+  /* Botón discreto en la esquina inferior derecha: avanza una card sin
+     detener el auto-scroll continuo (ver mobile-experience.js). */
   .solutions-scroll-cue {
     display: flex;
     position: absolute;
     z-index: 8;
-    right: -10px;
-    top: 54%;
-    width: 58px;
-    height: 104px;
+    right: 12px;
+    bottom: 26px;
+    width: 32px;
+    height: 32px;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 8px;
-    pointer-events: none;
-    color: #008f92;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.80) 55%, #fff 88%);
-    transition: opacity 0.3s ease;
-    animation: solutionsCueFloat 1.15s ease-in-out infinite;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #fff;
+    background: rgba(6,16,17,0.52);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+    transition: opacity 0.3s ease, transform 0.18s ease;
+    animation: solutionsCueFloat 1.3s ease-in-out infinite;
+  }
+  .solutions-scroll-cue:active {
+    animation-play-state: paused;
+    transform: scale(0.88);
   }
   .solutions-scroll-cue svg {
-    width: 31px; height: 31px;
+    width: 13px; height: 13px;
     fill: none;
     stroke: currentColor;
-    stroke-width: 2.2;
+    stroke-width: 1.6;
     stroke-linecap: round;
     stroke-linejoin: round;
-    filter: drop-shadow(0 2px 5px rgba(0,143,146,0.22));
   }
-  .solutions-scroll-cue.is-hidden { opacity: 0; }
+  .solutions-scroll-cue.is-hidden { opacity: 0; pointer-events: none; }
   @keyframes solutionsCueFloat {
     0%,100% { transform: translateX(0); }
-    50% { transform: translateX(-9px); }
+    50% { transform: translateX(-3px); }
   }
 }
 
@@ -1800,11 +1817,13 @@ nav ul li a {
   .hero-sub { font-size: 14px; }
 
   #solutions { padding: 40px 20px 36px; }
-  /* ── Carrusel sol-cards (mobile) ── */
+  /* ── Carrusel sol-cards (mobile) ──
+     Sin scroll-snap: el movimiento es continuo (ver mobile-experience.js)
+     y el snap mandatory forcejeaba contra las escrituras de scrollLeft,
+     dejando la card clavada en el punto de snap más cercano. */
   .sol-cards-grid {
     display: flex;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: 14px;
     padding: 4px 4px 20px;
@@ -1814,7 +1833,6 @@ nav ul li a {
   .sol-card {
     flex: 0 0 76vw;
     aspect-ratio: 2 / 3; /* misma proporción que la card de desktop */
-    scroll-snap-align: start;
     transition: transform 0.35s ease, box-shadow 0.35s ease;
   }
   .sol-card.is-carousel-active {
@@ -1931,8 +1949,7 @@ nav ul li a {
     linear-gradient(112deg, #007c80 0%, #008f92 48%, #007477 100%);
   border-bottom-color: rgba(0,0,0,0.12);
 }
-#logos .logos-label { color: rgba(255,255,255,0.82); }
-#logos .logo-item { opacity: 0.76; }
+#logos .logos-label { color: #fff; }
 #logos .logo-client--color,
 #logos .logo-item:hover .logo-client--color { filter: invert(1) grayscale(1) contrast(1.05); }
 
