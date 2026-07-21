@@ -59,8 +59,6 @@
 }
 #logos .logo-text { color: #fff; }
 
-/* Portal arquitectónico: oculto en desktop, sustituye el video en mobile. */
-.hero-mobile-portal,
 .solutions-scroll-cue { display: none; }
 
 .footer-addr strong {
@@ -69,191 +67,7 @@
 }
 
 @media (max-width: 768px) {
-  #hero {
-    min-height: 760px;
-  }
-  .hero-content {
-    gap: 14px;
-    padding: 88px 20px 30px;
-  }
   .hero-left { width: 100%; }
-
-  .hero-mobile-portal {
-    display: block;
-    position: relative;
-    width: min(100%, 360px);
-    height: 214px;
-    margin: 4px auto -10px;
-    touch-action: pan-y;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-  .portal-stage {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    perspective: 820px;
-    border-radius: 26px;
-    background:
-      radial-gradient(circle at 50% 52%, rgba(38,219,216,0.15), transparent 34%),
-      linear-gradient(145deg, rgba(4,14,17,0.52), rgba(8,35,37,0.22));
-    border: 1px solid rgba(143,255,250,0.15);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 20px 48px rgba(0,0,0,0.24);
-  }
-  .portal-stage::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.12;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
-    mix-blend-mode: screen;
-  }
-  .portal-aura {
-    position: absolute;
-    left: 50%; top: 52%;
-    width: 230px; height: 150px;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: radial-gradient(ellipse, rgba(72,255,247,0.24), rgba(0,151,155,0.07) 42%, transparent 72%);
-    filter: blur(14px);
-  }
-  .portal-scene {
-    --portal-rx: -7deg;
-    --portal-ry: 10deg;
-    --portal-y: 0px;
-    position: absolute;
-    left: 50%; top: 50%;
-    width: 224px; height: 142px;
-    transform-style: preserve-3d;
-    transform: translate(-50%, calc(-50% + var(--portal-y))) rotateX(var(--portal-rx)) rotateY(var(--portal-ry));
-    will-change: transform;
-  }
-  .portal-frame,
-  .portal-plane,
-  .portal-core {
-    position: absolute;
-    left: 50%; top: 50%;
-    transform-style: preserve-3d;
-  }
-  .portal-frame {
-    border-radius: 18px;
-    border: 1px solid rgba(174,255,251,0.56);
-    background: linear-gradient(135deg, rgba(255,255,255,0.075), rgba(0,173,180,0.025));
-    box-shadow: inset 0 0 24px rgba(0,191,196,0.06), 0 0 18px rgba(0,191,196,0.10);
-  }
-  .portal-frame::before,
-  .portal-frame::after {
-    content: '';
-    position: absolute;
-    background: linear-gradient(90deg, transparent, rgba(207,255,252,0.72), transparent);
-  }
-  .portal-frame::before { left: 14%; right: 14%; top: 24%; height: 1px; }
-  .portal-frame::after { top: 14%; bottom: 14%; left: 27%; width: 1px; background: linear-gradient(transparent, rgba(207,255,252,0.48), transparent); }
-  .portal-frame--back {
-    width: 146px; height: 88px;
-    opacity: 0.34;
-    transform: translate3d(-50%, -50%, -92px) rotateZ(-5deg);
-  }
-  .portal-frame--mid {
-    width: 184px; height: 112px;
-    opacity: 0.62;
-    transform: translate3d(-50%, -50%, -42px) rotateZ(3deg);
-  }
-  .portal-frame--front {
-    width: 220px; height: 136px;
-    transform: translate3d(-50%, -50%, 18px);
-    border-color: rgba(212,255,253,0.78);
-    box-shadow: inset 0 0 32px rgba(0,191,196,0.08), 0 0 24px rgba(0,191,196,0.14);
-  }
-  .portal-plane {
-    pointer-events: none;
-    background: linear-gradient(135deg, rgba(94,245,238,0.14), rgba(0,91,96,0.01));
-    border: 1px solid rgba(112,245,239,0.16);
-  }
-  .portal-plane--floor {
-    width: 176px; height: 96px;
-    transform: translate3d(-50%, -18%, -12px) rotateX(72deg);
-    background-image:
-      linear-gradient(rgba(82,229,223,0.10) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(82,229,223,0.10) 1px, transparent 1px);
-    background-size: 24px 24px;
-  }
-  .portal-plane--left {
-    width: 96px; height: 104px;
-    transform-origin: left center;
-    transform: translate3d(-88%, -50%, -14px) rotateY(68deg);
-  }
-  .portal-plane--right {
-    width: 96px; height: 104px;
-    transform-origin: right center;
-    transform: translate3d(-12%, -50%, -14px) rotateY(-68deg);
-  }
-  .portal-core {
-    width: 64px; height: 64px;
-    transform: translate3d(-50%, -50%, 46px);
-    border-radius: 18px;
-    border: 1px solid rgba(220,255,253,0.76);
-    background: radial-gradient(circle at 42% 36%, rgba(225,255,253,0.95), rgba(24,208,204,0.32) 18%, rgba(0,86,91,0.08) 54%, transparent 72%);
-    box-shadow: 0 0 28px rgba(42,232,225,0.28), inset 0 0 18px rgba(255,255,255,0.12);
-    animation: portalCoreBreath 2.8s ease-in-out infinite;
-  }
-  .portal-core i {
-    position: absolute;
-    left: 50%; top: 50%;
-    width: 7px; height: 7px;
-    margin: -3.5px;
-    border-radius: 50%;
-    background: #d9fffd;
-    box-shadow: 0 0 10px rgba(92,255,248,0.9);
-  }
-  .portal-core i:nth-child(1) { transform: translate(-18px, -13px); }
-  .portal-core i:nth-child(2) { transform: translate(17px, -5px); }
-  .portal-core i:nth-child(3) { transform: translate(-2px, 19px); }
-  .portal-orbit {
-    position: absolute;
-    left: 50%; top: 50%;
-    border: 1px solid rgba(153,255,250,0.22);
-    border-radius: 50%;
-    pointer-events: none;
-  }
-  .portal-orbit--a {
-    width: 274px; height: 88px;
-    transform: translate(-50%, -50%) rotate(-9deg);
-    animation: portalOrbitA 7s linear infinite;
-  }
-  .portal-orbit--b {
-    width: 118px; height: 176px;
-    transform: translate(-50%, -50%) rotate(18deg);
-    border-color: rgba(153,255,250,0.14);
-    animation: portalOrbitB 8.5s linear infinite reverse;
-  }
-  .portal-tap-wave {
-    position: absolute;
-    left: 50%; top: 50%;
-    width: 34px; height: 34px;
-    border: 1px solid rgba(205,255,252,0.82);
-    border-radius: 50%;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.4);
-    pointer-events: none;
-  }
-  .portal-stage.is-pulsing .portal-tap-wave { animation: portalTap 0.75s ease-out; }
-
-  @keyframes portalCoreBreath {
-    0%,100% { transform: translate3d(-50%, -50%, 46px) scale(0.94); filter: brightness(0.9); }
-    50% { transform: translate3d(-50%, -50%, 52px) scale(1.06); filter: brightness(1.2); }
-  }
-  @keyframes portalOrbitA {
-    to { transform: translate(-50%, -50%) rotate(351deg); }
-  }
-  @keyframes portalOrbitB {
-    to { transform: translate(-50%, -50%) rotate(378deg); }
-  }
-  @keyframes portalTap {
-    0% { opacity: 0.9; transform: translate(-50%, -50%) scale(0.35); }
-    100% { opacity: 0; transform: translate(-50%, -50%) scale(7.4); }
-  }
 
   .solutions-inner { position: relative; }
   /* Botón discreto en la esquina inferior derecha: avanza una card sin
@@ -298,8 +112,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .portal-core,
-  .portal-orbit,
   .solutions-scroll-cue { animation: none !important; }
 }
 
@@ -1816,7 +1628,21 @@ nav ul li a {
   .hero-h1 { font-size: clamp(30px, 8.5vw, 38px); }
   .hero-sub { font-size: 14px; }
 
-  #solutions { padding: 40px 20px 36px; }
+  /* ── Parallax de revelado: la sección negra de tecnologías sube y
+     cubre la sección blanca de cards. #solutions queda fija (sticky)
+     mientras #tech, con fondo sólido, se desliza por encima. Solo
+     afecta el orden de apilado (z-index) — no toca tamaños ni el
+     resize de los canvases 3D de #tech. ── */
+  #solutions {
+    padding: 40px 20px 36px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  #tech {
+    position: relative;
+    z-index: 2;
+  }
   /* ── Carrusel sol-cards (mobile) ──
      Sin scroll-snap: el movimiento es continuo (ver mobile-experience.js)
      y el snap mandatory forcejeaba contra las escrituras de scrollLeft,
@@ -1956,7 +1782,3 @@ nav ul li a {
 #logos .logo-client--sap-white,
 #logos .logo-item:hover .logo-client--sap-white { filter: none; }
 
-@media (max-width: 768px) {
-  #hero { min-height: 760px; }
-  .hero-content { gap: 14px; padding: 88px 20px 30px; }
-}
