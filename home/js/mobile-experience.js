@@ -135,19 +135,34 @@
   }
   requestAnimationFrame(frame);
 
-  function onDragStart() {
+  /* Pausar al primer toque y resolver el reinicio por el propio evento
+     de scroll (con debounce), no por pointerup/pointercancel: en touch,
+     el navegador suele cancelar el pointer en cuanto toma el gesto para
+     hacer scroll nativo, así que esos eventos llegan antes de que el
+     dedo termine de mover el carrusel — retomar el auto-scroll en ese
+     momento provocaba el temblor (el auto-scroll peleaba contra el
+     arrastre en curso). Mientras dragging=true no escribimos scrollLeft,
+     así que cualquier 'scroll' real durante la pausa viene del usuario
+     o de la inercia, nunca de nosotros mismos. */
+  var settleTimer = null;
+  function pauseAuto() {
     dragging = true;
+    scheduleResume();
   }
-  function onDragEnd() {
-    dragging = false;
-    scrollPos = grid.scrollLeft;
+  function scheduleResume() {
+    if (settleTimer) clearTimeout(settleTimer);
+    settleTimer = setTimeout(function () {
+      dragging = false;
+      scrollPos = grid.scrollLeft;
+      settleTimer = null;
+    }, 220);
   }
-  ['pointerdown', 'touchstart'].forEach(function (eventName) {
-    grid.addEventListener(eventName, onDragStart, { passive: true });
-  });
-  ['pointerup', 'pointercancel', 'touchend', 'touchcancel'].forEach(function (eventName) {
-    grid.addEventListener(eventName, onDragEnd, { passive: true });
-  });
+  grid.addEventListener('touchstart', pauseAuto, { passive: true });
+  grid.addEventListener('pointerdown', pauseAuto, { passive: true });
+  grid.addEventListener('scroll', function () {
+    if (!dragging) return;
+    scheduleResume();
+  }, { passive: true });
 
   if (cue) {
     cue.addEventListener('click', function () {
