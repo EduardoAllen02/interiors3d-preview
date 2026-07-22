@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260722-client1">
+  <link rel="stylesheet" href="css/style.css?v=20260722-client2">
 </head>
 <body>
 
@@ -41,6 +41,11 @@
     <li><a href="#contatti">CONTATTI</a></li>
   </ul>
 </div>
+
+<!-- Escáner viajero (solo móvil): un único canvas fijo a pantalla
+     completa que acompaña el scroll por hero, cards e historias de
+     éxito. Ver home/js/hero-scanner.js. -->
+<canvas id="hero-scanner-canvas" aria-hidden="true"></canvas>
 
 <!-- ══════════════════════════════════════════
      HERO
@@ -471,6 +476,8 @@
 <script src="js/gallery-cta-mesh.js?v=20260719-2"></script>
 <script src="js/immersive-field.js?v=20260713-3"></script>
 <script src="js/tech-models.js?v=20260719-2"></script>
+<script src="js/hero-scanner.js?v=20260722-client2"></script>
+<script src="js/hero-water.js?v=20260722-client2"></script>
 <script src="js/mobile-experience.js?v=20260720-client3"></script>
 <script>
 (function(){

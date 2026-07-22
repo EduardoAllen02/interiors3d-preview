@@ -18,6 +18,24 @@
   --nav-h: 72px;
 }
 
+/* Escáner viajero: canvas fijo a pantalla completa, solo móvil.
+   Recorre hero -> cards -> (oculto tras dos tecnologías) -> historias,
+   ver home/js/hero-scanner.js. z-index:1 para quedar detrás de todo
+   el texto/tarjetas (que llevan z-index:2 o más) y encima de los
+   fondos de cada sección. */
+#hero-scanner-canvas { display: none; }
+@media (max-width: 768px) {
+  #hero-scanner-canvas {
+    display: block;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
 /* ══════════════════════════════════════════════════
    CLIENT WAVE · corporate logos + mobile experience
    ══════════════════════════════════════════════════ */
@@ -69,7 +87,7 @@
 @media (max-width: 768px) {
   .hero-left { width: 100%; }
 
-  .solutions-inner { position: relative; }
+  .solutions-inner { position: relative; z-index: 1; }
   /* Botón discreto en la esquina inferior derecha: avanza una card sin
      detener el auto-scroll continuo (ver mobile-experience.js). */
   .solutions-scroll-cue {
@@ -1631,6 +1649,18 @@ nav ul li a {
   .hero-h1 { font-size: clamp(30px, 8.5vw, 38px); }
   .hero-sub { font-size: 14px; }
 
+  /* ── Hero: fondo oscuro con luz entrante (misma fórmula que el hero
+     de tecnologie) en vez de la foto — deja ver el escáner viajero
+     detrás del texto. Va aquí (bloque tardío) para ganar la cascada
+     sobre las reglas base sin media query de más arriba. ── */
+  .hero-bg-img { background-image: none; }
+  .hero-bg {
+    background:
+      radial-gradient(circle at 78% 26%, rgba(0,173,180,0.16), transparent 46%),
+      linear-gradient(120deg, #05080a 0%, #0a1213 55%, #0e1e20 100%);
+  }
+  .hero-overlay { background: none; }
+
   /* ── Parallax de revelado: la sección negra de tecnologías sube y
      cubre la sección blanca de cards. #solutions queda fija (sticky)
      mientras #tech, con fondo sólido, se desliza por encima. Solo
@@ -1646,45 +1676,98 @@ nav ul li a {
      de apilado — sin necesidad de acotar el sticky con envoltorios
      extra que además romperían el alto del documento. ── */
   #solutions {
-    padding: 40px 20px 36px;
+    /* Más espacio abajo: banda libre donde el escáner viajero se lee
+       como una presencia grande de fondo en vez de asomar apenas por
+       un hueco angosto entre las cards y la siguiente sección. */
+    padding: 40px 20px 190px;
     position: sticky;
     top: 0;
     z-index: 1;
+    /* Transparente (antes blanco): #solutions es sticky con su propio
+       z-index, así que pinta como un bloque atómico por encima del
+       canvas del escáner sin importar la posición del modelo — si la
+       sección tuviera su propio fondo opaco, taparía el escáner por
+       completo. Al quedar transparente, el escáner se ve a través de
+       cualquier hueco que no cubran las cards/el título/las
+       partículas; el body ya tiene fondo oscuro (--bg-dark) como base. */
+    background: transparent;
+    overflow: hidden;
   }
+  .section-title { color: #fff; }
   #tech,
   #stories,
   #footer {
     position: relative;
     z-index: 2;
   }
+  /* Partículas discretas alrededor del escáner (ver hero-scanner.js,
+     que las genera e inicia su animación al entrar la sección). */
+  .sol-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .sol-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #8CFFF2;
+    opacity: 0;
+    box-shadow: 0 0 6px rgba(92,255,242,0.85);
+    animation: solParticleFloat 6s ease-in-out infinite;
+  }
+  @keyframes solParticleFloat {
+    0%   { opacity: 0; transform: translateY(16px) scale(0.6); }
+    18%  { opacity: 0.85; }
+    50%  { transform: translateY(-12px) scale(1); }
+    82%  { opacity: 0.4; }
+    100% { opacity: 0; transform: translateY(-28px) scale(0.6); }
+  }
+
   /* ── Carrusel sol-cards (mobile) ──
      Sin scroll-snap: el movimiento es continuo (ver mobile-experience.js)
      y el snap mandatory forcejeaba contra las escrituras de scrollLeft,
-     dejando la card clavada en el punto de snap más cercano. */
+     dejando la card clavada en el punto de snap más cercano.
+     Cards más pequeñas y cuadradas para dejarle protagonismo al
+     escáner de fondo; los bordes del carrusel se desvanecen (mismo
+     truco de máscara que la franja de logos) en vez de cortar en seco. */
   .sol-cards-grid {
     display: flex;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     gap: 14px;
-    padding: 4px 4px 20px;
+    padding: 4px 10px 20px;
     scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 86%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 86%, transparent 100%);
   }
   .sol-cards-grid::-webkit-scrollbar { display: none; }
   .sol-card {
-    flex: 0 0 76vw;
-    aspect-ratio: 2 / 3; /* misma proporción que la card de desktop */
+    flex: 0 0 48vw;
+    aspect-ratio: 1 / 1.08;
     transition: transform 0.35s ease, box-shadow 0.35s ease;
   }
   .sol-card.is-carousel-active {
     transform: translateY(-6px) scale(1.02);
     box-shadow: 0 16px 40px rgba(0,173,180,0.18);
   }
-  .sol-card h3 { font-size: 12px; min-height: 0; }
-  .sol-card p { font-size: 12px; line-height: 1.55; }
-  /* El texto se queda compacto y la imagen absorbe el resto de la card,
-     como en desktop — sin franja blanca entre ambos. */
-  .sol-card-info { padding: 22px 16px 18px; flex: 0 0 auto; }
-  .sol-card-img { flex: 1 1 auto; min-height: 140px; }
+  .sol-card h3 { font-size: 9.5px; min-height: 0; margin-bottom: 4px; }
+  .sol-card p {
+    font-size: 9px;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .sol-icon { width: 22px; height: 22px; margin: 0 auto 6px; }
+  /* Card compacta y cuadrada: info reducida al mínimo, la imagen se
+     lleva la mayor parte del espacio. */
+  .sol-card-info { padding: 12px 10px 8px; flex: 0 0 auto; }
+  .sol-card-img { flex: 1 1 auto; min-height: 88px; }
   /* ── Swipe hint ── */
   .swipe-hint { display: flex; align-items: center; gap: 6px; opacity: 0.5; font-size: 11px; letter-spacing: 0.08em; color: var(--accent); margin-top: -8px; padding-left: 4px; transition: opacity 0.4s; }
   .swipe-hint.hidden { opacity: 0; pointer-events: none; }
