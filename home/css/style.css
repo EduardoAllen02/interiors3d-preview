@@ -18,6 +18,156 @@
   --nav-h: 72px;
 }
 
+/* ============================================================
+   TABLET VIAJERA + STORIE INVERSE CAROUSEL · MOBILE
+   ============================================================ */
+#canvas-tablet.tablet-journey-canvas {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  #canvas-tablet.tablet-journey-canvas {
+    display: block;
+    position: fixed;
+    inset: auto;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    margin: 0;
+    opacity: 1 !important;
+    pointer-events: none;
+    background: transparent;
+    will-change: transform;
+  }
+
+  /* El canvas global queda entre las cards y los encabezados/CTA. */
+  #tech,
+  #stories {
+    z-index: auto;
+    isolation: auto;
+  }
+  #footer { z-index: 7; }
+  #tech .tech-header,
+  #tech .tech-panel,
+  #tech .vs-col {
+    position: relative;
+    z-index: 6;
+  }
+
+  #stories {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 82% 44% at 108% 12%, rgba(0,184,192,0.16), transparent 70%),
+      radial-gradient(ellipse 74% 42% at -12% 88%, rgba(26,82,156,0.11), transparent 72%),
+      linear-gradient(148deg, #f8fbfb 0%, #ffffff 48%, #eef8f8 100%);
+  }
+
+  .stories-atmosphere {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .stories-atmosphere::before {
+    content: '';
+    position: absolute;
+    inset: -18% -30%;
+    opacity: 0.34;
+    background: repeating-linear-gradient(
+      156deg,
+      transparent 0 76px,
+      rgba(0,151,164,0.16) 77px,
+      transparent 79px 142px
+    );
+    transform: translate3d(0,0,0);
+    animation: storiesLinesDrift 16s ease-in-out infinite alternate;
+  }
+  .stories-atmosphere span {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    border: 1px solid rgba(0,173,180,0.18);
+    box-shadow:
+      0 0 22px rgba(0,173,180,0.08),
+      inset 0 0 32px rgba(33,87,158,0.06);
+  }
+  .stories-atmosphere span:nth-child(1) {
+    width: 270px;
+    height: 270px;
+    top: 8%;
+    right: -145px;
+    animation: storiesBubbleA 12s ease-in-out infinite alternate;
+  }
+  .stories-atmosphere span:nth-child(2) {
+    width: 210px;
+    height: 210px;
+    left: -118px;
+    top: 48%;
+    animation: storiesBubbleB 15s ease-in-out -4s infinite alternate;
+  }
+  .stories-atmosphere span:nth-child(3) {
+    width: 360px;
+    height: 92px;
+    right: -190px;
+    bottom: 12%;
+    border-radius: 50%;
+    border-color: rgba(21,75,151,0.12);
+    transform: rotate(-24deg);
+    animation: storiesBubbleC 11s ease-in-out -2s infinite alternate;
+  }
+
+  #stories .stories-inner {
+    position: relative;
+    z-index: auto;
+  }
+  #stories .stories-header,
+  #stories .swipe-hint {
+    position: relative;
+    z-index: 6;
+  }
+  #stories .stories-gallery-cta {
+    position: relative;
+    z-index: auto;
+  }
+  #stories .stories-gallery-label,
+  #stories .stories-gallery-btn {
+    position: relative;
+    z-index: 6;
+  }
+  #stories .stories-grid {
+    position: relative;
+    z-index: 3;
+    scroll-snap-type: none;
+    gap: 16px;
+    padding: 4px calc((100% - 82vw) / 2) 22px;
+  }
+  #stories .story-card {
+    flex: 0 0 82vw;
+    scroll-snap-align: none;
+  }
+
+  @keyframes storiesLinesDrift {
+    to { transform: translate3d(-36px,28px,0) rotate(1deg); opacity: 0.22; }
+  }
+  @keyframes storiesBubbleA {
+    to { transform: translate(-46px,38px) scale(1.08); }
+  }
+  @keyframes storiesBubbleB {
+    to { transform: translate(54px,-34px) scale(0.92); }
+  }
+  @keyframes storiesBubbleC {
+    to { transform: translate(-48px,-24px) rotate(-18deg) scaleX(1.1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stories-atmosphere::before,
+    .stories-atmosphere span { animation: none; }
+  }
+}
+
 /* Escáner viajero: canvas fijo a pantalla completa, solo móvil.
    Recorre hero -> cards -> (oculto tras dos tecnologías) -> historias,
    ver home/js/hero-scanner.js. z-index:1 para quedar detrás de todo
@@ -31,7 +181,7 @@
     inset: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
   }
 }
@@ -589,6 +739,10 @@ nav ul li a .caret { font-size: 8px; opacity: 0.6; }
   object-fit: cover;
   display: block;
   transition: transform 0.4s ease;
+}
+.sol-card-img picture,
+.story-card-bg picture {
+  display: contents;
 }
 .sol-card:not(.is-flipping):hover .sol-card-img img { transform: scale(1.05); }
 
@@ -1863,11 +2017,11 @@ nav ul li a {
   /* Tablet: esquina inferior derecha (texto izq, canvas der) */
   .tech-panel-wrap.right { min-height: 300px; margin-top: 96px; }
   .tech-panel-wrap.right .tech-img-col {
-    top: 28px; bottom: auto; left: auto !important; right: 0 !important;
-    transform: none; width: 160px; height: 250px;
+    top: 56px; bottom: auto; left: auto !important; right: 14px !important;
+    transform: none; width: 210px; height: 290px;
   }
-  #canvas-tablet { width: 160px; height: 250px; }
-  .tech-panel-wrap.right .tech-panel { max-width: none; padding: 0 172px 0 0; }
+  #canvas-tablet { width: 210px; height: 290px; }
+  .tech-panel-wrap.right .tech-panel { max-width: none; padding: 0 190px 0 0; }
 }
 
 /* Final cascade overrides for the client wave. */
@@ -1884,3 +2038,445 @@ nav ul li a {
 #logos .logo-client--sap-white,
 #logos .logo-item:hover .logo-client--sap-white { filter: none; }
 
+/* Estructura añadida sin impacto visual en escritorio. */
+#hero-ambient-canvas,
+.hero-light-rays { display: none; }
+.hero-scanner-fade { display: none; }
+.solutions-aurora { display: none; }
+.sol-carousel-stage { display: contents; }
+
+/* ============================================================
+   MOBILE CLIENT REFINEMENT · 2026-07-22
+   Capas: fondo < ambiente < escáner < contenido/logos
+   ============================================================ */
+@media (max-width: 768px) {
+  /* El escáner puede cruzar el final del hero, pero la banda corporativa
+     siempre lo cubre: la cola queda físicamente detrás de los logos. */
+  #logos {
+    position: relative;
+    z-index: 5;
+    isolation: isolate;
+  }
+
+  /* Misma luz volumétrica de la tabla comparativa: verde-negro profundo,
+     lavado superior derecho y tres haces largos sin cortes visibles. */
+  #hero { isolation: auto; }
+  .hero-bg {
+    background:
+      radial-gradient(ellipse 72% 52% at 104% -2%, rgba(160,255,246,0.18), transparent 68%),
+      radial-gradient(ellipse 54% 42% at 90% 10%, rgba(0,183,190,0.16), transparent 64%),
+      radial-gradient(ellipse 96% 68% at -18% 112%, rgba(0,155,164,0.16), transparent 72%),
+      linear-gradient(158deg, #04080a 0%, #071013 44%, #0a1a16 100%);
+  }
+  #hero-ambient-canvas {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero-light-rays {
+    display: block;
+    position: absolute;
+    top: -24%;
+    right: auto;
+    left: -70%;
+    width: 220%;
+    height: 170%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .hero-light-rays span {
+    position: absolute;
+    top: -10%;
+    height: 130%;
+    background: linear-gradient(to bottom, rgba(190,255,250,0.25), rgba(190,255,250,0.055) 48%, transparent 76%);
+    transform: rotate(35deg);
+    transform-origin: top right;
+    filter: blur(18px);
+  }
+  .hero-light-rays span:nth-child(1) { right: 8%; width: 92px; opacity: 0.52; }
+  .hero-light-rays span:nth-child(2) { right: 40%; width: 54px; opacity: 0.34; }
+  .hero-light-rays span:nth-child(3) { right: 66%; width: 34px; opacity: 0.22; }
+  .hero-overlay { z-index: 0; }
+  /* Fade lineal: casi transparente en el centro y progresivamente más
+     oscuro hacia el extremo derecho del hero. */
+  .hero-scanner-fade {
+    display: block;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      transparent 48%,
+      rgba(2,7,8,0) 64%,
+      rgba(2,7,8,0) 82%,
+      rgba(2,7,8,0) 150%);
+  }
+  .hero-content { position: relative; z-index: 4; }
+  .hero-left {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Fondo blanco real por debajo del canvas fijo. El pseudo-elemento pinta
+     la sección; el escáner queda en medio y el contenido por encima. */
+  #solutions {
+    position: sticky;
+    top: var(--nav-h);
+    z-index: auto;
+    isolation: auto;
+    overflow: visible;
+    padding: 48px 16px 10px;
+    background: transparent;
+  }
+  #solutions::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 66% 52% at 110% 4%, rgba(0,143,153,0.13), transparent 68%),
+      radial-gradient(ellipse 58% 46% at -8% 88%, rgba(24,68,150,0.09), transparent 72%),
+      linear-gradient(142deg, #f4faf9 0%, #ffffff 43%, #f2f8f8 100%);
+    pointer-events: none;
+  }
+  #solutions::after {
+    content: none;
+  }
+  .solutions-aurora {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    perspective: 700px;
+  }
+  /* Arco óptico: da una geometría reconocible a la luz, como una lente
+     atravesando niebla, en lugar de una simple mancha radial. */
+  .solutions-aurora::before {
+    content: '';
+    position: absolute;
+    width: 470px;
+    height: 185px;
+    left: -215px;
+    top: 118px;
+    border: 1px solid rgba(0,151,164,0.24);
+    border-radius: 50%;
+    opacity: 0.72;
+    box-shadow:
+      0 0 20px rgba(0,173,180,0.13),
+      inset 0 0 26px rgba(26,83,154,0.08);
+    transform: rotate(-19deg) skewX(-7deg);
+    animation: solutionsLensArc 11s ease-in-out infinite alternate;
+  }
+  /* Lámina de luz afilada: los extremos triangulares hacen que el volumen
+     tenga dirección y profundidad, no aspecto de degradado de fondo. */
+  .solutions-aurora::after {
+    content: '';
+    position: absolute;
+    width: 470px;
+    height: 210px;
+    top: -72px;
+    right: -250px;
+    opacity: 0.58;
+    clip-path: polygon(10% 28%, 100% 0, 78% 100%, 0 72%);
+    background: linear-gradient(112deg,
+      transparent 4%,
+      rgba(19,83,153,0.08) 28%,
+      rgba(0,173,180,0.32) 49%,
+      rgba(160,255,246,0.13) 63%,
+      transparent 82%);
+    filter: blur(8px) drop-shadow(0 0 14px rgba(0,173,180,0.10));
+    transform: rotate(-10deg) translateZ(-40px);
+    animation: solutionsLightSheet 9s ease-in-out infinite alternate;
+  }
+  .solutions-aurora span {
+    position: absolute;
+    display: block;
+    will-change: transform;
+    mix-blend-mode: multiply;
+  }
+  .solutions-aurora span:nth-child(1) {
+    width: 520px;
+    height: 92px;
+    top: 76px;
+    right: -280px;
+    opacity: 0.52;
+    clip-path: polygon(0 44%, 100% 0, 100% 100%, 0 60%);
+    background: linear-gradient(90deg,
+      transparent 0%, rgba(0,173,180,0.04) 20%,
+      rgba(0,173,180,0.46) 54%, rgba(124,242,236,0.18) 72%, transparent 100%);
+    filter: blur(7px) drop-shadow(0 0 12px rgba(0,173,180,0.11));
+    animation: solutionsAuroraA 10s ease-in-out infinite alternate;
+  }
+  .solutions-aurora span:nth-child(2) {
+    width: 430px;
+    height: 74px;
+    left: -245px;
+    bottom: 70px;
+    opacity: 0.38;
+    clip-path: polygon(0 0, 100% 38%, 100% 62%, 0 100%);
+    background: linear-gradient(90deg,
+      transparent 2%, rgba(23,68,145,0.26) 38%,
+      rgba(0,151,164,0.20) 64%, transparent 100%);
+    filter: blur(12px);
+    animation: solutionsAuroraB 13s ease-in-out -4s infinite alternate;
+  }
+  .solutions-aurora span:nth-child(3) {
+    width: 210px;
+    height: 210px;
+    right: -96px;
+    bottom: -72px;
+    border: 1px solid rgba(0,173,180,0.20);
+    border-radius: 50%;
+    opacity: 0.65;
+    box-shadow:
+      0 0 18px rgba(0,173,180,0.10),
+      inset 0 0 32px rgba(17,78,148,0.08);
+    animation: solutionsAuroraC 9s ease-in-out -2s infinite alternate;
+  }
+  @keyframes solutionsAuroraA {
+    from { transform: rotate(-18deg) translate3d(0,0,0); }
+    to { transform: rotate(-13deg) translate3d(-68px,54px,0) scaleY(1.16); }
+  }
+  @keyframes solutionsAuroraB {
+    from { transform: rotate(21deg) translate3d(0,0,0); }
+    to { transform: rotate(15deg) translate3d(82px,-42px,0) scaleX(1.12); }
+  }
+  @keyframes solutionsAuroraC {
+    from { transform: rotate(-14deg) scale(0.92); }
+    to { transform: translate(-48px,-36px) rotate(8deg) scale(1.12); }
+  }
+  @keyframes solutionsLensArc {
+    to { transform: translate(54px,-30px) rotate(-13deg) skewX(-4deg) scale(1.08); opacity: 0.38; }
+  }
+  @keyframes solutionsLightSheet {
+    to { transform: translate(-46px,52px) rotate(-4deg) translateZ(16px); opacity: 0.30; }
+  }
+  #solutions .solutions-inner {
+    position: relative;
+    z-index: auto;
+  }
+  #solutions .section-title {
+    position: relative;
+    z-index: 4;
+    color: #101719;
+    margin-bottom: 26px;
+    padding-bottom: 0;
+    background: transparent;
+    font-size: 18px;
+    line-height: 1.22;
+  }
+  #tech,
+  #stories,
+  #footer {
+    position: relative;
+    z-index: 5;
+  }
+
+  /* Carrusel desplazado a la derecha para dejar una columna libre para la
+     presencia del escáner, sin panel ni borde decorativo alrededor. */
+  .sol-carousel-stage {
+    display: block;
+    position: relative;
+    min-height: 430px;
+    margin-right: -16px;
+    margin-left: -16px;
+    padding: 4px 0 46px;
+    overflow: hidden;
+    z-index: 1;
+    isolation: isolate;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .sol-carousel-stage::before {
+    content: none;
+  }
+  .sol-cards-grid {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 0 calc((100% - 250px) / 2) 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .sol-cards-grid::-webkit-scrollbar { display: none; }
+  .sol-card {
+    flex: 0 0 250px;
+    width: 250px;
+    height: 380px;
+    aspect-ratio: auto;
+    overflow: hidden;
+    border: 1px solid #dfe4e3;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(17,31,33,0.10);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .sol-card.is-carousel-active {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(17,31,33,0.14);
+  }
+  .sol-card-info { padding: 14px 13px 11px; }
+  .sol-card h3 { font-size: 11.5px; line-height: 1.24; margin-bottom: 6px; }
+  .sol-card p { font-size: 11px; line-height: 1.4; }
+  .sol-icon { width: 23px; height: 23px; margin-bottom: 6px; }
+  .sol-card-img { flex: 1 1 auto; min-height: 246px; border-radius: 0 0 8px 8px; }
+  .solutions-scroll-cue {
+    top: auto;
+    right: 12px;
+    bottom: 6px;
+    z-index: 3;
+    transform: none;
+    color: var(--accent);
+    background: rgba(255,255,255,0.94);
+    box-shadow: 0 6px 16px rgba(17,31,33,0.16);
+  }
+  @keyframes solutionsCueFloat {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-4px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .solutions-aurora span,
+    .solutions-aurora::before,
+    .solutions-aurora::after { animation: none; }
+  }
+}
+
+/* Cascada final para la experiencia móvil de historias. Se mantiene al final
+   para prevalecer sobre los bloques responsive heredados del template. */
+@media (max-width: 768px) {
+  #tech,
+  #stories {
+    z-index: auto;
+    isolation: auto;
+  }
+  #footer { z-index: 7; }
+
+  #stories {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 82% 44% at 108% 12%, rgba(0,184,192,0.16), transparent 70%),
+      radial-gradient(ellipse 74% 42% at -12% 88%, rgba(26,82,156,0.11), transparent 72%),
+      linear-gradient(148deg, #f8fbfb 0%, #ffffff 48%, #eef8f8 100%);
+  }
+  #stories .stories-inner {
+    position: relative;
+    z-index: auto;
+  }
+  #stories .stories-header,
+  #stories .swipe-hint {
+    position: relative;
+    z-index: 6;
+  }
+  #stories .stories-gallery-cta {
+    position: relative;
+    z-index: auto;
+  }
+  #stories .stories-gallery-label,
+  #stories .stories-gallery-btn {
+    position: relative;
+    z-index: 6;
+  }
+  #stories .stories-grid {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: none;
+    gap: 16px;
+    padding: 4px calc((100% - 82vw) / 2) 22px;
+  }
+  #stories .story-card {
+    flex: 0 0 82vw;
+    scroll-snap-align: none;
+  }
+}
+
+/* ============================================================
+   LEGIBILITY PASS — supporting copy, cards and footer
+   The principal headlines keep their current scale; the smaller
+   information text receives the extra size requested by the client.
+   ============================================================ */
+.hero-sub { font-size: 15px; }
+.btn-primary,
+.btn-outline { font-size: 10.5px; }
+.play-label { font-size: 11px; }
+.logos-label { font-size: 10px; }
+
+.section-title { font-size: clamp(18px, 1.9vw, 23px); }
+.sol-card h3 { font-size: 11px; }
+.sol-card p { font-size: 10.5px; line-height: 1.55; }
+
+.tech-header h2 { font-size: clamp(20px, 2.1vw, 27px); }
+@media (min-width: 901px) {
+  .tech-panel > p { font-size: 14px; }
+  .tech-feats li { font-size: 13px; }
+  .tech-link { font-size: 12px; }
+}
+
+.stories-header h2 { font-size: clamp(20px, 2.1vw, 26px); }
+.stories-header p { font-size: 12px; }
+.story-content h3 { font-size: 13.5px; }
+.story-content p { font-size: 10.5px; }
+.story-link { font-size: 9.5px; }
+.stories-gallery-label { font-size: 14px; }
+.stories-gallery-label strong { font-size: 18px; }
+.stories-gallery-btn { font-size: 11px; }
+
+.footer-cta-left p { font-size: 13px; }
+.footer-brand p { font-size: 12px; }
+.footer-col h4 { font-size: 11px; }
+.footer-col ul li a,
+.footer-addr,
+.footer-company { font-size: 12.5px; }
+.footer-bottom { font-size: 10.5px; }
+
+@media (max-width: 768px) {
+  .hero-sub { font-size: 15px; line-height: 1.7; }
+  .btn-primary,
+  .btn-outline { font-size: 11px; }
+
+  .section-title { font-size: 20px; }
+  .sol-card h3 { font-size: 12.5px; }
+  .sol-card p { font-size: 11.5px; line-height: 1.45; }
+
+  .tech-panel > p { font-size: 14px; }
+  .tech-feats li { font-size: 13px; line-height: 1.5; }
+  .tech-link { font-size: 12px; }
+
+  .stories-header p { font-size: 12px; }
+  .story-content h3 { font-size: 15px; }
+  .story-content p { font-size: 13px; }
+  .story-link { font-size: 11.5px; }
+  .stories-gallery-label { font-size: 14px; }
+  .stories-gallery-label strong { font-size: 16.5px; }
+  .stories-gallery-btn { font-size: 11.5px; }
+
+  .footer-cta-left p { font-size: 14px; }
+  .footer-brand p,
+  .footer-addr,
+  .footer-company,
+  .footer-col ul li a { font-size: 13px; }
+  .footer-col h4 { font-size: 11px; }
+  .footer-bottom { font-size: 11px; }
+  .footer-col#contatti { grid-column: 1 / -1; }
+  .footer-col#contatti .footer-addr-cols { gap: 24px; }
+}

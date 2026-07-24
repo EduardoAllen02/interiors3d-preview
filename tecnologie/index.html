@@ -7,9 +7,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../home/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../home/assets/img/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../home/css/style.css?v=20260722-client1">
-  <link rel="stylesheet" href="css/tech-page.css?v=20260720-9">
+  <link rel="stylesheet" href="../home/css/style.css?v=20260723-legibility3">
+  <link rel="stylesheet" href="css/tech-page.css?v=20260723-legibility1">
 </head>
 <body data-asset-base="../home/">
 
@@ -19,7 +21,7 @@
 <header id="navbar">
   <div class="nav-logo">
     <a href="../home/">
-      <img src="../home/assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img">
+      <img src="../home/assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img" decoding="async" fetchpriority="high">
     </a>
     <span class="logo-sub">IMMERSIVE SOLUTIONS</span>
   </div>
@@ -123,7 +125,10 @@
     <!-- 01 · Wishlist -->
     <div class="featx-row reveal">
       <div class="featx-media">
-        <img src="assets/img/feat_wishlist_popup.webp" alt="Wish-List integrata in un Virtual Tour — scheda prodotto con prezzo e Add to Wishlist">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/img/feat_wishlist_popup-mobile.webp">
+          <img src="assets/img/feat_wishlist_popup.webp" alt="Wish-List integrata in un Virtual Tour — scheda prodotto con prezzo e Add to Wishlist" loading="lazy" decoding="async">
+        </picture>
         <span class="featx-caption">Showroom reale: scheda prodotto e carrello dentro il tour</span>
       </div>
       <div class="featx-copy">
@@ -145,7 +150,10 @@
     <!-- 02 · Analytics -->
     <div class="featx-row featx-row--flip reveal">
       <div class="featx-media">
-        <img src="assets/img/feat_a1.webp" alt="Google Analytics collegato a un Virtual Tour — eventi tour_item, tour_scene, tour_hotspot">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/img/feat_a1-mobile.webp">
+          <img src="assets/img/feat_a1.webp" alt="Google Analytics collegato a un Virtual Tour — eventi tour_item, tour_scene, tour_hotspot" loading="lazy" decoding="async">
+        </picture>
         <span class="featx-caption">Dashboard reale: eventi del tour tracciati in Google Analytics</span>
       </div>
       <div class="featx-copy">
@@ -166,7 +174,10 @@
     <!-- 03 · Self hosting -->
     <div class="featx-row reveal">
       <div class="featx-media">
-        <img src="assets/img/feat_selfhosting.webp" alt="Files proprietari e self hosting — i dati del tour restano al cliente">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/img/feat_selfhosting-mobile.webp">
+          <img src="assets/img/feat_selfhosting.webp" alt="Files proprietari e self hosting — i dati del tour restano al cliente" loading="lazy" decoding="async">
+        </picture>
         <span class="featx-caption">I tuoi file, il tuo server: nessuna piattaforma di terze parti</span>
       </div>
       <div class="featx-copy">
@@ -184,7 +195,10 @@
     <!-- 04 · JavaScripts & AI -->
     <div class="featx-row featx-row--flip reveal">
       <div class="featx-media">
-        <img src="assets/img/feat_heatmap.webp" alt="Analisi comportamentale dei visitatori su planimetria — JavaScript personalizzato">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/img/feat_heatmap-mobile.webp">
+          <img src="assets/img/feat_heatmap.webp" alt="Analisi comportamentale dei visitatori su planimetria — JavaScript personalizzato" loading="lazy" decoding="async">
+        </picture>
         <span class="featx-caption">Analisi JavaScript personalizzata: comportamento reale dei visitatori sul tour</span>
       </div>
       <div class="featx-copy">
@@ -243,7 +257,7 @@
 
       <div class="footer-brand">
         <div class="nav-logo">
-          <img src="../home/assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img logo-img--footer">
+          <img src="../home/assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img logo-img--footer" loading="lazy" decoding="async">
           <span class="logo-sub">IMMERSIVE SOLUTIONS</span>
         </div>
         <p>Tecnologie immersive per aziende, territori e istituzioni che vogliono comunicare, formare e innovare.</p>
@@ -283,10 +297,10 @@
 <!-- Three.js + GLTFLoader -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-<script src="js/tech-hero-mesh.js?v=20260719-2"></script>
+<script src="js/tech-hero-mesh.js?v=20260723-opt1"></script>
 <script src="js/tech-page.js?v=20260714-3"></script>
-<script src="js/compare-particles.js?v=20260714-2"></script>
-<script src="../home/js/gallery-cta-mesh.js?v=20260719-2"></script>
+<script src="js/compare-particles.js?v=20260723-opt1"></script>
+<script src="../home/js/gallery-cta-mesh.js?v=20260723-opt1"></script>
 <script>
 (function(){
   var ham = document.querySelector('.nav-hamburger');

@@ -310,6 +310,9 @@
   box-shadow: 0 16px 44px rgba(14,28,30,0.14);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
+.featx-media picture {
+  display: contents;
+}
 .featx-media:hover img {
   transform: translateY(-6px) scale(1.015);
   box-shadow: 0 26px 58px rgba(14,28,30,0.22);
@@ -465,6 +468,39 @@
 }
 #tech-features .section-title-dark,
 #tech-features .feats-sub { position: relative; z-index: 2; }
+
+/* ============================================================
+   LEGIBILITY PASS — secondary copy and functional content
+   ============================================================ */
+.th-sub { font-size: 16px; }
+.stat-label { font-size: 12px; }
+.compare-sub { font-size: 14px; }
+.cmp-h-them,
+.cmp-h-us { font-size: 11px; }
+.cmp-feature { font-size: 13.5px; }
+.cmp-no { font-size: 12px; }
+.feats-sub { font-size: 14px; }
+.featx-caption { font-size: 11.5px; }
+.featx-copy h3 { font-size: clamp(17px, 1.9vw, 22px); }
+.featx-copy p { font-size: 14px; }
+.featx-example { font-size: 13px !important; }
+.tech-cta-home a { font-size: 12px; }
+
+@media (max-width: 768px) {
+  .th-sub { font-size: 15px; }
+  .stat-label { font-size: 11px; }
+  .compare-sub { font-size: 13.5px; }
+  .cmp-h-them,
+  .cmp-h-us { font-size: 11px; }
+  .cmp-feature,
+  .cmp-no { font-size: 13px; }
+  .feats-sub { font-size: 13.5px; }
+  .featx-caption { font-size: 12.5px; }
+  .featx-copy h3 { font-size: 18px; }
+  .featx-copy p { font-size: 14px; line-height: 1.72; }
+  .featx-example { font-size: 13.5px !important; }
+  .tech-cta-home a { font-size: 13px; }
+}
 
 .featx-row::before,
 .featx-row::after {

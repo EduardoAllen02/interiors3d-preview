@@ -110,3 +110,97 @@
   }, { threshold: [0, 0.12, 0.4] });
   observer.observe(grid);
 }());
+
+/* Carrusel infinito de historias: dirección inversa a Soluzioni.
+   El contenido avanza visualmente de izquierda a derecha y conserva el
+   desplazamiento táctil nativo con pausa durante el gesto. */
+(function () {
+  'use strict';
+
+  if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+  var grid = document.querySelector('.stories-grid');
+  if (!grid) return;
+
+  var originalCards = Array.prototype.slice.call(grid.querySelectorAll('.story-card'));
+  if (originalCards.length < 2) return;
+
+  originalCards.forEach(function (card) {
+    var clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    grid.appendChild(clone);
+  });
+
+  var clones = Array.prototype.slice.call(grid.querySelectorAll('.story-card'))
+    .slice(originalCards.length);
+  var BASE_SPEED = 18;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var visible = false;
+  var dragging = false;
+  var resumeTimer = null;
+  var lastTs = null;
+  var setWidth = 0;
+  var scrollPos = 0;
+  var initialized = false;
+
+  function measure() {
+    setWidth = clones[0].offsetLeft - originalCards[0].offsetLeft;
+    if (!initialized && setWidth > 0) {
+      scrollPos = setWidth;
+      grid.scrollLeft = scrollPos;
+      initialized = true;
+    }
+  }
+
+  function normalize(value) {
+    if (setWidth <= 0) return value;
+    while (value <= 0) value += setWidth;
+    while (value > setWidth) value -= setWidth;
+    return value;
+  }
+
+  function scheduleResume() {
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(function () {
+      dragging = false;
+      scrollPos = normalize(grid.scrollLeft);
+      grid.scrollLeft = scrollPos;
+      resumeTimer = null;
+    }, 240);
+  }
+
+  function pauseForGesture() {
+    dragging = true;
+    scheduleResume();
+  }
+
+  grid.addEventListener('touchstart', pauseForGesture, { passive: true });
+  grid.addEventListener('pointerdown', pauseForGesture, { passive: true });
+  grid.addEventListener('scroll', function () {
+    if (dragging) scheduleResume();
+  }, { passive: true });
+
+  new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      visible = entry.isIntersecting && entry.intersectionRatio > 0.10;
+    });
+  }, { threshold: [0, 0.10, 0.35] }).observe(grid);
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+    if (lastTs === null) lastTs = ts;
+    var dt = Math.min(80, ts - lastTs) / 1000;
+    lastTs = ts;
+    if (!visible || dragging || document.hidden || reduceMotion || setWidth <= 0) {
+      if (dragging) scrollPos = grid.scrollLeft;
+      return;
+    }
+
+    scrollPos = normalize(scrollPos - BASE_SPEED * dt);
+    grid.scrollLeft = scrollPos;
+  }
+
+  measure();
+  window.addEventListener('resize', measure, { passive: true });
+  requestAnimationFrame(frame);
+}());

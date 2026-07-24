@@ -21,19 +21,47 @@
   var canvas = document.getElementById('hero-scanner-canvas');
   if (!canvas) return;
 
+  var solutionsSection = document.getElementById('solutions');
+  var heroSection = document.getElementById('hero');
+  /* Se coloca una sola vez antes de cargar el GLB. El canvas permanece fixed:
+     detrás de la banda de logos y el título, pero delante de las cards, sin
+     reparentados durante el scroll ni fotogramas vacíos. */
+  if (solutionsSection && canvas.parentNode !== solutionsSection) {
+    solutionsSection.insertBefore(canvas, solutionsSection.firstChild);
+  }
+
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ASSET_BASE = (document.body && document.body.dataset.assetBase) || '';
-  var MODEL_PATH = ASSET_BASE + 'assets/models/scanner_hunyuan.glb';
+  /* Variante móvil: misma apariencia y textura, con geometría ligeramente
+     simplificada y cuantizada para reducir transferencia y memoria. */
+  var MODEL_PATH = ASSET_BASE + 'assets/models/scanner_hunyuan-mobile.glb?v=20260723-opt2';
 
   /* ════════════════════════════════════════════════════
      ANCLAS — posición/rotación (unidades de mundo Three.js)
      y escala (multiplicador) por parada. opacity 0 = oculto.
      ════════════════════════════════════════════════════ */
+  /* Giro completo durante el trayecto hero -> cards. La orientación final
+     apunta el frente del escáner hacia el carrusel situado a su derecha. */
+  var CARD_FULL_TURN = Math.PI * 2;
+  var CARD_FACING_Y = 0.58;
+
+  /* CONTROLES DEL RECORRIDO HERO -> CARDS
+     HERO_ANIMATION_START: espera inicial en píxeles. En 0, el modelo empieza
+     a transformarse desde el primer píxel de scroll.
+     TRANSITION_BEFORE_SOLUTIONS: distancia antes de Soluzioni donde llega
+     al estado compacto intermedio.
+     CARDS_IN_BEFORE_SOLUTIONS: distancia antes de Soluzioni donde llega
+     completamente a cardsIn. */
+  var HERO_ANIMATION_START = -3;
+  var TRANSITION_BEFORE_SOLUTIONS = 400;
+  var CARDS_IN_BEFORE_SOLUTIONS = 210;
+
   var ANCHORS = {
-    hero:      { pos: [0.60, -0.30, 0], rot: [0.55, -2.35, 0], scale: 1.55, opacity: 0.92 },
-    cardsIn:   { pos: [0.05,  0.20, 0], rot: [0.35, -1.65, 0], scale: 2.55, opacity: 0.68 },
-    cardsHold: { pos: [0.02,  0.16, 0], rot: [0.30, -1.65, 0], scale: 2.65, opacity: 0.68 },
-    techIn:    { pos: [0.15,  0.10, 0], rot: [0.20, -0.55, 0], scale: 1.70, opacity: 0 },
+    hero:      { pos: [0.55, 0.45, 0], rot: [-0.40, -0.35, 0.1], scale: 2.2, opacity: 0.92 },
+    transition:{ pos: [-0.3, 1.3, 0], rot: [0.1, 0.20, 0], scale: 0.80, opacity: 0.98 },
+    cardsIn:   { pos: [-1, 0.0, 0], rot: [0.30, CARD_FACING_Y - CARD_FULL_TURN, -0.03], scale: 1.78, opacity: 0.98 },
+    cardsHold: { pos: [-0.44, 0.0, 0], rot: [-0.9, CARD_FACING_Y - CARD_FULL_TURN, -0.03], scale: 1.88, opacity: 1 },
+    techIn:    { pos: [0.15,  0.10, 0], rot: [0.80, 0, 0], scale: 1.70, opacity: 0 },
     techOut:   { pos: [-0.40, 0.15, 0], rot: [0.10,  0.55, 0], scale: 1.70, opacity: 0 },
     stories:   { pos: [-0.42, 0.42, 0], rot: [0.10,  0.55, 0], scale: 1.30, opacity: 0.5 },
     gone:      { pos: [-0.42, 0.60, 0], rot: [0.10,  0.55, 0], scale: 1.15, opacity: 0 },
@@ -48,7 +76,7 @@
 
   var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
   renderer.setClearColor(0x000000, 0);
-  renderer.setPixelRatio(Math.min(Math.max(window.devicePixelRatio || 1, 1.5), 2.5));
+  renderer.setPixelRatio(Math.min(Math.max(window.devicePixelRatio || 1, 1.5), 2));
   if ('outputEncoding' in renderer) renderer.outputEncoding = THREE.sRGBEncoding;
   if ('outputColorSpace' in renderer && typeof THREE.SRGBColorSpace !== 'undefined') {
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -72,7 +100,11 @@
   var model = null;
   var normalizedBaseScale = 1;
 
-  new THREE.GLTFLoader().load(
+  var modelLoader = new THREE.GLTFLoader();
+  if (typeof MeshoptDecoder !== 'undefined' && modelLoader.setMeshoptDecoder) {
+    modelLoader.setMeshoptDecoder(MeshoptDecoder);
+  }
+  modelLoader.load(
     MODEL_PATH,
     function (gltf) {
       model = gltf.scene;
@@ -119,18 +151,23 @@
     var stories = document.getElementById('stories');
     if (!hero || !solutions || !tech || !stories) return;
 
-    var heroBottom = hero.offsetTop + hero.offsetHeight;
     var solTop = solutions.offsetTop;
     var solBottom = solutions.offsetTop + solutions.offsetHeight;
     var techTop = tech.offsetTop;
     var techBottom = tech.offsetTop + tech.offsetHeight;
     var storiesTop = stories.offsetTop;
     var storiesBottom = stories.offsetTop + stories.offsetHeight;
+    var heroMotionStart = Math.max(0, HERO_ANIMATION_START);
+    var transitionArrive = Math.max(heroMotionStart + 1, solTop - TRANSITION_BEFORE_SOLUTIONS);
+    var cardsArrive = Math.max(transitionArrive + 1, solTop - CARDS_IN_BEFORE_SOLUTIONS);
 
+    /* Entramos antes al contexto de Soluzioni: la banda de logos oculta el
+       cuerpo central, pero la cola ya puede seguir viéndose por debajo. */
     timeline = [
       { y: 0, a: ANCHORS.hero },
-      { y: heroBottom, a: ANCHORS.hero },
-      { y: solTop, a: ANCHORS.cardsIn },
+      { y: heroMotionStart, a: ANCHORS.hero },
+      { y: transitionArrive, a: ANCHORS.transition },
+      { y: cardsArrive, a: ANCHORS.cardsIn },
       { y: Math.max(solTop, solBottom - FADE), a: ANCHORS.cardsHold },
       { y: solBottom, a: ANCHORS.techIn },
       { y: Math.max(techTop, techBottom - FADE), a: ANCHORS.techOut },
@@ -174,7 +211,14 @@
      ════════════════════════════════════════════════════ */
 
   var lastScrollTs = 0;
+  var lastScrollY = window.scrollY || window.pageYOffset || 0;
+  var scrollWaveStrength = 0;
+  var lastWaterDropTs = 0;
+  var lastIdleDropTs = 0;
   window.addEventListener('scroll', function () {
+    var nextY = window.scrollY || window.pageYOffset || 0;
+    scrollWaveStrength = Math.min(1, scrollWaveStrength + Math.abs(nextY - lastScrollY) / 85);
+    lastScrollY = nextY;
     lastScrollTs = performance.now();
   }, { passive: true });
 
@@ -183,8 +227,8 @@
   function applyFrame() {
     if (!model) return;
 
-    var target = sampleTimeline(window.scrollY || window.pageYOffset || 0);
-
+    var scrollY = window.scrollY || window.pageYOffset || 0;
+    var target = sampleTimeline(scrollY);
     current.pos[0] += (target.pos[0] - current.pos[0]) * SMOOTH;
     current.pos[1] += (target.pos[1] - current.pos[1]) * SMOOTH;
     current.pos[2] += (target.pos[2] - current.pos[2]) * SMOOTH;
@@ -204,6 +248,36 @@
     modelRoot.scale.setScalar(normalizedBaseScale * current.scale);
 
     canvas.style.opacity = String(Math.max(0, Math.min(1, current.opacity)));
+
+    /* El agua del hero también reacciona al movimiento real del modelo.
+       Proyectamos el centro del escáner a coordenadas de pantalla para que
+       cada onda nazca sobre el objeto, no en una posición decorativa fija. */
+    var now = performance.now();
+    var water = window.InteriorsHeroWater;
+    if (water && heroSection) {
+      var heroRect = heroSection.getBoundingClientRect();
+      var heroVisible = heroRect.bottom > 0 && heroRect.top < window.innerHeight;
+      if (heroVisible) {
+        modelRoot.updateMatrixWorld(true);
+        var projected = modelRoot.position.clone().project(camera);
+        /* El origen visual del modelo no coincide exactamente con su pivote:
+           lo desplazamos hacia el cabezal/lente, donde el usuario percibe
+           que el escáner toca el agua. */
+        var waterX = (projected.x * 0.5 + 0.5) * window.innerWidth + window.innerWidth * 0.08;
+        var waterY = (-projected.y * 0.5 + 0.5) * window.innerHeight - window.innerHeight * 0.07;
+        waterX = Math.min(Math.max(waterX, 24), window.innerWidth - 24);
+        waterY = Math.min(Math.max(waterY, 24), window.innerHeight - 24);
+
+        if (scrollWaveStrength > 0.06 && now - lastWaterDropTs > 82) {
+          water.dropAt(waterX, waterY, 0.24 + scrollWaveStrength * 0.56, 7);
+          scrollWaveStrength *= 0.54;
+          lastWaterDropTs = now;
+        } else if (idle && now - lastIdleDropTs > 1050) {
+          water.dropAt(waterX + Math.sin(t * 0.7) * 24, waterY + 14, 0.14, 5);
+          lastIdleDropTs = now;
+        }
+      }
+    }
   }
 
   function tick() {
@@ -213,23 +287,4 @@
   }
   tick();
 
-  /* ── Partículas discretas alrededor del escáner en la sección de
-     cards — generadas una vez, sin dependencias externas. ── */
-  var solutions = document.getElementById('solutions');
-  if (solutions) {
-    var wrap = document.createElement('div');
-    wrap.className = 'sol-particles';
-    wrap.setAttribute('aria-hidden', 'true');
-    var COUNT = 14;
-    for (var i = 0; i < COUNT; i += 1) {
-      var dot = document.createElement('span');
-      dot.className = 'sol-particle';
-      dot.style.left = (8 + Math.random() * 84) + '%';
-      dot.style.top = (10 + Math.random() * 80) + '%';
-      dot.style.animationDelay = (Math.random() * 6) + 's';
-      dot.style.animationDuration = (5 + Math.random() * 3) + 's';
-      wrap.appendChild(dot);
-    }
-    solutions.insertBefore(wrap, solutions.firstChild);
-  }
 }());

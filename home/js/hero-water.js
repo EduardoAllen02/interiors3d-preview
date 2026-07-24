@@ -83,14 +83,15 @@
       var tmp = bufCur; bufCur = bufPre; bufPre = tmp;
     }
 
-    function drop(nx, ny, strength) {
+    function drop(nx, ny, strength, radius) {
       var cx = Math.round(nx * (RW - 1));
       var cy = Math.round(ny * (RH - 1));
-      for (var dy = -3; dy <= 3; dy += 1) {
-        for (var dx = -3; dx <= 3; dx += 1) {
+      var dropRadius = Math.max(2, Math.min(Math.round(radius || 3), 9));
+      for (var dy = -dropRadius; dy <= dropRadius; dy += 1) {
+        for (var dx = -dropRadius; dx <= dropRadius; dx += 1) {
           var x = cx + dx, y = cy + dy;
           if (x < 1 || x >= RW - 1 || y < 1 || y >= RH - 1) continue;
-          var d = Math.sqrt(dx * dx + dy * dy) / 3;
+          var d = Math.sqrt(dx * dx + dy * dy) / dropRadius;
           if (d < 1) bufCur[y * RW + x] += strength * (1 - d);
         }
       }
@@ -138,8 +139,8 @@
     }
 
     return {
-      drop: function (nx, ny, strength) {
-        drop(nx, ny, strength);
+      drop: function (nx, ny, strength, radius) {
+        drop(nx, ny, strength, radius);
         if (!raf) raf = requestAnimationFrame(tick);
       },
     };
@@ -169,6 +170,24 @@
       canvasRipple.drop(cx, cy, velocity * 70);
     }
   }
+
+  /* API mínima para que hero-scanner.js pueda generar ondas desde el
+     movimiento idle y desde la velocidad de scroll. La entrada táctil
+     continúa usando exactamente la misma simulación. */
+  window.InteriorsHeroWater = {
+    dropAt: function (clientX, clientY, strength, radius) {
+      var rect = hero.getBoundingClientRect();
+      if (clientY < rect.top - 40 || clientY > rect.bottom + 40) return;
+      if (!canvasRipple) return;
+      var velocity = Math.max(0.03, Math.min(strength || 0.1, 0.8));
+      canvasRipple.drop(
+        Math.min(Math.max(clientX / window.innerWidth, 0), 1),
+        Math.min(Math.max(clientY / window.innerHeight, 0), 1),
+        velocity * 70,
+        radius || 3
+      );
+    },
+  };
 
   hero.addEventListener('pointerdown', function (e) {
     active = true;

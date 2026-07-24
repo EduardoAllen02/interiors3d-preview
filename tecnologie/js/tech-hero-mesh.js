@@ -14,9 +14,14 @@
   });
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mobileRender = window.matchMedia('(max-width: 768px)').matches;
+  let isVisible = true;
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setClearColor(0x000000, 0);
-  renderer.setPixelRatio(Math.min(Math.max(window.devicePixelRatio || 1, 2), 2.5));
+  renderer.setPixelRatio(Math.min(
+    Math.max(window.devicePixelRatio || 1, mobileRender ? 1.5 : 2),
+    mobileRender ? 2 : 2.5
+  ));
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 50);
@@ -332,8 +337,14 @@
   }
 
   const clock = new THREE.Clock();
+  if (typeof IntersectionObserver !== 'undefined') {
+    new IntersectionObserver((entries) => {
+      isVisible = entries[0] ? entries[0].isIntersecting : true;
+    }, { rootMargin: '180px 0px' }).observe(section);
+  }
   function render() {
     requestAnimationFrame(render);
+    if (!isVisible || document.hidden) return;
     resize();
     const elapsed = clock.getElapsedTime();
     uniforms.uTime.value = elapsed;

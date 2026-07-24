@@ -23,6 +23,7 @@
 /* Prefijo de assets para páginas fuera de home/ (ej. tecnologie/ define
    <body data-asset-base="../home/">). En home queda vacío. */
 const TECH_ASSET_BASE = (document.body && document.body.dataset.assetBase) || '';
+const TECH_IS_MOBILE = window.matchMedia('(max-width: 768px)').matches;
 
 const POINTER_INTERACTION_CFG = {
   /* Escáner: giro horizontal máximo (0.105 rad ≈ 6°). */
@@ -48,7 +49,9 @@ const SCANNER_CFG = {
      Modelo 3D
      ──────────────────────────────────────────────── */
 
-  modelPath: TECH_ASSET_BASE + 'assets/models/scanner_hunyuan.glb',
+  modelPath: TECH_ASSET_BASE + 'assets/models/' +
+    (TECH_IS_MOBILE ? 'scanner_hunyuan-mobile.glb' : 'scanner_hunyuan.glb') +
+    '?v=20260723-opt2',
 
   /* ────────────────────────────────────────────────
      Posición 3D inicial
@@ -152,7 +155,9 @@ const TABLET_CFG = {
   pointerMode: 'z',
 
   /* Imagen que se aplicará a la pantalla. */
-  screenImg: 'assets/img/TabletTour.webp',
+  screenImg: TECH_IS_MOBILE
+    ? 'assets/img/TabletTour-mobile.webp'
+    : 'assets/img/TabletTour.webp',
 
   /* ────────────────────────────────────────────────
      Posición 3D inicial
@@ -304,8 +309,8 @@ function initTechModel(canvasId, cfg) {
 
   renderer.setPixelRatio(
     Math.min(
-      Math.max(window.devicePixelRatio || 1, 2),
-      2.5
+      Math.max(window.devicePixelRatio || 1, TECH_IS_MOBILE ? 1.5 : 2),
+      TECH_IS_MOBILE ? 2 : 2.5
     )
   );
 
@@ -411,10 +416,12 @@ function initTechModel(canvasId, cfg) {
   let currentLookX = 0;
   let currentLookY = 0;
   let currentLookZ = 0;
+  let frameUpdater = null;
 
 
   let model = null;
   let progress = 0;
+  let journeyPose = null;
 
   /*
    * La escala base normaliza el modelo para que su
@@ -465,6 +472,9 @@ function initTechModel(canvasId, cfg) {
      ──────────────────────────────────────────────── */
 
   const loader = new THREE.GLTFLoader();
+  if (typeof MeshoptDecoder !== 'undefined' && loader.setMeshoptDecoder) {
+    loader.setMeshoptDecoder(MeshoptDecoder);
+  }
 
   loader.load(
     cfg.modelPath,
@@ -582,6 +592,35 @@ function initTechModel(canvasId, cfg) {
 
   function applyModelTransform() {
     if (!model) {
+      return;
+    }
+
+    /*
+     * La tablet móvil reutiliza este mismo visor durante su recorrido
+     * posterior hacia Storie di Successo. Cuando existe journeyPose,
+     * la pose original de #tech queda pausada en su último frame y el
+     * controlador externo conduce exactamente el mismo modelRoot.
+     */
+    if (journeyPose) {
+      modelRoot.position.set(
+        getNumber(journeyPose.pos && journeyPose.pos[0], 0),
+        getNumber(journeyPose.pos && journeyPose.pos[1], 0),
+        getNumber(journeyPose.pos && journeyPose.pos[2], 0)
+      );
+
+      modelRoot.rotation.set(
+        getNumber(journeyPose.rot && journeyPose.rot[0], 0),
+        getNumber(journeyPose.rot && journeyPose.rot[1], 0),
+        getNumber(journeyPose.rot && journeyPose.rot[2], 0)
+      );
+
+      modelRoot.scale.setScalar(
+        normalizedBaseScale * getNumber(journeyPose.scale, 1)
+      );
+
+      camera.fov = getNumber(journeyPose.fov, cfg.endFov);
+      camera.position.z = getNumber(journeyPose.camZ, cfg.endCamZ);
+      camera.updateProjectionMatrix();
       return;
     }
 
@@ -727,8 +766,17 @@ function initTechModel(canvasId, cfg) {
      Loop de render
      ──────────────────────────────────────────────── */
 
-  function tick() {
+  function tick(timestamp) {
     requestAnimationFrame(tick);
+
+    /*
+     * Permite que el viaje móvil actualice canvas y pose justo antes
+     * del render. Así no existen dos requestAnimationFrame compitiendo
+     * ni un frame de diferencia entre el DOM y el modelo WebGL.
+     */
+    if (frameUpdater) {
+      frameUpdater(timestamp);
+    }
 
     resize();
     applyModelTransform();
@@ -774,6 +822,25 @@ function initTechModel(canvasId, cfg) {
         0,
         1
       );
+    },
+
+    setJourneyPose(value) {
+      journeyPose = value
+        ? {
+            pos: Array.isArray(value.pos) ? value.pos.slice(0, 3) : [0, 0, 0],
+            rot: Array.isArray(value.rot) ? value.rot.slice(0, 3) : [0, 0, 0],
+            scale: getNumber(value.scale, 1),
+            fov: getNumber(value.fov, cfg.endFov),
+            camZ: getNumber(value.camZ, cfg.endCamZ),
+          }
+        : null;
+    },
+
+    setFrameUpdater(callback) {
+      frameUpdater =
+        typeof callback === 'function'
+          ? callback
+          : null;
     },
 
     setPointerLook(x, y, strength = 1) {
@@ -1142,17 +1209,39 @@ const tabletViewer = initTechModel(
   TABLET_CFG
 );
 
+const isTabletJourneyMobile =
+  window.matchMedia('(max-width: 768px)').matches;
 
-initScrollSystem([
-  {
-    viewer: scannerViewer,
-    canvasId: 'canvas-scanner',
-    cfg: SCANNER_CFG,
-  },
+/*
+ * En móvil la tablet queda bajo un único controlador que conserva su
+ * animación de #tech y después continúa hacia Storie. En escritorio
+ * permanece exactamente en el sistema original.
+ */
+if (isTabletJourneyMobile) {
+  initScrollSystem([
+    {
+      viewer: scannerViewer,
+      canvasId: 'canvas-scanner',
+      cfg: SCANNER_CFG,
+    },
+  ]);
 
-  {
+  window.Interiors3DTabletJourneySource = {
     viewer: tabletViewer,
-    canvasId: 'canvas-tablet',
     cfg: TABLET_CFG,
-  },
-]);
+  };
+} else {
+  initScrollSystem([
+    {
+      viewer: scannerViewer,
+      canvasId: 'canvas-scanner',
+      cfg: SCANNER_CFG,
+    },
+
+    {
+      viewer: tabletViewer,
+      canvasId: 'canvas-tablet',
+      cfg: TABLET_CFG,
+    },
+  ]);
+}

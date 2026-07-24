@@ -7,8 +7,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="assets/models/scanner_hunyuan-mobile.glb?v=20260723-opt2" as="fetch" type="model/gltf-binary" media="(max-width: 768px)">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260722-client2">
+  <link rel="stylesheet" href="css/style.css?v=20260723-legibility3">
 </head>
 <body>
 
@@ -17,7 +20,7 @@
      ══════════════════════════════════════════ -->
 <header id="navbar">
   <div class="nav-logo">
-    <img src="assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img">
+    <img src="assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img" decoding="async" fetchpriority="high">
     <span class="logo-sub">IMMERSIVE SOLUTIONS</span>
   </div>
 
@@ -55,7 +58,12 @@
     <!-- SLOT: Replace with actual hero interior photo -->
     <div class="hero-bg-img"></div>
   </div>
+  <canvas id="hero-ambient-canvas" aria-hidden="true"></canvas>
+  <div class="hero-light-rays" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
   <div class="hero-overlay"></div>
+  <div class="hero-scanner-fade" aria-hidden="true"></div>
 
   <div class="hero-content">
     <div class="hero-left">
@@ -119,6 +127,9 @@
      Hover: highlight; mouseleave: rotateY(360deg) + translateY(-6px)
      ══════════════════════════════════════════ -->
 <section id="solutions">
+  <div class="solutions-aurora" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
   <div class="solutions-inner">
 
     <!-- Título de sección -->
@@ -130,6 +141,7 @@
 
     <!-- Grid de 6 cards unificadas (texto arriba + imagen abajo = una sola card) -->
     <!-- SLOT: reemplazar .card-img-placeholder con <img src="..."> cuando el cliente pase imágenes -->
+    <div class="sol-carousel-stage">
     <div class="sol-cards-grid">
 
       <!-- Card 1: Comunicare -->
@@ -142,7 +154,10 @@
           <p data-t="c1d">Racconta la tua azienda e i tuoi valori in modo coinvolgente e memorabile.</p>
         </div>
         <div class="sol-card-img">
-          <img src="assets/img/cards/card1_comunicare.webp" alt="Comunicare meglio — Colombini Office">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/cards/card1_comunicare-mobile.webp">
+            <img src="assets/img/cards/card1_comunicare.webp" alt="Comunicare meglio — Colombini Office" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="sol-card-back"></div>
       </div>
@@ -157,7 +172,10 @@
           <p data-t="c2d">Mostra prodotti e spazi in modo immersivo e riduci il ciclo di vendita.</p>
         </div>
         <div class="sol-card-img">
-          <img src="assets/img/cards/card2_vendere.webp" alt="Vendere meglio — Showroom Desiree Salotti">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/cards/card2_vendere-mobile.webp">
+            <img src="assets/img/cards/card2_vendere.webp" alt="Vendere meglio — Showroom Desiree Salotti" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="sol-card-back"></div>
       </div>
@@ -172,7 +190,10 @@
           <p data-t="c3d">Crea percorsi formativi interattivi e migliora l'onboarding e la sicurezza.</p>
         </div>
         <div class="sol-card-img">
-          <img src="assets/img/cards/card3_formare.webp" alt="Formare meglio — Università di Bologna">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/cards/card3_formare-mobile.webp">
+            <img src="assets/img/cards/card3_formare.webp" alt="Formare meglio — Università di Bologna" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="sol-card-back"></div>
       </div>
@@ -187,7 +208,10 @@
           <p data-t="c4d">Rafforza engagement, recruiting e comunicazione interna con esperienze immersive.</p>
         </div>
         <div class="sol-card-img">
-          <img src="assets/img/cards/card4_coinvolgere.webp" alt="Coinvolgere le persone — Hotel Spa Thai Si">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/cards/card4_coinvolgere-mobile.webp">
+            <img src="assets/img/cards/card4_coinvolgere.webp" alt="Coinvolgere le persone — Hotel Spa Thai Si" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="sol-card-back"></div>
       </div>
@@ -202,7 +226,10 @@
           <p data-t="c5d">Racconta luoghi, cultura e itinerari con esperienze digitali ad alto impatto.</p>
         </div>
         <div class="sol-card-img">
-          <img src="assets/img/cards/card5_valorizzare.webp" alt="Valorizzare il territorio — Malga del Montasio HDR">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/cards/card5_valorizzare-mobile.webp">
+            <img src="assets/img/cards/card5_valorizzare.webp" alt="Valorizzare il territorio — Malga del Montasio HDR" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="sol-card-back"></div>
       </div>
@@ -217,15 +244,19 @@
           <p data-t="c6d">Porta studenti e visitatori in percorsi digitali interattivi e accessibili.</p>
         </div>
         <div class="sol-card-img">
-          <img src="assets/img/cards/card6_educare.webp" alt="Educare e ispirare — Musme Padova">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/cards/card6_educare-mobile.webp">
+            <img src="assets/img/cards/card6_educare.webp" alt="Educare e ispirare — Musme Padova" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="sol-card-back"></div>
       </div>
 
     </div><!-- /sol-cards-grid -->
-    <button type="button" class="solutions-scroll-cue" aria-label="Prossima card">
-      <svg viewBox="0 0 24 24"><path d="M7 4l8 8-8 8"/></svg>
-    </button>
+      <button type="button" class="solutions-scroll-cue" aria-label="Prossima card">
+        <svg viewBox="0 0 24 24"><path d="M7 4l8 8-8 8"/></svg>
+      </button>
+    </div><!-- /sol-carousel-stage -->
 
   </div><!-- /solutions-inner -->
 </section>
@@ -308,6 +339,9 @@
      SUCCESS STORIES
      ══════════════════════════════════════════ -->
 <section id="stories">
+  <div class="stories-atmosphere" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
   <div class="stories-inner">
     <div class="stories-header">
       <h2 data-t="st_title">STORIE DI <span>SUCCESSO</span></h2>
@@ -318,7 +352,10 @@
 
       <div class="story-card">
         <div class="story-card-bg">
-          <img src="assets/img/stories/story1_hfarm.webp" alt="H-Farm Campus Virtual Tour">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/stories/story1_hfarm-mobile.webp">
+            <img src="assets/img/stories/story1_hfarm.webp" alt="H-Farm Campus Virtual Tour" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="story-overlay"></div>
         <div class="story-content">
@@ -330,7 +367,10 @@
 
       <div class="story-card">
         <div class="story-card-bg">
-          <img src="assets/img/stories/story2_sap.webp" alt="SAP Headquarters Milan Virtual Tour">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/stories/story2_sap-mobile.webp">
+            <img src="assets/img/stories/story2_sap.webp" alt="SAP Headquarters Milan Virtual Tour" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="story-overlay"></div>
         <div class="story-content">
@@ -342,7 +382,10 @@
 
       <div class="story-card">
         <div class="story-card-bg">
-          <img src="assets/img/stories/story3_promoturismo.webp" alt="PromoTurismo FVG UNESCO Virtual Tour">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/stories/story3_promoturismo-mobile.webp">
+            <img src="assets/img/stories/story3_promoturismo.webp" alt="PromoTurismo FVG UNESCO Virtual Tour" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="story-overlay"></div>
         <div class="story-content">
@@ -354,7 +397,10 @@
 
       <div class="story-card">
         <div class="story-card-bg">
-          <img src="assets/img/stories/story4_unibo.webp" alt="Università di Bologna Virtual Tour">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/stories/story4_unibo-mobile.webp">
+            <img src="assets/img/stories/story4_unibo.webp" alt="Università di Bologna Virtual Tour" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="story-overlay"></div>
         <div class="story-content">
@@ -406,7 +452,7 @@
       <!-- Brand col -->
       <div class="footer-brand">
         <div class="nav-logo">
-          <img src="assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img logo-img--footer">
+          <img src="assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img logo-img--footer" loading="lazy" decoding="async">
           <span class="logo-sub">IMMERSIVE SOLUTIONS</span>
         </div>
         <p data-t="ft_tag">Tecnologie immersive per aziende, territori e istituzioni che vogliono comunicare, formare e innovare.</p>
@@ -472,13 +518,58 @@
 <!-- Three.js + GLTFLoader para modelos 3D de tecnología -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-<script src="js/scan-field.js?v=20260719-2"></script>
-<script src="js/gallery-cta-mesh.js?v=20260719-2"></script>
-<script src="js/immersive-field.js?v=20260713-3"></script>
-<script src="js/tech-models.js?v=20260719-2"></script>
-<script src="js/hero-scanner.js?v=20260722-client2"></script>
-<script src="js/hero-water.js?v=20260722-client2"></script>
-<script src="js/mobile-experience.js?v=20260720-client3"></script>
+<script src="https://cdn.jsdelivr.net/npm/meshoptimizer@0.18.1/meshopt_decoder.js"></script>
+<script src="js/hero-ambient.js?v=20260723-opt1"></script>
+<script src="js/hero-scanner.js?v=20260723-opt2"></script>
+<script src="js/hero-water.js?v=20260722-client4"></script>
+<script src="js/mobile-experience.js?v=20260723-client4"></script>
+<script>
+(function loadBelowFoldEffectsOnDemand(){
+  var loaded = Object.create(null);
+
+  function loadScript(src){
+    if (loaded[src]) return loaded[src];
+    loaded[src] = new Promise(function(resolve, reject){
+      var script = document.createElement('script');
+      script.src = src;
+      script.async = false;
+      script.onload = resolve;
+      script.onerror = function(){ reject(new Error('No se pudo cargar ' + src)); };
+      document.body.appendChild(script);
+    });
+    return loaded[src];
+  }
+
+  function observeOnce(selector, rootMargin, callback){
+    var target = document.querySelector(selector);
+    if (!target || typeof IntersectionObserver === 'undefined') {
+      callback();
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries){
+      if (!entries[0] || !entries[0].isIntersecting) return;
+      observer.disconnect();
+      callback();
+    }, { rootMargin: rootMargin });
+    observer.observe(target);
+  }
+
+  observeOnce('#tech', '280px 0px', function(){
+    Promise.all([
+      loadScript('js/scan-field.js?v=20260723-opt1'),
+      loadScript('js/immersive-field.js?v=20260713-3')
+    ])
+      .then(function(){ return loadScript('js/tech-models.js?v=20260723-opt2'); })
+      .then(function(){ return loadScript('js/stories-tablet.js?v=20260723-tablet-journey9'); })
+      .catch(function(error){ console.error('[effects-loader]', error); });
+  });
+
+  observeOnce('#stories', '1000px 0px', function(){
+    loadScript('js/gallery-cta-mesh.js?v=20260723-opt1')
+      .catch(function(error){ console.error('[effects-loader]', error); });
+  });
+}());
+</script>
 <script>
 (function(){
   var ham = document.querySelector('.nav-hamburger');
