@@ -1037,12 +1037,19 @@ nav ul li a .caret { font-size: 8px; opacity: 0.6; }
   gap: 16px;
 }
 .story-card {
+  display: block;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
   aspect-ratio: 3/4;
   background: #1a1a1a;
+  color: inherit;
+  text-decoration: none;
   cursor: pointer;
+}
+.story-card:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
 }
 .story-card-bg {
   position: absolute;
@@ -2479,4 +2486,206 @@ nav ul li a {
   .footer-bottom { font-size: 11px; }
   .footer-col#contatti { grid-column: 1 / -1; }
   .footer-col#contatti .footer-addr-cols { gap: 24px; }
+}
+
+/* ============================================================
+   TABLET LAYOUT — iPad / 769–1180px
+   Six desktop cards are too narrow in this range. Tablets use a
+   3 × 2 grid, while the technology panels become two wide rows.
+   iPad Mini at 768px keeps the established touch carousel.
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 1180px) {
+  #solutions {
+    padding: 42px 40px 44px;
+  }
+  .section-title {
+    margin-bottom: 30px;
+    font-size: 22px;
+  }
+  .sol-cards-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .sol-card-info {
+    min-height: 152px;
+    padding: 20px 18px 17px;
+  }
+  .sol-icon {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 10px;
+  }
+  .sol-card h3 {
+    min-height: 0;
+    font-size: 12.5px;
+    line-height: 1.3;
+  }
+  .sol-card p {
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+  .sol-card-img {
+    flex-basis: 180px;
+  }
+
+  #tech {
+    padding: 58px 40px 52px;
+  }
+  .tech-header {
+    margin-bottom: 46px;
+  }
+  .tech-panels {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 54px;
+  }
+  .vs-col {
+    display: none;
+  }
+  .tech-panel-wrap,
+  .tech-panel-wrap:not(.right),
+  .tech-panel-wrap.right {
+    grid-column: 1;
+    min-height: 460px;
+  }
+  .tech-img-col,
+  #canvas-scanner,
+  #canvas-tablet {
+    width: 300px;
+    height: 420px;
+  }
+  .tech-panel-wrap:not(.right) .tech-panel {
+    max-width: none;
+    padding: 0 20px 0 300px;
+  }
+  .tech-panel-wrap.right .tech-panel {
+    max-width: calc(100% - 300px);
+    padding: 0 20px;
+  }
+  .tech-panel h3 {
+    min-height: 0;
+    font-size: 24px;
+  }
+  .tech-panel > p {
+    min-height: 0;
+    font-size: 14px;
+  }
+  .tech-feats li {
+    font-size: 13px;
+  }
+
+  .stories-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .story-content h3 {
+    font-size: 15px;
+  }
+  .story-content p {
+    font-size: 12.5px;
+  }
+  .story-link {
+    font-size: 11px;
+  }
+}
+
+/* ============================================================
+   IPAD TYPOGRAPHY — 744–1180px
+   Covers iPad Mini, iPad and iPad Pro without changing phone or
+   desktop typography.
+   ============================================================ */
+@media (min-width: 744px) and (max-width: 1180px) {
+  nav ul li a {
+    font-size: 12px;
+  }
+  .nav-mobile-panel li a {
+    font-size: 14px;
+  }
+
+  .hero-h1 {
+    font-size: clamp(33px, 4.2vw, 44px);
+  }
+  .hero-sub {
+    font-size: 16px;
+  }
+  .btn-primary,
+  .btn-outline {
+    font-size: 12px;
+  }
+  .logos-label {
+    font-size: 11.5px;
+  }
+
+  .section-title,
+  #solutions .section-title {
+    font-size: 24px;
+  }
+  .sol-card h3 {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+  .sol-card p {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .tech-header h2 {
+    font-size: 28px;
+  }
+  .tech-panel h3 {
+    font-size: 27px;
+  }
+  .tech-panel > p {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .tech-feats li {
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+  .tech-link {
+    font-size: 13px;
+  }
+
+  .stories-header h2 {
+    font-size: 26px;
+  }
+  .stories-header p {
+    font-size: 14px;
+  }
+  .story-content h3 {
+    font-size: 16px;
+  }
+  .story-content p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .story-link {
+    font-size: 12.5px;
+  }
+  .stories-gallery-label {
+    font-size: 15px;
+  }
+  .stories-gallery-label strong {
+    font-size: 19px;
+  }
+  .stories-gallery-btn {
+    font-size: 12.5px;
+  }
+
+  .footer-cta-left h2 {
+    font-size: 28px;
+  }
+  .footer-cta-left p,
+  .footer-brand p,
+  .footer-addr,
+  .footer-company,
+  .footer-col ul li a {
+    font-size: 14px;
+  }
+  .footer-col h4 {
+    font-size: 12.5px;
+  }
+  .footer-bottom {
+    font-size: 12px;
+  }
 }
