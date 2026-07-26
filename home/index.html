@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="assets/models/scanner_hunyuan-mobile.glb?v=20260723-opt2" as="fetch" type="model/gltf-binary" media="(max-width: 768px)">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260724-storylink1">
+  <link rel="stylesheet" href="css/style.css?v=20260726-cards-touch1">
 </head>
 <body>
 
@@ -46,8 +46,8 @@
 </div>
 
 <!-- Escáner viajero (solo móvil): un único canvas fijo a pantalla
-     completa que acompaña el scroll por hero, cards e historias de
-     éxito. Ver home/js/hero-scanner.js. -->
+     completa que acompaña el scroll por hero, cards y tecnologías.
+     Ver home/js/hero-scanner.js. -->
 <canvas id="hero-scanner-canvas" aria-hidden="true"></canvas>
 
 <!-- ══════════════════════════════════════════
@@ -126,6 +126,13 @@
      Fondo blanco. Cards unificadas (texto + imagen = una sola card).
      Hover: highlight; mouseleave: rotateY(360deg) + translateY(-6px)
      ══════════════════════════════════════════ -->
+<div class="solutions-title-top-layer" aria-hidden="true">
+  <h2 class="section-title">
+    <span data-t="sol_title1">SOLUZIONI PER</span>
+    <span class="accent" data-t="sol_accent"> OGNI</span>
+    <span data-t="sol_title2"> ESIGENZA</span>
+  </h2>
+</div>
 <section id="solutions">
   <div class="solutions-aurora" aria-hidden="true">
     <span></span><span></span><span></span>
@@ -133,7 +140,7 @@
   <div class="solutions-inner">
 
     <!-- Título de sección -->
-    <h2 class="section-title">
+    <h2 class="section-title solutions-title-anchor">
       <span data-t="sol_title1">SOLUZIONI PER</span>
       <span class="accent" data-t="sol_accent"> OGNI</span>
       <span data-t="sol_title2"> ESIGENZA</span>
@@ -431,46 +438,12 @@
 </section>
 
 <!-- ══════════════════════════════════════════
-     FOOTER (CTA integrado + brand + links + contatti)
+     FOOTER (contatti + legal)
      ══════════════════════════════════════════ -->
 <footer id="footer">
   <div class="footer-inner">
 
-    <!-- CTA row: integrado desde el antiguo pre-footer -->
-    <div class="footer-cta">
-      <div class="footer-cta-left">
-        <h2 data-t="cta_h">Pronto a trasformare il tuo spazio in un'esperienza immersiva?</h2>
-        <p data-t="cta_sub">Parliamo del tuo progetto e scopriamo insieme la soluzione più adatta ai tuoi obiettivi.</p>
-      </div>
-      <a href="#contatti" class="btn-accent">
-        <span data-t="cta_btn">CONTATTACI ORA</span> →
-      </a>
-    </div>
-
     <div class="footer-top">
-
-      <!-- Brand col -->
-      <div class="footer-brand">
-        <div class="nav-logo">
-          <img src="assets/img/logo-interiors3d.png" alt="Interiors3D" class="logo-img logo-img--footer" loading="lazy" decoding="async">
-          <span class="logo-sub">IMMERSIVE SOLUTIONS</span>
-        </div>
-        <p data-t="ft_tag">Tecnologie immersive per aziende, territori e istituzioni che vogliono comunicare, formare e innovare.</p>
-        <div class="footer-socials">
-          <a href="#" class="social-icon">in</a>
-          <a href="#" class="social-icon">▶</a>
-          <a href="#" class="social-icon">📷</a>
-        </div>
-      </div>
-
-      <!-- Links col -->
-      <div class="footer-col">
-        <h4 data-t="ft_c5">ESPLORA</h4>
-        <ul>
-          <li><a href="https://interiors3d.com/galleria-virtual-tours/" target="_blank" rel="noopener" data-t="ft_c5l1">Galleria Virtual Tours</a></li>
-          <li><a href="../tecnologie/" data-t="ft_c5l2">Tecnologie</a></li>
-        </ul>
-      </div>
 
       <div class="footer-col" id="contatti">
         <h4 data-t="ft_c6">CONTATTI</h4>
@@ -500,6 +473,8 @@
 
 <script>
 (function () {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
   document.querySelectorAll('.sol-card').forEach(function (card) {
     function finishFlip(event) {
       if (event.target !== card || event.animationName !== 'sol-spin') return;
@@ -520,9 +495,9 @@
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meshoptimizer@0.18.1/meshopt_decoder.js"></script>
 <script src="js/hero-ambient.js?v=20260723-opt1"></script>
-<script src="js/hero-scanner.js?v=20260723-opt2"></script>
+<script src="js/hero-scanner.js?v=20260726-unified13"></script>
 <script src="js/hero-water.js?v=20260722-client4"></script>
-<script src="js/mobile-experience.js?v=20260723-client4"></script>
+<script src="js/mobile-experience.js?v=20260726-cards-touch3"></script>
 <script>
 (function loadBelowFoldEffectsOnDemand(){
   var loaded = Object.create(null);

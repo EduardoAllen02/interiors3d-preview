@@ -27,6 +27,91 @@
   var clonedCards = Array.prototype.slice.call(grid.querySelectorAll('.sol-card')).slice(originalCards.length);
 
   var BASE_SPEED = 22; // px/s — constante y lenta
+  /* A short touch anywhere on a card flips it. We wait only until
+     pointerup so a horizontal drag remains native carousel scrolling.
+     Delegation on the grid also covers the cloned infinite-loop cards. */
+  var TAP_MOVE_TOLERANCE = 10;
+  var tapGesture = null;
+  var suppressClickUntil = 0;
+
+  function cardFromTarget(target) {
+    var card = target && target.closest ? target.closest('.sol-card') : null;
+    return card && grid.contains(card) ? card : null;
+  }
+
+  function startCardFlip(card) {
+    if (!card || card.classList.contains('is-flipping')) return;
+    card.classList.add('is-flipping');
+  }
+
+  grid.addEventListener('pointerdown', function (event) {
+    if (!event.isPrimary) return;
+    var card = cardFromTarget(event.target);
+    if (!card) return;
+
+    tapGesture = {
+      pointerId: event.pointerId,
+      card: card,
+      x: event.clientX,
+      y: event.clientY,
+      scrollLeft: grid.scrollLeft,
+      moved: false
+    };
+  }, { passive: true });
+
+  grid.addEventListener('pointermove', function (event) {
+    if (!tapGesture || event.pointerId !== tapGesture.pointerId) return;
+    if (
+      Math.abs(event.clientX - tapGesture.x) > TAP_MOVE_TOLERANCE ||
+      Math.abs(event.clientY - tapGesture.y) > TAP_MOVE_TOLERANCE ||
+      Math.abs(grid.scrollLeft - tapGesture.scrollLeft) > TAP_MOVE_TOLERANCE
+    ) {
+      tapGesture.moved = true;
+      suppressClickUntil = Date.now() + 700;
+    }
+  }, { passive: true });
+
+  grid.addEventListener('pointerup', function (event) {
+    if (!tapGesture || event.pointerId !== tapGesture.pointerId) return;
+    var gesture = tapGesture;
+    tapGesture = null;
+
+    if (
+      !gesture.moved &&
+      Math.abs(event.clientX - gesture.x) <= TAP_MOVE_TOLERANCE &&
+      Math.abs(event.clientY - gesture.y) <= TAP_MOVE_TOLERANCE &&
+      Math.abs(grid.scrollLeft - gesture.scrollLeft) <= TAP_MOVE_TOLERANCE
+    ) {
+      startCardFlip(gesture.card);
+    } else {
+      suppressClickUntil = Date.now() + 700;
+    }
+  }, { passive: true });
+
+  grid.addEventListener('pointercancel', function (event) {
+    if (tapGesture && event.pointerId === tapGesture.pointerId) {
+      tapGesture = null;
+      suppressClickUntil = Date.now() + 700;
+    }
+  }, { passive: true });
+
+  grid.addEventListener('click', function (event) {
+    if (Date.now() < suppressClickUntil) return;
+    startCardFlip(cardFromTarget(event.target));
+  });
+
+  grid.addEventListener('animationend', function (event) {
+    if (event.animationName !== 'sol-spin') return;
+    var card = cardFromTarget(event.target);
+    if (card) card.classList.remove('is-flipping');
+  });
+
+  grid.addEventListener('animationcancel', function (event) {
+    if (event.animationName !== 'sol-spin') return;
+    var card = cardFromTarget(event.target);
+    if (card) card.classList.remove('is-flipping');
+  });
+
   var carouselVisible = false;
   var dragging = false;
   var lastTs = null;
