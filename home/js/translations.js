@@ -45,7 +45,7 @@ const T = {
     ft_c4l1:"Chi siamo",ft_c4l2:"Team",ft_c4l3:"Partner",ft_c4l4:"Lavora con noi",ft_c4l5:"Contatti",
     ft_c5l1:"Galleria Virtual Tours",ft_c5l2:"Tecnologie",
     ft_addr: "Interiors3D S.r.l.<br><strong>Sede legale</strong><br>Via A. Diaz, 34<br>31029 Vittorio Veneto TV<br><br><strong>Sede legale</strong><br>Via Lourdes 64<br>31015 Conegliano TV<br><br>+39 0438 412 360<br>info@interiors3d.it",
-    ft_copy: "© 2024 Interiors3D S.r.l. – PIVA 04472240269 – Privacy Policy – Cookie Policy",
+    ft_copy: "© 2026 Interiors3D",
     ft_made: "Made with ♥ in Italy",
   },
   es: {
@@ -94,7 +94,7 @@ const T = {
     ft_c4l1:"Quiénes somos",ft_c4l2:"Equipo",ft_c4l3:"Socios",ft_c4l4:"Trabaja con nosotros",ft_c4l5:"Contacto",
     ft_c5l1:"Galería Virtual Tours",ft_c5l2:"Tecnologías",
     ft_addr: "Interiors3D S.r.l.<br><strong>Sede legal</strong><br>Via A. Diaz, 34<br>31029 Vittorio Veneto TV<br><br><strong>Sede legal</strong><br>Via Lourdes 64<br>31015 Conegliano TV<br><br>+39 0438 412 360<br>info@interiors3d.it",
-    ft_copy: "© 2024 Interiors3D S.r.l. – PIVA 04472240269 – Política de Privacidad – Política de Cookies",
+    ft_copy: "© 2026 Interiors3D",
     ft_made: "Hecho con ♥ en Italia",
   }
 };
