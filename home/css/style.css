@@ -47,6 +47,13 @@
     isolation: auto;
   }
   #footer { z-index: 7; }
+  /* El contenido textual queda por encima del canvas viajero. El panel
+     conserva su columna 3D reservada; este nivel solo resuelve pequeños
+     solapamientos de bordes durante la animación. */
+  #tech .tech-inner {
+    position: relative;
+    z-index: 5;
+  }
   #tech .tech-header,
   #tech .tech-panel,
   #tech .vs-col {
@@ -2002,7 +2009,7 @@ nav ul li a {
 
   /* Malla del escáner: recortada a la zona superior (header + panel escáner)
      para que las partículas no se derramen sobre plataforma inmersiva. */
-  #tech-canvas { height: 560px; }
+  #tech-canvas { height: 790px; }
 
   /* Escáner: esquina superior izquierda (canvas izq, texto der) */
   .tech-panel-wrap { min-height: 0; }
@@ -2028,19 +2035,23 @@ nav ul li a {
   }
   .vs-circle { background: #080a0b; box-shadow: 0 0 0 10px #080a0b; }
 
-  /* Vuelta al layout original (min-height + posición del hueco de
-     referencia sin tocar). Único cambio respecto a esa versión: el
-     texto ya no reserva 190px de padding para la tablet — usa el
-     ancho completo y la tablet, mientras sigue "en casa", queda
-     detrás como presencia de fondo (el texto ya tiene z-index:6 por
-     encima del canvas en z-index:4 más abajo en este archivo). */
+  /* Tablet: esquina inferior derecha (texto izq, canvas der) */
   .tech-panel-wrap.right { min-height: 300px; margin-top: 96px; }
   .tech-panel-wrap.right .tech-img-col {
-    top: 56px; bottom: auto; left: auto !important; right: 14px !important;
+    top: 90px; bottom: auto; left: auto !important; right: 4px !important;
     transform: none; width: 210px; height: 290px;
   }
   #canvas-tablet { width: 210px; height: 290px; }
-  .tech-panel-wrap.right .tech-panel { max-width: none; padding: 0; }
+  .tech-panel-wrap.right .tech-panel { max-width: none; padding: 0 190px 0 0; }
+
+  /* El cristal funciona como atmósfera completa del panel inmersivo.
+     La máscara horizontal continúa protegiendo la lectura del texto. */
+  #immersive-canvas {
+    top: -72px;
+    left: -30px;
+    width: calc(100% + 60px);
+    height: calc(100% + 150px);
+  }
 }
 
 /* Final cascade overrides for the client wave. */

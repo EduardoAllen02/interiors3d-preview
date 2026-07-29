@@ -73,7 +73,10 @@
   var DOCK_APPROACH_POSE_RATIO = 0.58;
   /* Porcentaje de la altura del hueco de tecnología que ocupa el escáner.
      Se convierte a unidades Three.js manteniendo el canvas fullscreen. */
-  var DOCK_MODEL_HEIGHT_RATIO = 0.82;
+  /* Ajustes exclusivos del estado final dentro de "Due tecnologie".
+     1.025 = 0.82 * 1.25, por lo que el modelo queda 25% más grande. */
+  var DOCK_MODEL_HEIGHT_RATIO = 1.025;
+  var DOCK_MODEL_Y_OFFSET_PX = 18;
 
   var ANCHORS = {
     hero:      { pos: [0.55, 0.45, 0], rot: [-0.40, -0.35, 0.1], scale: 2.2, opacity: 0.92 },
@@ -254,7 +257,7 @@
   function dockPoseFromScreenRect(rect) {
     var world = worldSizeAtModelPlane();
     var centerX = rect.left + rect.width * 0.5;
-    var centerY = rect.top + rect.height * 0.5;
+    var centerY = rect.top + rect.height * 0.5 + DOCK_MODEL_Y_OFFSET_PX;
     return {
       pos: [
         (centerX / Math.max(window.innerWidth, 1) - 0.5) * world.width,

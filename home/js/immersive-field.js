@@ -39,11 +39,12 @@
     fadeEnd: 72,
 
     compact: {
-      glassX: 0.68,
-      glassY: 0.50,
-      glassRadius: 0.70,
-      sphereX: 0.80,
-      sphereY: 0.82,
+      /* En móvil cristal, tablet e insignia comparten el mismo eje visual. */
+      glassX: 0.70,
+      glassY: 0.43,
+      glassRadius: 0.78,
+      sphereX: 0.70,
+      sphereY: 0.78,
       sphereRadius: 0.19,
       fadeStart: 18,
       fadeEnd: 58,

@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="assets/models/scanner_hunyuan-mobile.glb?v=20260723-opt2" as="fetch" type="model/gltf-binary" media="(max-width: 768px)">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260728-tabletfix2">
+  <link rel="stylesheet" href="css/style.css?v=20260728-mobile-tech-field2">
 </head>
 <body>
 
@@ -495,7 +495,7 @@
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meshoptimizer@0.18.1/meshopt_decoder.js"></script>
 <script src="js/hero-ambient.js?v=20260723-opt1"></script>
-<script src="js/hero-scanner.js?v=20260726-unified13"></script>
+<script src="js/hero-scanner.js?v=20260728-unified14"></script>
 <script src="js/hero-water.js?v=20260722-client4"></script>
 <script src="js/mobile-experience.js?v=20260726-cards-touch3"></script>
 <script>
@@ -531,8 +531,8 @@
 
   observeOnce('#tech', '280px 0px', function(){
     Promise.all([
-      loadScript('js/scan-field.js?v=20260723-opt1'),
-      loadScript('js/immersive-field.js?v=20260713-3')
+      loadScript('js/scan-field.js?v=20260728-mobile-tech-field2'),
+      loadScript('js/immersive-field.js?v=20260728-mobile-tech-field2')
     ])
       .then(function(){ return loadScript('js/tech-models.js?v=20260723-opt2'); })
       .then(function(){ return loadScript('js/stories-tablet.js?v=20260723-tablet-journey9'); })

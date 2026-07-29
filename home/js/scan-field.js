@@ -10,6 +10,7 @@
     reducedMotionSpeed: 0.22,
     activeHalf: 0.50,
     coordinateWidth: 0.58,
+    mobileFieldOverscan: 1.58,
   });
 
   const section = document.getElementById('tech');
@@ -424,7 +425,9 @@
         const visibleWidth = visibleHeight * camera.aspect;
         const fieldScale = (visibleWidth * 1.12) / width;
         field.position.set(0, 0.15, 0);
-        field.scale.setScalar(fieldScale);
+        /* El overscan prolonga la malla y sus partículas por el espacio
+           inferior sin deformar la geometría ni entrar al panel inmersivo. */
+        field.scale.setScalar(fieldScale * SCAN_LIGHT_CONFIG.mobileFieldOverscan);
       } else {
         field.position.set(-2.5, -0.1, 0);
         field.scale.setScalar(1);
