@@ -460,12 +460,23 @@
     return THREE.MathUtils.lerp(-1, 1, value);
   }
 
+  function contentWidthRatio() {
+    if (isCompact) return 1;
+    const logicalWidth = Math.max(rightPanel.clientWidth + 72, 1);
+    const expandedWidth = Math.max(canvas.clientWidth, logicalWidth);
+    return Math.min(logicalWidth / expandedWidth, 1);
+  }
+
+  function preserveContentX(value) {
+    return value * contentWidthRatio();
+  }
+
   function applyLayout() {
     const layout = isCompact ? IMMERSIVE_FIELD_CONFIG.compact : IMMERSIVE_FIELD_CONFIG;
     const glassRadius = layout.glassRadius;
-    baseGlassPosition.set(normalizedX(layout.glassX), normalizedY(layout.glassY), 0);
+    baseGlassPosition.set(normalizedX(preserveContentX(layout.glassX)), normalizedY(layout.glassY), 0);
     baseParticlePosition.copy(baseGlassPosition).setZ(-0.08);
-    baseSpherePosition.set(normalizedX(layout.sphereX), normalizedY(layout.sphereY), 0.12);
+    baseSpherePosition.set(normalizedX(preserveContentX(layout.sphereX)), normalizedY(layout.sphereY), 0.12);
 
     glassGroup.position.copy(baseGlassPosition);
     glassGroup.scale.setScalar(glassRadius);
@@ -474,8 +485,14 @@
     sphereRoot.scale.setScalar(layout.sphereRadius);
     particleUniforms.uRadius.value = glassRadius;
 
-    canvas.style.setProperty('--immersive-fade-start', `${layout.fadeStart}%`);
-    canvas.style.setProperty('--immersive-fade-end', `${layout.fadeEnd}%`);
+    /*
+     * The canvas grows on ultrawide screens, but the copy-protection mask must
+     * remain anchored to the original panel width. Otherwise its percentage
+     * gradient expands over the glass and darkens the 360-degree emblem.
+     */
+    const maskScale = contentWidthRatio();
+    canvas.style.setProperty('--immersive-fade-start', `${layout.fadeStart * maskScale}%`);
+    canvas.style.setProperty('--immersive-fade-end', `${layout.fadeEnd * maskScale}%`);
   }
 
   function resize() {

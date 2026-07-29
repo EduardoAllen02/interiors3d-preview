@@ -18,38 +18,15 @@
   --nav-h: 72px;
 }
 
-/* ============================================================
-   TABLET VIAJERA + STORIE INVERSE CAROUSEL · MOBILE
-   ============================================================ */
-#canvas-tablet.tablet-journey-canvas {
-  opacity: 1;
-}
-
 @media (max-width: 768px) {
-  #canvas-tablet.tablet-journey-canvas {
-    display: block;
-    position: fixed;
-    inset: auto;
-    top: 0;
-    left: 0;
-    z-index: 4;
-    margin: 0;
-    opacity: 1 !important;
-    pointer-events: none;
-    background: transparent;
-    will-change: transform;
-  }
-
-  /* El canvas global queda entre las cards y los encabezados/CTA. */
+  /* Capas móviles de Tech y Storie. La tablet permanece dentro de Tech. */
   #tech,
   #stories {
     z-index: auto;
     isolation: auto;
   }
   #footer { z-index: 7; }
-  /* El contenido textual queda por encima del canvas viajero. El panel
-     conserva su columna 3D reservada; este nivel solo resuelve pequeños
-     solapamientos de bordes durante la animación. */
+  /* El contenido textual queda por encima de los canvases 3D. */
   #tech .tech-inner {
     position: relative;
     z-index: 5;
@@ -968,7 +945,10 @@ nav ul li a .caret { font-size: 8px; opacity: 0.6; }
   position: absolute;
   top: -46px;
   left: -30px;
-  width: calc(100% + 72px);
+  width: calc(
+    100% +
+    max(72px, calc((100vw - var(--max-w)) / 2 + 72px))
+  );
   height: calc(100% + 74px);
   z-index: 1;
   display: block;
@@ -2038,11 +2018,34 @@ nav ul li a {
   /* Tablet: esquina inferior derecha (texto izq, canvas der) */
   .tech-panel-wrap.right { min-height: 300px; margin-top: 96px; }
   .tech-panel-wrap.right .tech-img-col {
-    top: 90px; bottom: auto; left: auto !important; right: 4px !important;
-    transform: none; width: 210px; height: 290px;
+    /* Ajuste exclusivo de teléfono: centra la composición y conserva
+       dentro de cámara el canto derecho de la tablet ampliada. */
+    top: 130px; bottom: auto; left: auto !important; right: 18px !important;
+    transform: none; width: 310px; height: 290px;
   }
-  #canvas-tablet { width: 210px; height: 290px; }
+  #canvas-tablet { width: 310px; height: 290px; }
   .tech-panel-wrap.right .tech-panel { max-width: none; padding: 0 190px 0 0; }
+
+  /* Velo de lectura: cristal/tablet debajo, máscara en medio y copy arriba.
+     Su borde derecho se disuelve para que la tablet siga presente y no se
+     perciba como un rectángulo negro colocado sobre la composición. */
+  .tech-panel-wrap.right::after {
+    content: '';
+    position: absolute;
+    z-index: 5;
+    top: -18px;
+    bottom: -18px;
+    left: -20px;
+    width: 62%;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      rgba(8, 10, 11, 0.90) 0%,
+      rgba(8, 10, 11, 0.82) 58%,
+      rgba(8, 10, 11, 0.42) 82%,
+      rgba(8, 10, 11, 0) 100%
+    );
+  }
 
   /* El cristal funciona como atmósfera completa del panel inmersivo.
      La máscara horizontal continúa protegiendo la lectura del texto. */
@@ -2706,14 +2709,20 @@ nav ul li a {
   .footer-addr,
   .footer-company,
   .footer-col ul li a {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 1.6;
   }
   .footer-col h4 {
-    font-size: 12.5px;
+    font-size: 13px;
   }
   .footer-bottom {
-    font-size: 12px;
+    color: rgba(255,255,255,0.82);
+    font-size: 12.5px;
   }
+  .footer-addr,
+  .footer-company,
+  .footer-col ul li a,
+  .footer-addr strong { color: #fff; }
 }
 
 /* El cliente retiró del footer el CTA repetido, la columna de marca,
@@ -2809,5 +2818,275 @@ nav ul li a {
   .footer-cta-left h2 { font-size: 23px; }
   .footer-cta-left p,
   .footer-addr,
-  .footer-company { font-size: 14.5px; }
+  .footer-company,
+  .footer-col ul li a { font-size: 16px; line-height: 1.6; }
+  .footer-col h4 { font-size: 13px; }
+  .footer-addr,
+  .footer-company,
+  .footer-col ul li a,
+  .footer-addr strong { color: #fff; }
+  .footer-bottom { color: rgba(255,255,255,0.82); }
+}
+
+/* ============================================================
+   DESKTOP LEGIBILITY PASS — feedback Andrea 2026-07-29
+   Desktop-only: preserve the approved phone and tablet layouts.
+   ============================================================ */
+@media (min-width: 1181px) {
+  .hero-content {
+    padding-block: 92px;
+  }
+  .hero-left {
+    max-width: 760px;
+  }
+  .hero-h1 {
+    font-size: clamp(47px, 6.5vw, 75px);
+    line-height: 1.06;
+    margin-bottom: 28px;
+  }
+  .hero-sub {
+    max-width: 650px;
+    font-size: 19.5px;
+    line-height: 1.6;
+  }
+
+  #logos {
+    padding-top: 38px;
+  }
+  #logos .logos-label {
+    max-width: 980px;
+    margin: 0 auto 34px;
+    font-size: clamp(20px, 1.9vw, 26px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    color: #050707;
+  }
+  #logos .logos-label-accent {
+    color: #fff;
+  }
+
+  #tech {
+    padding-top: 96px;
+    padding-bottom: 120px;
+  }
+  .tech-header {
+    margin-bottom: 72px;
+  }
+  .tech-panel-wrap {
+    min-height: 560px;
+  }
+  .tech-panels {
+    grid-template-columns: 1fr 100px 1fr;
+  }
+  .tech-img-col,
+  #canvas-scanner,
+  #canvas-tablet {
+    height: 520px;
+  }
+  .tech-panel-wrap.right .tech-img-col,
+  #canvas-tablet {
+    width: 330px;
+  }
+  .tech-panel-wrap.right .tech-img-col {
+    right: 0;
+  }
+  .tech-panel-wrap.right .tech-panel {
+    max-width: calc(100% - 285px);
+  }
+  .tech-badge {
+    font-size: 12px;
+    padding: 6px 14px;
+    margin-bottom: 20px;
+  }
+  .tech-panel h3 {
+    font-size: clamp(24px, 2.8vw, 31px);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .tech-panel > p {
+    font-size: 18px;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+  .tech-feats {
+    gap: 11px;
+    margin-bottom: 34px;
+  }
+  .tech-feats li {
+    font-size: 17px;
+    line-height: 1.35;
+  }
+  .tech-feats li::before {
+    width: 19px;
+    height: 19px;
+    background-size: 12px;
+  }
+  .tech-link {
+    font-size: 15.5px;
+  }
+  .vs-col {
+    padding-top: 96px;
+  }
+  .vs-circle {
+    width: 76px;
+    height: 76px;
+    border-width: 3px;
+    background: rgba(0,191,196,0.12);
+    box-shadow: 0 0 28px rgba(0,191,196,0.28);
+    font-size: 17px;
+    color: #fff;
+  }
+
+  #stories {
+    padding: 72px 40px 76px;
+  }
+  .stories-header {
+    margin-bottom: 36px;
+  }
+  .stories-header h2 {
+    font-size: clamp(30px, 2.7vw, 36px);
+    line-height: 1.1;
+  }
+  .stories-header h2::after {
+    width: 9px;
+    height: 9px;
+    margin-left: 8px;
+  }
+  .stories-header p {
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .stories-grid {
+    gap: 18px;
+  }
+  .story-card {
+    min-height: 250px;
+    aspect-ratio: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 28px rgba(16,27,29,0.16);
+  }
+  .story-content {
+    padding: 26px 22px 22px;
+  }
+  .story-content h3 {
+    margin-bottom: 6px;
+    font-size: 17px;
+    line-height: 1.25;
+  }
+  .story-content p {
+    min-height: 42px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .story-link {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+  .stories-gallery-cta {
+    margin-top: 36px;
+    padding: 34px 36px;
+    border-radius: 10px;
+  }
+  .stories-gallery-label {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .stories-gallery-label strong {
+    margin-bottom: 4px;
+    font-size: 22px;
+  }
+  .stories-gallery-btn {
+    min-height: 52px;
+    padding: 15px 32px;
+    font-size: 13px;
+  }
+
+  #footer .footer-top {
+    display: block;
+    padding-bottom: 56px;
+  }
+  #footer .footer-col#contatti {
+    width: 100%;
+  }
+  #footer .footer-col h4 {
+    font-size: 18px;
+    margin-bottom: 22px;
+  }
+  #footer .footer-company {
+    font-size: 17px;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  #footer .footer-addr-cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(80px, 12vw, 200px);
+    margin-bottom: 18px;
+  }
+  #footer .footer-addr {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.82);
+  }
+  #footer .footer-addr strong {
+    display: inline-block;
+    margin-bottom: 4px;
+    font-size: 21px;
+    color: #fff;
+  }
+  #footer .footer-email {
+    font-size: 17px;
+    color: #fff;
+  }
+  #footer .footer-bottom {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.72);
+  }
+}
+
+#logos .logos-label {
+  color: #050707;
+}
+#logos .logos-label-accent {
+  color: #fff;
+}
+
+/* Desktop card clarity: larger type, stronger contrast and no permanently
+   promoted transform layer while the cards are at rest. */
+@media (min-width: 1181px) {
+  .sol-card {
+    will-change: auto;
+  }
+  .sol-card.is-flipping {
+    will-change: transform;
+  }
+  .sol-card-info {
+    min-height: 170px;
+    padding: 22px 16px 20px;
+  }
+  .sol-icon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 13px;
+  }
+  .sol-card h3 {
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: 0.045em;
+    color: #0d1719;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sol-card p {
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: #596568;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
 }

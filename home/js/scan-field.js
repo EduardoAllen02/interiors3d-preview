@@ -375,6 +375,11 @@
   let scannerPointerActive = false;
   let targetMouseX = SCAN_LIGHT_CONFIG.defaultX;
   let targetMouseY = SCAN_LIGHT_CONFIG.defaultY;
+  const pointerNdc = new THREE.Vector2();
+  const pointerRaycaster = new THREE.Raycaster();
+  const localFieldPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+  const worldFieldPlane = new THREE.Plane();
+  const pointerHit = new THREE.Vector3();
 
   function returnLightToDefault() {
     scannerPointerActive = false;
@@ -393,13 +398,25 @@
       return;
     }
 
-    // The mesh is wider than the active half, hence its separate coordinate mapping.
-    targetMouseX = THREE.MathUtils.clamp(
-      (event.clientX - rect.left) / (rect.width * SCAN_LIGHT_CONFIG.coordinateWidth),
-      0,
-      1
+    /*
+     * Project the real pointer ray onto the mesh's local XY plane. A simple
+     * percentage of the section drifts because the field is translated,
+     * rotated and perspective-projected; the ray/plane conversion stays
+     * aligned at browser zoom and every responsive aspect ratio.
+     */
+    const canvasRect = canvas.getBoundingClientRect();
+    pointerNdc.set(
+      ((event.clientX - canvasRect.left) / Math.max(canvasRect.width, 1)) * 2 - 1,
+      -((event.clientY - canvasRect.top) / Math.max(canvasRect.height, 1)) * 2 + 1
     );
-    targetMouseY = THREE.MathUtils.clamp(1 - (event.clientY - rect.top) / rect.height, 0, 1);
+    field.updateMatrixWorld(true);
+    worldFieldPlane.copy(localFieldPlane).applyMatrix4(field.matrixWorld);
+    pointerRaycaster.setFromCamera(pointerNdc, camera);
+    if (pointerRaycaster.ray.intersectPlane(worldFieldPlane, pointerHit)) {
+      const localHit = field.worldToLocal(pointerHit.clone());
+      targetMouseX = THREE.MathUtils.clamp(localHit.x / width + 0.5, 0, 1);
+      targetMouseY = THREE.MathUtils.clamp(localHit.y / height + 0.5, 0, 1);
+    }
     section.dataset.scanActive = 'true';
   }
 

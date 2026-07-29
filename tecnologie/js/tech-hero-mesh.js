@@ -254,6 +254,11 @@
   field.add(dustPoints);
 
   let pointerActive = false;
+  const pointerNdc = new THREE.Vector2();
+  const pointerRaycaster = new THREE.Raycaster();
+  const localFieldPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+  const worldFieldPlane = new THREE.Plane();
+  const pointerHit = new THREE.Vector3();
   let targetX = LIGHT.defaultX;
   let targetY = LIGHT.defaultY;
 
@@ -302,9 +307,19 @@
   }
 
   section.addEventListener('pointermove', (event) => {
-    const rect = section.getBoundingClientRect();
-    targetX = THREE.MathUtils.clamp((event.clientX - rect.left) / rect.width, 0, 1);
-    targetY = THREE.MathUtils.clamp(1 - (event.clientY - rect.top) / rect.height, 0, 1);
+    const rect = canvas.getBoundingClientRect();
+    pointerNdc.set(
+      ((event.clientX - rect.left) / Math.max(rect.width, 1)) * 2 - 1,
+      -((event.clientY - rect.top) / Math.max(rect.height, 1)) * 2 + 1
+    );
+    field.updateMatrixWorld(true);
+    worldFieldPlane.copy(localFieldPlane).applyMatrix4(field.matrixWorld);
+    pointerRaycaster.setFromCamera(pointerNdc, camera);
+    if (pointerRaycaster.ray.intersectPlane(worldFieldPlane, pointerHit)) {
+      const localHit = field.worldToLocal(pointerHit.clone());
+      targetX = THREE.MathUtils.clamp(localHit.x / width + 0.5, 0, 1);
+      targetY = THREE.MathUtils.clamp(localHit.y / height + 0.5, 0, 1);
+    }
     pointerActive = true;
   }, { passive: true });
   section.addEventListener('pointerleave', resetLight);

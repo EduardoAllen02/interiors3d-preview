@@ -668,3 +668,108 @@
   .featx-copy p { font-size: 15.5px; }
   .featx-caption { font-size: 12px; }
 }
+
+/* ============================================================
+   TYPE SCALE ALIGNMENT — match the visual weight of Home
+   ============================================================ */
+@media (min-width: 769px) {
+  #tech-hero {
+    min-height: 620px;
+  }
+  .th-eyebrow {
+    font-size: 11.5px;
+    padding: 6px 15px;
+  }
+  .th-title {
+    max-width: 820px;
+    font-size: clamp(44px, 5.5vw, 68px);
+    line-height: 1.08;
+    margin-bottom: 26px;
+  }
+  .th-sub {
+    max-width: 680px;
+    font-size: 18px;
+    line-height: 1.65;
+  }
+  .stat-label {
+    font-size: 14px;
+  }
+  .section-title-dark {
+    font-size: clamp(30px, 3vw, 38px);
+    line-height: 1.14;
+    margin-bottom: 14px;
+  }
+  .compare-sub,
+  .feats-sub {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .cmp-h-them,
+  .cmp-h-us {
+    font-size: 12.5px;
+  }
+  .cmp-feature {
+    font-size: 15.5px;
+  }
+  .cmp-no {
+    font-size: 13.5px;
+  }
+  .cmp-yes {
+    font-size: 18px;
+  }
+  .feats-inner {
+    max-width: 1200px;
+  }
+  .featx-row {
+    gap: 60px;
+    margin-bottom: 84px;
+  }
+  .featx-caption {
+    margin-top: 13px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .featx-num {
+    font-size: 13px;
+  }
+  .featx-copy h3 {
+    font-size: clamp(24px, 2.3vw, 30px);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .featx-copy p {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+  }
+  .featx-example {
+    padding: 13px 18px;
+    font-size: 15.5px !important;
+    line-height: 1.65;
+  }
+  .tech-cta-home a {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .th-title {
+    font-size: 34px;
+  }
+  .cmp-feature {
+    font-size: 15px;
+  }
+  .featx-caption {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .featx-copy h3 {
+    font-size: 22px;
+  }
+  .featx-copy p {
+    font-size: 16px;
+  }
+  .featx-example {
+    font-size: 14.5px !important;
+  }
+}

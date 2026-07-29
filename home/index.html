@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="assets/models/scanner_hunyuan-mobile.glb?v=20260723-opt2" as="fetch" type="model/gltf-binary" media="(max-width: 768px)">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260728-mobile-tech-field2">
+  <link rel="stylesheet" href="css/style.css?v=20260729-desktop-final4">
 </head>
 <body>
 
@@ -98,7 +98,7 @@
      ══════════════════════════════════════════ -->
 <section id="logos">
   <div class="logos-inner">
-    <p class="logos-label" data-t="logos_label">AZIENDE E ISTITUZIONI CHE HANNO SCELTO INTERIORS3D</p>
+    <p class="logos-label" data-t="logos_label">AZIENDE E ISTITUZIONI CHE HANNO SCELTO <span class="logos-label-accent">INTERIORS3D</span></p>
     <div class="logos-track">
       <div class="logos-strip">
         <div class="logo-item"><img src="assets/img/logos/sap-white.svg" alt="SAP" class="logo-client logo-client--sap-white"></div>
@@ -455,7 +455,7 @@
             31029 Vittorio Veneto TV
           </p>
           <p class="footer-addr">
-            <strong>Sede legale</strong><br>
+            <strong>Sede operativa</strong><br>
             Via Lourdes 64<br>
             31015 Conegliano TV
           </p>
@@ -531,11 +531,10 @@
 
   observeOnce('#tech', '280px 0px', function(){
     Promise.all([
-      loadScript('js/scan-field.js?v=20260728-mobile-tech-field2'),
-      loadScript('js/immersive-field.js?v=20260728-mobile-tech-field2')
+      loadScript('js/scan-field.js?v=20260729-pointer1'),
+      loadScript('js/immersive-field.js?v=20260729-wide-canvas2')
     ])
-      .then(function(){ return loadScript('js/tech-models.js?v=20260723-opt2'); })
-      .then(function(){ return loadScript('js/stories-tablet.js?v=20260728-tablet-journey10'); })
+      .then(function(){ return loadScript('js/tech-models.js?v=20260729-desktop-camera3'); })
       .catch(function(error){ console.error('[effects-loader]', error); });
   });
 

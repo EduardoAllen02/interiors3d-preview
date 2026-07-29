@@ -205,8 +205,10 @@ const TABLET_CFG = {
   startFov: 40,
   endFov: 50,
 
-  startCamZ: 10,
-  endCamZ: 10,
+  /* Margen adicional en desktop: la cara ancha de la tablet debe quedar
+     completa dentro del frustum incluso en el punto de mayor escala. */
+  startCamZ: 11.8,
+  endCamZ: 11.8,
 
   /* ────────────────────────────────────────────────
      Parallax CSS
@@ -236,15 +238,43 @@ if (window.matchMedia('(max-width: 768px)').matches) {
   SCANNER_CFG.endPosY = 0.15;
   SCANNER_CFG.startY = 90;
 
-  TABLET_CFG.startScale = 3.4;
+  /*
+   * La tablet ya no viaja fuera de Due tecnologie. Conserva exactamente
+   * el mismo encuadre durante todo el tramo y el scroll solo modifica Y
+   * para completar una vuelta. El primer y el último frame muestran el
+   * mismo frente.
+   */
+  TABLET_CFG.startScale = 6.75;
   TABLET_CFG.endScale = 6.75;
-  TABLET_CFG.startPosY = 0;
-  TABLET_CFG.endPosY = 0.45;
+  TABLET_CFG.startPosX = 0;
   TABLET_CFG.endPosX = 0;
-  TABLET_CFG.startY = 120;
-  /* La cámara se aleja para que la tablet agrandada no se recorte. */
+  TABLET_CFG.startPosY = -0.30;
+  TABLET_CFG.endPosY = -0.30;
+  TABLET_CFG.startRotX = Math.PI * 0.5;
+  TABLET_CFG.endRotX = Math.PI * 0.5;
+  TABLET_CFG.startRotY = Math.PI * -0.5;
+  TABLET_CFG.endRotY = TABLET_CFG.startRotY + Math.PI * 2;
+  TABLET_CFG.startRotZ = 0;
+  TABLET_CFG.endRotZ = 0;
+  TABLET_CFG.startY = 0;
+  TABLET_CFG.endY = 0;
+  TABLET_CFG.triggerStart = 0.18;
+  TABLET_CFG.triggerEnd = 0.82;
+  /* La cámara se aleja para conservar todos los cantos durante el giro. */
   TABLET_CFG.startCamZ = 12;
   TABLET_CFG.endCamZ = 12;
+
+  /* En teléfono la tablet funciona como imagen de fondo de la columna. */
+  if (window.matchMedia('(max-width: 540px)').matches) {
+    TABLET_CFG.startScale = 10;
+    TABLET_CFG.endScale = 10;
+    TABLET_CFG.startCamZ = 16;
+    TABLET_CFG.endCamZ = 16;
+  }
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    TABLET_CFG.endRotY = TABLET_CFG.startRotY;
+  }
 }
 
 
@@ -1209,39 +1239,21 @@ const tabletViewer = initTechModel(
   TABLET_CFG
 );
 
-const isTabletJourneyMobile =
-  window.matchMedia('(max-width: 768px)').matches;
-
 /*
- * En móvil la tablet queda bajo un único controlador que conserva su
- * animación de #tech y después continúa hacia Storie. En escritorio
- * permanece exactamente en el sistema original.
+ * Ambos modelos permanecen en sus placeholders naturales. En móvil la
+ * configuración de TABLET_CFG convierte el progreso de #tech en un giro
+ * completo, sin transferir el canvas a Storie o a la galería.
  */
-if (isTabletJourneyMobile) {
-  initScrollSystem([
-    {
-      viewer: scannerViewer,
-      canvasId: 'canvas-scanner',
-      cfg: SCANNER_CFG,
-    },
-  ]);
+initScrollSystem([
+  {
+    viewer: scannerViewer,
+    canvasId: 'canvas-scanner',
+    cfg: SCANNER_CFG,
+  },
 
-  window.Interiors3DTabletJourneySource = {
+  {
     viewer: tabletViewer,
+    canvasId: 'canvas-tablet',
     cfg: TABLET_CFG,
-  };
-} else {
-  initScrollSystem([
-    {
-      viewer: scannerViewer,
-      canvasId: 'canvas-scanner',
-      cfg: SCANNER_CFG,
-    },
-
-    {
-      viewer: tabletViewer,
-      canvasId: 'canvas-tablet',
-      cfg: TABLET_CFG,
-    },
-  ]);
-}
+  },
+]);
