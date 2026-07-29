@@ -2028,14 +2028,23 @@ nav ul li a {
   }
   .vs-circle { background: #080a0b; box-shadow: 0 0 0 10px #080a0b; }
 
-  /* Tablet: esquina inferior derecha (texto izq, canvas der) */
-  .tech-panel-wrap.right { min-height: 300px; margin-top: 96px; }
+  /* Tablet: ahora es un canvas fijo que viaja por la página (ver
+     stories-tablet.js) y ya no vive dentro de esta columna — el
+     nodo .tech-img-col se conserva vacío solo como referencia de
+     posición/tamaño para ese script. Reservarle 300px de min-height
+     y 190px de padding al texto (como si la tablet siguiera ahí
+     dentro) dejaba un cuadro negro vacío en cuanto la tablet partía
+     hacia Storie. Ahora el texto usa el ancho completo y la tablet,
+     mientras sigue "en casa", queda detrás como presencia de fondo
+     (el texto ya tiene z-index:6 por encima del canvas en z-index:4
+     más abajo en este archivo). */
+  .tech-panel-wrap.right { min-height: 0; margin-top: 64px; }
   .tech-panel-wrap.right .tech-img-col {
-    top: 56px; bottom: auto; left: auto !important; right: 14px !important;
+    top: 8px; bottom: auto; left: auto !important; right: 14px !important;
     transform: none; width: 210px; height: 290px;
   }
   #canvas-tablet { width: 210px; height: 290px; }
-  .tech-panel-wrap.right .tech-panel { max-width: none; padding: 0 190px 0 0; }
+  .tech-panel-wrap.right .tech-panel { max-width: none; padding: 0; }
 }
 
 /* Final cascade overrides for the client wave. */
