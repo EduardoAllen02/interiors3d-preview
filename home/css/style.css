@@ -2752,3 +2752,46 @@ nav ul li a {
     font-size: 24px;
   }
 }
+
+/* ══════════════════════════════════════════════════
+   LETRA MÁS GRANDE EN MÓVIL — pedido del cliente (2ª vez)
+   Bloque final para ganar la cascada sobre los ~12 bloques
+   @media (max-width:768px) previos acumulados en este archivo.
+   Sube el tamaño base y el de los textos más leídos de la
+   página sin tocar layout/posiciones.
+   ══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  body { font-size: 15.5px; }
+
+  .hero-h1 { font-size: 33px; }
+  .hero-sub { font-size: 16.5px; line-height: 1.6; }
+  .btn-primary, .btn-outline { font-size: 12.5px; }
+
+  .section-title,
+  .solutions-title-top-layer .section-title { font-size: 20px; }
+  .sol-card h3 { font-size: 14.5px; }
+  .sol-card p { font-size: 13px; }
+
+  .tech-header h2 { font-size: 22px; }
+  .tech-panel > p { font-size: 15.5px; }
+  .tech-feats li { font-size: 14.5px; }
+  .tech-link { font-size: 12.5px; }
+
+  /* La lista de features del escáner ahora envuelve a más líneas con
+     la letra más grande, así que crece más de lo que el layout diagonal
+     esperaba y "SCOPRI DI PIÙ" queda debajo del círculo VS (que se
+     centra al 50% de la altura combinada de los dos paneles). Se le
+     da más aire al panel del escáner para que ese 50% caiga más abajo,
+     lejos del link. */
+  .tech-panel-wrap:not(.right) { margin-bottom: 46px; }
+
+  .story-content h3 { font-size: 17px; }
+  .story-content p { font-size: 14.5px; }
+  .story-link { font-size: 12px; }
+  .stories-gallery-label strong { font-size: 16.5px; }
+
+  .footer-cta-left h2 { font-size: 23px; }
+  .footer-cta-left p,
+  .footer-addr,
+  .footer-company { font-size: 14.5px; }
+}

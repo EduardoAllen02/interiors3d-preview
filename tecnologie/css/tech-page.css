@@ -648,3 +648,23 @@
     mask-image: linear-gradient(to bottom, transparent 0%, #000 9%, #000 84%, transparent 100%);
   }
 }
+
+/* ══════════════════════════════════════════════════
+   LETRA MÁS GRANDE EN MÓVIL — pedido del cliente (2ª vez)
+   Bloque final para ganar la cascada. Ver mismo bloque en
+   home/css/style.css (heredado por esta página) para el
+   tamaño base del body y textos compartidos.
+   ══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .th-title { font-size: 32px; }
+  .th-sub { font-size: 16.5px; line-height: 1.6; }
+
+  .stat-num { font-size: 36px; }
+  .stat-label { font-size: 12.5px; }
+
+  .cmp-feature { font-size: 14.5px; }
+
+  .featx-copy h3 { font-size: 20px; }
+  .featx-copy p { font-size: 15.5px; }
+  .featx-caption { font-size: 12px; }
+}
