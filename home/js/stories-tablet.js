@@ -24,10 +24,14 @@
      */
     intermediate: {
       selector: '#stories',
-      corner: 'top-right',
-      offsetX: 18,
+      corner: 'top-left',
+      /* Conserva X, tamaño y pose de la posición inicial de la tablet.
+         En esta parada solo cambia Y para descender hacia Storie. */
+      lockToInitialX: true,
+      preserveInitialPose: true,
+      offsetX: 0,
       offsetY: -185,
-      canvasScale: 1.05,
+      canvasScale: 1,
       pose: {
         pos: [0.20, 0.30, 0],
         /* Frente neutro del GLB: sin inclinación hacia atrás ni roll. */
@@ -288,6 +292,18 @@
 
     if (!intermediateRect || !storiesInRect || !galleryEndRect) return;
 
+    if (TABLET_JOURNEY_CFG.intermediate.lockToInitialX) {
+      intermediateRect.left = techEndRect.left;
+      intermediateRect.width = techEndRect.width;
+      intermediateRect.height = techEndRect.height;
+      intermediateRect.canvasScale = techEndRect.canvasScale;
+    }
+
+    var intermediatePose =
+      TABLET_JOURNEY_CFG.intermediate.preserveInitialPose
+        ? poseFromOriginalEnd()
+        : TABLET_JOURNEY_CFG.intermediate.pose;
+
     timeline = [
       {
         y: journeyStartY,
@@ -297,7 +313,7 @@
       {
         y: intermediateY,
         rect: intermediateRect,
-        pose: TABLET_JOURNEY_CFG.intermediate.pose
+        pose: intermediatePose
       },
       {
         y: storiesY,

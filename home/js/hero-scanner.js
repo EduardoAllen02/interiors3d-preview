@@ -33,6 +33,7 @@
      la tablet). El canvas nunca se mueve al DOM ahí dentro — solo leemos
      su posición en pantalla para saber dónde "aterrizar". */
   var dockAnchor = document.querySelector('.tech-panel-wrap:not(.right) .tech-img-col');
+  var dockContent = document.getElementById('panel-scanner');
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ASSET_BASE = (document.body && document.body.dataset.assetBase) || '';
@@ -76,7 +77,7 @@
   /* Ajustes exclusivos del estado final dentro de "Due tecnologie".
      1.025 = 0.82 * 1.25, por lo que el modelo queda 25% más grande. */
   var DOCK_MODEL_HEIGHT_RATIO = 1.025;
-  var DOCK_MODEL_Y_OFFSET_PX = 18;
+  var DOCK_MODEL_Y_OFFSET_PX = 0;
 
   var ANCHORS = {
     hero:      { pos: [0.55, 0.45, 0], rot: [-0.40, -0.35, 0.1], scale: 2.2, opacity: 0.92 },
@@ -254,6 +255,20 @@
     };
   }
 
+  /* Alinea el hueco visual del escáner con el centro de la columna de texto
+     situada a su derecha. Se calcula en vivo para conservar el centrado si
+     una traducción hace que la lista gane o pierda altura. */
+  function centerDockRectAgainstContent(rect) {
+    if (!dockContent) return rect;
+    var contentRect = dockContent.getBoundingClientRect();
+    return {
+      left: rect.left,
+      top: rect.top + (contentRect.height - rect.height) * 0.5,
+      width: rect.width,
+      height: rect.height,
+    };
+  }
+
   function dockPoseFromScreenRect(rect) {
     var world = worldSizeAtModelPlane();
     var centerX = rect.left + rect.width * 0.5;
@@ -312,12 +327,12 @@
       var currentScrollY = window.scrollY || window.pageYOffset || 0;
       var measuredDockRect = dockAnchor.getBoundingClientRect();
       dockAnchorDocTop = measuredDockRect.top + currentScrollY;
-      var arrivalPose = dockPoseFromScreenRect({
+      var arrivalPose = dockPoseFromScreenRect(centerDockRectAgainstContent({
         left: measuredDockRect.left,
         top: dockViewportOffset,
         width: measuredDockRect.width,
         height: measuredDockRect.height,
-      });
+      }));
       ANCHORS.dock.pos = arrivalPose.pos;
       ANCHORS.dock.scale = arrivalPose.scale;
     }
@@ -431,7 +446,9 @@
        su sección, sin cambiar de canvas ni alterar su opacidad. */
     var isDocked = scrollY >= dockY && !!dockAnchor;
     if (isDocked) {
-      var liveDockPose = dockPoseFromScreenRect(dockAnchor.getBoundingClientRect());
+      var liveDockPose = dockPoseFromScreenRect(
+        centerDockRectAgainstContent(dockAnchor.getBoundingClientRect())
+      );
       target = {
         pos: liveDockPose.pos,
         rot: ANCHORS.dock.rot,
