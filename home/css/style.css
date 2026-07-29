@@ -1259,6 +1259,10 @@ nav ul li a .caret { font-size: 8px; opacity: 0.6; }
   color: rgba(255,255,255,0.45);
   line-height: 1.9;
 }
+.footer-email {
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
 .footer-addr-cols { display: block; }
 .footer-bottom {
   display: flex;
@@ -3017,7 +3021,7 @@ nav ul li a {
   }
   #footer .footer-company {
     font-size: 17px;
-    margin-bottom: 20px;
+    margin-bottom: 2px;
     color: #fff;
   }
   #footer .footer-addr-cols {
@@ -3040,6 +3044,7 @@ nav ul li a {
   #footer .footer-email {
     font-size: 17px;
     color: #fff;
+    margin: 0 0 28px;
   }
   #footer .footer-bottom {
     font-size: 12.5px;
