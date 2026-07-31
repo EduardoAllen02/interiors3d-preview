@@ -239,41 +239,35 @@ if (window.matchMedia('(max-width: 768px)').matches) {
   SCANNER_CFG.startY = 90;
 
   /*
-   * La tablet ya no viaja fuera de Due tecnologie. Conserva exactamente
-   * el mismo encuadre durante todo el tramo y el scroll solo modifica Y
-   * para completar una vuelta. El primer y el último frame muestran el
-   * mismo frente.
+   * Primera fase: conserva la animación de entrada original.
+   * Segunda fase: al terminar la entrada, deja de desplazarse y
+   * completa una vuelta sobre Y conforme continúa el scroll.
    */
-  TABLET_CFG.startScale = 6.75;
-  TABLET_CFG.endScale = 6.75;
+  TABLET_CFG.startScale = 4.42;
+  TABLET_CFG.endScale = 8.775;
   TABLET_CFG.startPosX = 0;
   TABLET_CFG.endPosX = 0;
-  TABLET_CFG.startPosY = -0.30;
-  TABLET_CFG.endPosY = -0.30;
-  TABLET_CFG.startRotX = Math.PI * 0.5;
-  TABLET_CFG.endRotX = Math.PI * 0.5;
-  TABLET_CFG.startRotY = Math.PI * -0.5;
-  TABLET_CFG.endRotY = TABLET_CFG.startRotY + Math.PI * 2;
-  TABLET_CFG.startRotZ = 0;
-  TABLET_CFG.endRotZ = 0;
-  TABLET_CFG.startY = 0;
+  TABLET_CFG.startPosY = 0;
+  TABLET_CFG.endPosY = 0.45;
+  TABLET_CFG.startY = 120;
   TABLET_CFG.endY = 0;
-  TABLET_CFG.triggerStart = 0.18;
-  TABLET_CFG.triggerEnd = 0.82;
-  /* La cámara se aleja para conservar todos los cantos durante el giro. */
+  TABLET_CFG.triggerStart = 0.2;
+  TABLET_CFG.triggerEnd = 0.4;
+  TABLET_CFG.spinStart = 0.60;
+  TABLET_CFG.spinEnd = 0.98;
+  TABLET_CFG.spinFrontSelector = '#stories';
+  TABLET_CFG.spinFrontViewportRatio = 0.72;
+  TABLET_CFG.spinFrontAngle = 0.18;
+  TABLET_CFG.spinEndAngle = -Math.PI * 2 + 0.18;
+  TABLET_CFG.spinCameraExtraZ = 3.2;
+  TABLET_CFG.spinLerpSpeed = 0.032;
+  /* La cámara se aleja para conservar todos los cantos durante ambas fases. */
   TABLET_CFG.startCamZ = 12;
   TABLET_CFG.endCamZ = 12;
 
-  /* En teléfono la tablet funciona como imagen de fondo de la columna. */
-  if (window.matchMedia('(max-width: 540px)').matches) {
-    TABLET_CFG.startScale = 10;
-    TABLET_CFG.endScale = 10;
-    TABLET_CFG.startCamZ = 16;
-    TABLET_CFG.endCamZ = 16;
-  }
-
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    TABLET_CFG.endRotY = TABLET_CFG.startRotY;
+    TABLET_CFG.spinFrontAngle = 0;
+    TABLET_CFG.spinEndAngle = 0;
   }
 }
 
@@ -429,8 +423,16 @@ function initTechModel(canvasId, cfg) {
      sin alterar el centrado interno del modelo.
      ──────────────────────────────────────────────── */
 
+  /*
+   * Grupo padre para el giro de 360°. Al estar fuera de modelRoot,
+   * rota sobre el eje Y mundial y no hereda la orientación base del GLB.
+   * Así la tablet muestra frente, canto y espalda sin convertirse en roll.
+   */
+  const spinRoot = new THREE.Group();
+  scene.add(spinRoot);
+
   const modelRoot = new THREE.Group();
-  scene.add(modelRoot);
+  spinRoot.add(modelRoot);
 
   /*
    * Root independiente para la reacción al cursor. El scroll
@@ -446,6 +448,7 @@ function initTechModel(canvasId, cfg) {
   let currentLookX = 0;
   let currentLookY = 0;
   let currentLookZ = 0;
+  let scrollSpinY = 0;
   let frameUpdater = null;
 
 
@@ -810,6 +813,19 @@ function initTechModel(canvasId, cfg) {
 
     resize();
     applyModelTransform();
+    spinRoot.rotation.y = scrollSpinY;
+
+    /*
+     * En los cantos la silueta proyectada necesita más espacio vertical.
+     * Alejamos únicamente la cámara; frente y espalda conservan el
+     * encuadre aprobado y el modelo no cambia de escala ni posición.
+     */
+    const spinCameraExtraZ = getNumber(cfg.spinCameraExtraZ, 0);
+    const sideProfile = Math.pow(
+      Math.abs(Math.sin(scrollSpinY)),
+      1.35
+    );
+    camera.position.z += spinCameraExtraZ * sideProfile;
 
     currentLookX +=
       (targetLookX - currentLookX) * POINTER_INTERACTION_CFG.smoothing;
@@ -839,6 +855,7 @@ function initTechModel(canvasId, cfg) {
     renderer,
     scene,
     camera,
+    spinRoot,
     modelRoot,
     pointerRoot,
 
@@ -852,6 +869,10 @@ function initTechModel(canvasId, cfg) {
         0,
         1
       );
+    },
+
+    setScrollSpinY(value) {
+      scrollSpinY = getNumber(value, 0);
     },
 
     setJourneyPose(value) {
@@ -948,6 +969,9 @@ function initScrollSystem(entries) {
 
       currentP: 0,
       targetP: 0,
+
+      currentSpinY: 0,
+      targetSpinY: 0,
     };
   });
 
@@ -1079,6 +1103,76 @@ function initScrollSystem(entries) {
       );
 
       state.targetP = localProgress;
+
+      const spinStart = getNumber(state.cfg.spinStart, 1);
+      const spinEnd = getNumber(state.cfg.spinEnd, spinStart);
+      const spinFrontElement = state.cfg.spinFrontSelector
+        ? document.querySelector(state.cfg.spinFrontSelector)
+        : null;
+
+      if (spinFrontElement && techSection) {
+        const viewportHeight = Math.max(window.innerHeight, 1);
+        const totalDistance = viewportHeight + techSection.offsetHeight;
+        const techRect = techSection.getBoundingClientRect();
+        const frontRect = spinFrontElement.getBoundingClientRect();
+        const viewportRatio = clamp(
+          getNumber(state.cfg.spinFrontViewportRatio, 0.72),
+          0,
+          1
+        );
+        const spinFront = clamp(
+          (
+            frontRect.top -
+            techRect.top +
+            viewportHeight * (1 - viewportRatio)
+          ) / Math.max(totalDistance, 1),
+          spinStart + 0.0001,
+          spinEnd - 0.0001
+        );
+        const spinFrontAngle = getNumber(state.cfg.spinFrontAngle, 0);
+        const spinEndAngle = getNumber(
+          state.cfg.spinEndAngle,
+          spinFrontAngle
+        );
+
+        if (scrollProgress <= spinFront) {
+          const firstRange = Math.max(spinFront - spinStart, 0.0001);
+          const firstProgress = clamp(
+            (scrollProgress - spinStart) / firstRange,
+            0,
+            1
+          );
+          const firstEase =
+            firstProgress * firstProgress * (3 - 2 * firstProgress);
+          state.targetSpinY = lerp(0, spinFrontAngle, firstEase);
+        } else {
+          const secondRange = Math.max(spinEnd - spinFront, 0.0001);
+          const secondProgress = clamp(
+            (scrollProgress - spinFront) / secondRange,
+            0,
+            1
+          );
+          const secondEase =
+            secondProgress * secondProgress * (3 - 2 * secondProgress);
+          state.targetSpinY = lerp(
+            spinFrontAngle,
+            spinEndAngle,
+            secondEase
+          );
+        }
+      } else {
+        const spinTurns = getNumber(state.cfg.spinTurns, 0);
+        const spinRange = spinEnd - spinStart;
+        const spinProgress = Math.abs(spinRange) < 0.000001
+          ? (scrollProgress >= spinEnd ? 1 : 0)
+          : clamp(
+              (scrollProgress - spinStart) / spinRange,
+              0,
+              1
+            );
+
+        state.targetSpinY = spinProgress * Math.PI * 2 * spinTurns;
+      }
     });
   }
 
@@ -1197,6 +1291,18 @@ function initScrollSystem(entries) {
           state.currentP
         ) * speed;
 
+      const spinSpeed = clamp(
+        getNumber(state.cfg.spinLerpSpeed, speed),
+        0,
+        1
+      );
+
+      state.currentSpinY +=
+        (
+          state.targetSpinY -
+          state.currentSpinY
+        ) * spinSpeed;
+
 
       const element = document.getElementById(
         state.canvasId
@@ -1215,6 +1321,12 @@ function initScrollSystem(entries) {
         state.viewer.setProgress(
           state.currentP
         );
+
+        if (state.viewer.setScrollSpinY) {
+          state.viewer.setScrollSpinY(
+            state.currentSpinY
+          );
+        }
       }
     });
   }
@@ -1241,8 +1353,8 @@ const tabletViewer = initTechModel(
 
 /*
  * Ambos modelos permanecen en sus placeholders naturales. En móvil la
- * configuración de TABLET_CFG convierte el progreso de #tech en un giro
- * completo, sin transferir el canvas a Storie o a la galería.
+ * tablet conserva primero su entrada original y después gira una vuelta
+ * completa sobre Y, sin transferir el canvas a Storie o a la galería.
  */
 initScrollSystem([
   {

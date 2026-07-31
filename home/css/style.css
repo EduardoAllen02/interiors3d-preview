@@ -3059,6 +3059,17 @@ nav ul li a {
   color: #fff;
 }
 
+@media (max-width: 768px) {
+  #logos .logos-label {
+    max-width: 380px;
+    margin: 0 auto 26px;
+    font-size: clamp(12.5px, 3.2vw, 14px);
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: 0.025em;
+  }
+}
+
 /* Desktop card clarity: larger type, stronger contrast and no permanently
    promoted transform layer while the cards are at rest. */
 @media (min-width: 1181px) {
