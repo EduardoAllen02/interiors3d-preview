@@ -216,6 +216,16 @@
 #logos .logo-item:hover .logo-client--color {
   filter: brightness(0) invert(1);
 }
+#logos .logo-client--unibo,
+#logos .logo-client--ica {
+  /* Ambos archivos fuente tienen alfa semitransparente. Las sombras a
+     desplazamiento cero consolidan su silueta sin añadir resplandor. */
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 0 0 #fff)
+    drop-shadow(0 0 0 #fff);
+}
 #logos .logo-text { color: #fff; }
 
 .solutions-scroll-cue { display: none; }
@@ -572,9 +582,12 @@ nav ul li a .caret { font-size: 8px; opacity: 0.6; }
 .logo-client--sm    { height: 32px; }
 .logo-client--sq    { height: 48px; }
 .logo-client--wide  { height: 34px; max-width: 180px; }
+.logo-client--febal { height: 46px; max-width: 112px; }
+.logo-client--unibo { height: 86px; max-width: 120px; }
 /* Logo con color propio (ej. SAP): sin filtro negro, opacidad controla gris→color */
 .logo-client--color { filter: none; }
 .logo-item:hover .logo-client--color { filter: none; }
+
 /* Text fallback: color negro para que opacity controle el gris → negro */
 .logo-text {
   color: #000;
@@ -1178,10 +1191,57 @@ nav ul li a .caret { font-size: 8px; opacity: 0.6; }
   background: #0b0b0b;
   border-top: 1px solid var(--border);
   padding: 64px 40px 32px;
+  position: relative;
+  overflow: hidden;
 }
 .footer-inner {
   max-width: var(--max-w);
   margin: 0 auto;
+}
+/* Malla técnica discreta detrás de Contatti en todas las resoluciones. */
+.footer-net {
+  display: block;
+  position: absolute;
+  right: -12px;
+  top: 52%;
+  transform: translateY(-50%);
+  width: min(40vw, 520px);
+  height: auto;
+  opacity: 0.68;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to left, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to left, #000 55%, transparent 100%);
+  z-index: 0;
+}
+.footer-top {
+  position: relative;
+  isolation: isolate;
+}
+.footer-top > .footer-col {
+  position: relative;
+  z-index: 1;
+}
+@media (min-width: 900px) {
+  /* En escritorio la membrana se abre hacia el centro para llenar el vacío
+     entre las columnas sin introducir una segunda malla repetida. */
+  .footer-net {
+    right: -34px;
+    top: 55%;
+    width: min(80vw, 1020px);
+    opacity: 0.54;
+    -webkit-mask-image: linear-gradient(to left, #000 68%, transparent 100%);
+    mask-image: linear-gradient(to left, #000 68%, transparent 100%);
+  }
+}
+@media (max-width: 899px) {
+  .footer-net {
+    right: -58px;
+    top: 58%;
+    width: min(116vw, 510px);
+    opacity: 0.6;
+    -webkit-mask-image: linear-gradient(to left, #000 62%, transparent 100%);
+    mask-image: linear-gradient(to left, #000 62%, transparent 100%);
+  }
 }
 /* CTA row integrado (antiguo pre-footer) */
 .footer-cta {
@@ -3063,10 +3123,10 @@ nav ul li a {
   #logos .logos-label {
     max-width: 380px;
     margin: 0 auto 26px;
-    font-size: clamp(12.5px, 3.2vw, 14px);
+    font-size: 20px;
     font-weight: 800;
-    line-height: 1.35;
-    letter-spacing: 0.025em;
+    line-height: 1.22;
+    letter-spacing: -0.015em;
   }
 }
 

@@ -44,6 +44,43 @@ const POINTER_INTERACTION_CFG = {
 };
 
 
+/* ============================================================
+   TABLET MOBILE — línea de tiempo editable del giro por scroll
+
+   Cada punto se activa cuando el borde superior del selector cruza
+   la fracción indicada del viewport (1 = borde inferior, 0 = superior).
+   Los ángulos son adicionales a la orientación frontal fija del GLB.
+   ============================================================ */
+const TABLET_ENTRY_START = {
+  selector: '#canvas-tablet',
+  viewportRatio: 0.98,
+};
+
+const TABLET_ENTRY_END = {
+  selector: '#canvas-tablet',
+  viewportRatio: 0.55,
+};
+
+/* Mientras #stories no cruce este punto, la tablet permanece frontal. */
+const TABLET_EXIT_START = {
+  selector: '#stories',
+  viewportRatio: 0.62,
+};
+
+const TABLET_EXIT_END = {
+  selector: '#stories',
+  viewportRatio: 0.18,
+};
+
+const TABLET_HIDDEN_START_ANGLE = Math.PI;
+const TABLET_FRONT_ANGLE = 0;
+const TABLET_HIDDEN_END_ANGLE = -Math.PI;
+
+/* 0 = interpolación lineal; 1 = entrada/salida totalmente suavizada. */
+const TABLET_ENTRY_SMOOTHING = 1;
+const TABLET_EXIT_SMOOTHING = 1;
+
+
 const SCANNER_CFG = {
   /* ────────────────────────────────────────────────
      Modelo 3D
@@ -239,35 +276,54 @@ if (window.matchMedia('(max-width: 768px)').matches) {
   SCANNER_CFG.startY = 90;
 
   /*
-   * Primera fase: conserva la animación de entrada original.
-   * Segunda fase: al terminar la entrada, deja de desplazarse y
-   * completa una vuelta sobre Y conforme continúa el scroll.
+   * Primera fase: la tablet ya está en su encuadre final y aparece
+   * completando una vuelta sobre Y conforme entra con el scroll.
+   * Segunda fase: continúa con un cuarto de vuelta antes de Stories.
    */
-  TABLET_CFG.startScale = 4.42;
+  TABLET_CFG.startScale = 8.775;
   TABLET_CFG.endScale = 8.775;
   TABLET_CFG.startPosX = 0;
   TABLET_CFG.endPosX = 0;
-  TABLET_CFG.startPosY = 0;
+  TABLET_CFG.startPosY = 0.45;
   TABLET_CFG.endPosY = 0.45;
-  TABLET_CFG.startY = 120;
+  TABLET_CFG.startY = 0;
   TABLET_CFG.endY = 0;
-  TABLET_CFG.triggerStart = 0.2;
-  TABLET_CFG.triggerEnd = 0.4;
-  TABLET_CFG.spinStart = 0.60;
-  TABLET_CFG.spinEnd = 0.98;
-  TABLET_CFG.spinFrontSelector = '#stories';
-  TABLET_CFG.spinFrontViewportRatio = 0.72;
-  TABLET_CFG.spinFrontAngle = 0.18;
-  TABLET_CFG.spinEndAngle = -Math.PI * 2 + 0.18;
+  /* El GLB nace acostado: X = PI/2 lo deja erguido. Este valor permanece
+     fijo; la animación móvil sigue ocurriendo exclusivamente sobre Y. */
+  TABLET_CFG.startRotX = Math.PI * 0.5;
+  TABLET_CFG.endRotX = Math.PI * 0.5;
+  /* Orientación frontal nativa del GLB. Los tres valores permanecen fijos;
+     la reacción de scroll adicional se aplica después sobre spinRoot.Y. */
+  TABLET_CFG.startRotY = -Math.PI * 0.5;
+  TABLET_CFG.endRotY = -Math.PI * 0.5;
+  TABLET_CFG.startRotZ = 0;
+  TABLET_CFG.endRotZ = 0;
+  TABLET_CFG.triggerStart = 0;
+  TABLET_CFG.triggerEnd = 1;
+  TABLET_CFG.scrollAngleTimeline = true;
+  TABLET_CFG.entryStartSelector = TABLET_ENTRY_START.selector;
+  TABLET_CFG.entryStartViewportRatio = TABLET_ENTRY_START.viewportRatio;
+  TABLET_CFG.entryEndSelector = TABLET_ENTRY_END.selector;
+  TABLET_CFG.entryEndViewportRatio = TABLET_ENTRY_END.viewportRatio;
+  TABLET_CFG.exitStartSelector = TABLET_EXIT_START.selector;
+  TABLET_CFG.exitStartViewportRatio = TABLET_EXIT_START.viewportRatio;
+  TABLET_CFG.exitEndSelector = TABLET_EXIT_END.selector;
+  TABLET_CFG.exitEndViewportRatio = TABLET_EXIT_END.viewportRatio;
+  TABLET_CFG.hiddenStartAngle = TABLET_HIDDEN_START_ANGLE;
+  TABLET_CFG.frontAngle = TABLET_FRONT_ANGLE;
+  TABLET_CFG.hiddenEndAngle = TABLET_HIDDEN_END_ANGLE;
+  TABLET_CFG.entrySmoothing = TABLET_ENTRY_SMOOTHING;
+  TABLET_CFG.exitSmoothing = TABLET_EXIT_SMOOTHING;
   TABLET_CFG.spinCameraExtraZ = 3.2;
-  TABLET_CFG.spinLerpSpeed = 0.032;
+  TABLET_CFG.spinLerpSpeed = 0.12;
   /* La cámara se aleja para conservar todos los cantos durante ambas fases. */
   TABLET_CFG.startCamZ = 12;
   TABLET_CFG.endCamZ = 12;
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    TABLET_CFG.spinFrontAngle = 0;
-    TABLET_CFG.spinEndAngle = 0;
+    TABLET_CFG.hiddenStartAngle = TABLET_FRONT_ANGLE;
+    TABLET_CFG.frontAngle = TABLET_FRONT_ANGLE;
+    TABLET_CFG.hiddenEndAngle = TABLET_FRONT_ANGLE;
   }
 }
 
@@ -960,6 +1016,9 @@ function initScrollSystem(entries) {
       entry.cfg.startY,
       0
     );
+    const initialSpinY = entry.cfg.scrollAngleTimeline
+      ? getNumber(entry.cfg.hiddenStartAngle, 0)
+      : 0;
 
     return {
       ...entry,
@@ -970,8 +1029,8 @@ function initScrollSystem(entries) {
       currentP: 0,
       targetP: 0,
 
-      currentSpinY: 0,
-      targetSpinY: 0,
+      currentSpinY: initialSpinY,
+      targetSpinY: initialSpinY,
     };
   });
 
@@ -1043,6 +1102,41 @@ function initScrollSystem(entries) {
   }
 
 
+  /*
+   * Convierte una posición visual de un elemento (por ejemplo, #stories al
+   * 48% de la altura visible) al mismo espacio normalizado que usa #tech.
+   * Esto hace que los puntos de la animación sigan a la composición real del
+   * documento en vez de a porcentajes frágiles de una sección.
+   */
+  function getSelectorScrollProgress(selector, viewportRatio, fallback) {
+    if (!techSection || !selector) {
+      return fallback;
+    }
+
+    const element = document.querySelector(selector);
+
+    if (!element) {
+      return fallback;
+    }
+
+    const viewportHeight = Math.max(window.innerHeight, 1);
+    const totalDistance = viewportHeight + techSection.offsetHeight;
+    const techRect = techSection.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+    const ratio = clamp(getNumber(viewportRatio, 0.5), 0, 1);
+
+    return clamp(
+      (
+        elementRect.top -
+        techRect.top +
+        viewportHeight * (1 - ratio)
+      ) / Math.max(totalDistance, 1),
+      0,
+      1
+    );
+  }
+
+
   /* ────────────────────────────────────────────────
      Actualizar objetivos al hacer scroll
      ──────────────────────────────────────────────── */
@@ -1056,10 +1150,18 @@ function initScrollSystem(entries) {
         0
       );
 
-      const triggerEnd = getNumber(
+      let triggerEnd = getNumber(
         state.cfg.triggerEnd,
         1
       );
+
+      if (state.cfg.timelineSelector) {
+        triggerEnd = getSelectorScrollProgress(
+          state.cfg.timelineSelector,
+          state.cfg.entryEndViewportRatio,
+          triggerEnd
+        );
+      }
 
       const startY = getNumber(
         state.cfg.startY,
@@ -1104,8 +1206,111 @@ function initScrollSystem(entries) {
 
       state.targetP = localProgress;
 
-      const spinStart = getNumber(state.cfg.spinStart, 1);
-      const spinEnd = getNumber(state.cfg.spinEnd, spinStart);
+      /* Tablet móvil: espalda → frente → espalda. Los tres hitos se
+         calculan desde elementos reales del layout para que el recorrido
+         sobreviva a distintas alturas de pantalla y cambios de copy. */
+      if (state.cfg.scrollAngleTimeline) {
+        const entryStart = getSelectorScrollProgress(
+          state.cfg.entryStartSelector,
+          state.cfg.entryStartViewportRatio,
+          triggerStart
+        );
+        const rawEntryEnd = getSelectorScrollProgress(
+          state.cfg.entryEndSelector,
+          state.cfg.entryEndViewportRatio,
+          triggerEnd
+        );
+        const entryEnd = Math.max(rawEntryEnd, entryStart + 0.0001);
+        const rawExitStart = getSelectorScrollProgress(
+          state.cfg.exitStartSelector,
+          state.cfg.exitStartViewportRatio,
+          entryEnd
+        );
+        const exitStart = Math.max(rawExitStart, entryEnd);
+        const rawExitEnd = getSelectorScrollProgress(
+          state.cfg.exitEndSelector,
+          state.cfg.exitEndViewportRatio,
+          1
+        );
+        const exitEnd = Math.max(rawExitEnd, exitStart + 0.0001);
+        const hiddenStartAngle = getNumber(
+          state.cfg.hiddenStartAngle,
+          Math.PI
+        );
+        const frontAngle = getNumber(state.cfg.frontAngle, 0);
+        const hiddenEndAngle = getNumber(
+          state.cfg.hiddenEndAngle,
+          -Math.PI
+        );
+
+        if (scrollProgress <= entryEnd) {
+          const entryProgress = clamp(
+            (scrollProgress - entryStart) /
+              Math.max(entryEnd - entryStart, 0.0001),
+            0,
+            1
+          );
+          const smoothEntry =
+            entryProgress * entryProgress * (3 - 2 * entryProgress);
+          const entrySmoothing = clamp(
+            getNumber(state.cfg.entrySmoothing, 1),
+            0,
+            1
+          );
+          const easedEntry = lerp(
+            entryProgress,
+            smoothEntry,
+            entrySmoothing
+          );
+
+          state.targetSpinY = lerp(
+            hiddenStartAngle,
+            frontAngle,
+            easedEntry
+          );
+        } else if (scrollProgress <= exitStart) {
+          /* Estado intermedio: pantalla completamente frontal. */
+          state.targetSpinY = frontAngle;
+        } else {
+          const exitProgress = clamp(
+            (scrollProgress - exitStart) /
+              Math.max(exitEnd - exitStart, 0.0001),
+            0,
+            1
+          );
+          const smoothExit =
+            exitProgress * exitProgress * (3 - 2 * exitProgress);
+          const exitSmoothing = clamp(
+            getNumber(state.cfg.exitSmoothing, 1),
+            0,
+            1
+          );
+          const easedExit = lerp(
+            exitProgress,
+            smoothExit,
+            exitSmoothing
+          );
+
+          state.targetSpinY = lerp(
+            frontAngle,
+            hiddenEndAngle,
+            easedExit
+          );
+        }
+
+        return;
+      }
+
+      const spinStart = state.cfg.spinStartsAtEntryEnd
+        ? triggerEnd
+        : getNumber(state.cfg.spinStart, 1);
+      const spinEnd = state.cfg.timelineSelector
+        ? getSelectorScrollProgress(
+            state.cfg.timelineSelector,
+            state.cfg.spinEndViewportRatio,
+            getNumber(state.cfg.spinEnd, spinStart)
+          )
+        : getNumber(state.cfg.spinEnd, spinStart);
       const spinFrontElement = state.cfg.spinFrontSelector
         ? document.querySelector(state.cfg.spinFrontSelector)
         : null;
@@ -1161,6 +1366,13 @@ function initScrollSystem(entries) {
           );
         }
       } else {
+        const entrySpinStartTurns = getNumber(
+          state.cfg.entrySpinStartTurns,
+          0
+        );
+        const entrySpinStartAngle = entrySpinStartTurns * Math.PI * 2;
+        const entrySpinTurns = getNumber(state.cfg.entrySpinTurns, 0);
+        const entrySpinAngle = entrySpinTurns * Math.PI * 2;
         const spinTurns = getNumber(state.cfg.spinTurns, 0);
         const spinRange = spinEnd - spinStart;
         const spinProgress = Math.abs(spinRange) < 0.000001
@@ -1170,8 +1382,24 @@ function initScrollSystem(entries) {
               0,
               1
             );
+        const entryRange = Math.max(spinStart - triggerStart, 0.0001);
+        const entryProgress = clamp(
+          (scrollProgress - triggerStart) / entryRange,
+          0,
+          1
+        );
+        const entryEase =
+          entryProgress * entryProgress * (3 - 2 * entryProgress);
 
-        state.targetSpinY = spinProgress * Math.PI * 2 * spinTurns;
+        const entryAngle = lerp(
+          entrySpinStartAngle,
+          entrySpinAngle,
+          entryEase
+        );
+
+        state.targetSpinY = scrollProgress <= spinStart
+          ? entryAngle
+          : entrySpinAngle + spinProgress * Math.PI * 2 * spinTurns;
       }
     });
   }
@@ -1353,8 +1581,8 @@ const tabletViewer = initTechModel(
 
 /*
  * Ambos modelos permanecen en sus placeholders naturales. En móvil la
- * tablet conserva primero su entrada original y después gira una vuelta
- * completa sobre Y, sin transferir el canvas a Storie o a la galería.
+ * tablet parte de espaldas fuera de pantalla, queda frontal al terminar de
+ * entrar y continúa lentamente hasta despedirse nuevamente de espaldas.
  */
 initScrollSystem([
   {
