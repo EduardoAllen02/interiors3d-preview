@@ -931,6 +931,8 @@ nav ul li a .caret { font-size: 8px; opacity: 0.6; }
 .vs-circle {
   width: 56px;
   height: 56px;
+  aspect-ratio: 1 / 1;
+  flex: 0 0 auto;
   border-radius: 50%;
   border: 2px solid var(--accent);
   display: flex;
@@ -3112,6 +3114,278 @@ nav ul li a {
   }
 }
 
+/* ============================================================
+   CLIENT ROUND 2026-08-04
+   Logo strip, mobile navigation, VS marker and compact footer.
+   These late overrides deliberately preserve the approved phone
+   composition everywhere else.
+   ============================================================ */
+
+.logos-label-brand {
+  display: inline-block;
+  width: auto;
+  height: 1.18em;
+  margin-left: 0.32em;
+  vertical-align: -0.18em;
+  filter: brightness(0) invert(1);
+}
+
+@media (min-width: 1181px) {
+  #logos {
+    padding-top: 40px;
+    padding-bottom: 38px;
+  }
+
+  #logos .logos-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    margin-bottom: 30px;
+  }
+
+  #logos .logos-label-brand {
+    height: 31px;
+    margin: 0;
+  }
+
+  #logos .logos-strip {
+    gap: 52px;
+  }
+
+  #logos .logo-item {
+    min-width: 108px;
+  }
+
+  #logos .logo-client {
+    height: 52px;
+    max-width: 190px;
+  }
+
+  #logos .logo-client--sm {
+    height: 45px;
+  }
+
+  #logos .logo-client--sq {
+    height: 64px;
+  }
+
+  #logos .logo-client--colombini {
+    height: 82px;
+  }
+
+  #logos .logo-client--wide {
+    height: 48px;
+    max-width: 220px;
+  }
+
+  #logos .logo-client--febal {
+    height: 62px;
+    max-width: 148px;
+  }
+
+  #logos .logo-client--unibo {
+    height: 104px;
+    max-width: 150px;
+  }
+
+  #logos .logo-client--sap-white,
+  #logos .logo-item:hover .logo-client--sap-white {
+    filter: brightness(0) invert(1);
+  }
+
+  #logos .logo-text {
+    font-size: 21px;
+  }
+
+  #logos .logo-text--xs {
+    font-size: 17px;
+  }
+
+  #footer {
+    padding: 44px 40px 26px;
+  }
+
+  #footer .footer-top {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr 1fr;
+    gap: clamp(54px, 8vw, 132px);
+    align-items: start;
+    padding-bottom: 22px;
+    margin-bottom: 12px;
+  }
+
+  #footer .footer-col#contatti,
+  #footer .footer-col {
+    width: auto;
+  }
+
+  #footer .footer-col h4 {
+    margin-bottom: 13px;
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  #footer .footer-company,
+  #footer .footer-email,
+  #footer .footer-addr {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  #footer .footer-email {
+    margin-top: 3px;
+  }
+
+  #footer .footer-net {
+    top: 56%;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-mobile-panel {
+    right: -100%;
+    width: min(84vw, 360px);
+    padding: 76px 22px 28px;
+    background:
+      radial-gradient(circle at 100% 8%, rgba(0, 173, 180, 0.10), transparent 34%),
+      #080a0b;
+    box-shadow: -20px 0 54px rgba(0, 0, 0, 0.38);
+  }
+
+  .nav-mobile-panel ul {
+    gap: 12px;
+  }
+
+  .nav-mobile-panel li a {
+    min-height: 58px;
+    padding: 18px 20px;
+    border: 1px solid rgba(0, 191, 196, 0.22);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.018);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.105em;
+  }
+
+  .nav-mobile-panel li:last-child a {
+    border-color: rgba(0, 191, 196, 0.62);
+    background: rgba(0, 191, 196, 0.08);
+  }
+
+  .nav-panel-close {
+    top: 22px;
+    right: 22px;
+    font-size: 32px;
+  }
+
+  .nav-overlay {
+    background: rgba(0, 0, 0, 0.68);
+    backdrop-filter: blur(2px);
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+
+  #footer .footer-top {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 18px;
+  }
+
+  #footer .footer-contact {
+    grid-column: 1 / -1;
+  }
+
+  #footer .footer-col h4 {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 540px) {
+  /* CONTROLES DEL STICKER VS MÓVIL
+     Overlay absoluto: no ocupa espacio ni desplaza ningún panel. */
+  #tech {
+    --mobile-vs-size: 81px;
+    --mobile-vs-center-x: 50%;
+    --mobile-vs-line-top: calc(50% + 16px);
+    --mobile-vs-offset-y: -26px;
+    --mobile-immersive-gap: 128px;
+  }
+
+  /* Se restaura la diagonal y el espaciado originales. */
+  .tech-panels::before {
+    content: '';
+    position: absolute;
+    left: -12%;
+    top: var(--mobile-vs-line-top);
+    width: 124%;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent 4%, rgba(0, 173, 180, 0.5) 28%, rgba(0, 173, 180, 0.5) 72%, transparent 96%);
+    transform: rotate(-14deg);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Esta capa cubre la composición pero sale totalmente del flujo. */
+  .vs-col {
+    position: absolute;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: auto;
+    height: 100% !important;
+    padding: 0;
+    transform: none;
+    display: block;
+    overflow: visible;
+    isolation: isolate;
+    pointer-events: none;
+    z-index: 20;
+  }
+
+  .vs-col::before {
+    content: none;
+  }
+
+  .tech-panel-wrap.right {
+    margin-top: var(--mobile-immersive-gap);
+  }
+
+  .vs-circle {
+    position: absolute;
+    top: var(--mobile-vs-offset-y);
+    left: var(--mobile-vs-center-x);
+    width: var(--mobile-vs-size);
+    height: var(--mobile-vs-size);
+    transform: translateX(-50%);
+    z-index: 3;
+    border-width: calc(var(--mobile-vs-size) * 0.03);
+    font-size: calc(var(--mobile-vs-size) * 0.27);
+    font-weight: 800;
+    color: #fff;
+    background: #080a0b;
+    box-shadow: 0 0 calc(var(--mobile-vs-size) * 0.34) rgba(0, 191, 196, 0.28);
+  }
+
+  #logos .logos-label {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px 8px;
+  }
+
+  #logos .logos-label-brand {
+    height: 1.05em;
+    margin: 0;
+  }
+}
+
 #logos .logos-label {
   color: #050707;
 }
@@ -3164,5 +3438,20 @@ nav ul li a {
     color: #596568;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Colombini: SVG vectorial blanco sólido, sin alfa heredado del PNG. */
+#logos .logo-client--colombini,
+#logos .logo-item:hover .logo-client--colombini {
+  height: 58px;
+  filter: none;
+  opacity: 1;
+}
+
+@media (min-width: 1181px) {
+  #logos .logo-client--colombini,
+  #logos .logo-item:hover .logo-client--colombini {
+    height: 92px;
   }
 }

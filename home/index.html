@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="assets/models/scanner_hunyuan-mobile.glb?v=20260723-opt2" as="fetch" type="model/gltf-binary" media="(max-width: 768px)">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260803-footer-drape-desktop1">
+  <link rel="stylesheet" href="css/style.css?v=20260804-vs-circle1">
 </head>
 <body>
 
@@ -98,12 +98,15 @@
      ══════════════════════════════════════════ -->
 <section id="logos">
   <div class="logos-inner">
-    <p class="logos-label" data-t="logos_label">AZIENDE E ISTITUZIONI CHE HANNO SCELTO <span class="logos-label-accent">INTERIORS3D</span></p>
+    <p class="logos-label">
+      <span>AZIENDE E ISTITUZIONI CHE HANNO SCELTO</span>
+      <img class="logos-label-brand" src="assets/img/logo-interiors3d.png" alt="Interiors3D">
+    </p>
     <div class="logos-track">
       <div class="logos-strip">
         <div class="logo-item"><img src="assets/img/logos/sap-white.svg" alt="SAP" class="logo-client logo-client--sap-white"></div>
         <div class="logo-item"><img src="assets/img/logos/hfarm.webp" alt="H-FARM" class="logo-client logo-client--sm"></div>
-        <div class="logo-item"><img src="assets/img/logos/colombini-group.png" alt="Colombini Group" class="logo-client logo-client--sq"></div>
+        <div class="logo-item"><img src="assets/img/logos/colombini-group-white.svg" alt="Colombini Group" class="logo-client logo-client--sq logo-client--colombini"></div>
         <div class="logo-item"><img src="assets/img/logos/febal-casa.svg" alt="Febal Casa" class="logo-client logo-client--febal"></div>
         <div class="logo-item"><span class="logo-text">Euromobil</span></div>
         <div class="logo-item"><img src="assets/img/logos/desiree.png" alt="Désirée" class="logo-client logo-client--wide"></div>
@@ -113,7 +116,7 @@
         <!-- Duplicate set for seamless loop -->
         <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/sap-white.svg" alt="" class="logo-client logo-client--sap-white"></div>
         <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/hfarm.webp" alt="" class="logo-client logo-client--sm"></div>
-        <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/colombini-group.png" alt="" class="logo-client logo-client--sq"></div>
+        <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/colombini-group-white.svg" alt="" class="logo-client logo-client--sq logo-client--colombini"></div>
         <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/febal-casa.svg" alt="" class="logo-client logo-client--febal"></div>
         <div class="logo-item" aria-hidden="true"><span class="logo-text">Euromobil</span></div>
         <div class="logo-item" aria-hidden="true"><img src="assets/img/logos/desiree.png" alt="" class="logo-client logo-client--wide"></div>
@@ -444,22 +447,20 @@
 
     <div class="footer-top">
 
-      <div class="footer-col" id="contatti">
+      <div class="footer-col footer-contact" id="contatti">
         <h4 data-t="ft_c6">CONTATTI</h4>
         <p class="footer-company" data-t="ft_addr_company">Interiors3D sas</p>
         <p class="footer-addr footer-email" data-t="ft_email">info@interiors3d.it</p>
-        <div class="footer-addr-cols">
-          <p class="footer-addr">
-            <strong>Sede legale</strong><br>
-            Via A. Diaz, 34<br>
-            31029 Vittorio Veneto TV
-          </p>
-          <p class="footer-addr">
-            <strong>Sede operativa</strong><br>
-            Via Lourdes 64<br>
-            31015 Conegliano TV
-          </p>
-        </div>
+      </div>
+
+      <div class="footer-col footer-location">
+        <h4>SEDE LEGALE</h4>
+        <p class="footer-addr">Via A. Diaz, 34<br>31029 Vittorio Veneto TV</p>
+      </div>
+
+      <div class="footer-col footer-location">
+        <h4>SEDE OPERATIVA</h4>
+        <p class="footer-addr">Via Lourdes 64<br>31015 Conegliano TV</p>
       </div>
 
       <img class="footer-net" src="assets/img/footer-net.svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
