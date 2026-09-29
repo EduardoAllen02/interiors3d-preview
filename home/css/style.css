@@ -3455,3 +3455,22 @@ nav ul li a {
     height: 92px;
   }
 }
+
+/* The custom templates provide their own navigation. Superfly remains enabled
+   for the legacy Divi Gallery page only. */
+.i3d-custom-page .sfm-rollback,
+.i3d-custom-page #sfm-sidebar,
+.i3d-custom-page #sfm-overlay-wrapper {
+  display: none !important;
+}
+
+/* Divi declares heading colors with a higher selector specificity than the
+   standalone templates. Reassert the intended light headings on dark panels. */
+body.i3d-home .hero-h1,
+body.i3d-home .tech-header h2,
+body.i3d-home .tech-panel h3,
+body.i3d-home .story-content h3,
+body.i3d-home .footer-cta-left h2,
+body.i3d-tecnologie .th-title {
+  color: #fff;
+}
