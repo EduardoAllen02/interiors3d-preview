@@ -57,6 +57,10 @@
   <div class="hero-bg">
     <!-- SLOT: Replace with actual hero interior photo -->
     <div class="hero-bg-img"></div>
+    <!-- Desktop only (see hero-video.js): loop del virtual tour en autoplay,
+         detrás del texto y de .hero-overlay. En móvil no se carga ni se
+         muestra — se queda la foto/gradiente de siempre. -->
+    <video class="hero-bg-video" muted loop playsinline aria-hidden="true"></video>
   </div>
   <canvas id="hero-ambient-canvas" aria-hidden="true"></canvas>
   <div class="hero-light-rays" aria-hidden="true">
@@ -80,15 +84,6 @@
           <span data-t="hero_cta1">GUARDA UNA DEMO</span> →
         </a>
       </div>
-    </div>
-
-    <div class="hero-right">
-      <div class="play-btn" title="Play video">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </div>
-      <p class="play-label" data-t="hero_play">
-        SCOPRI IL POTENZIALE DELLE NOSTRE ESPERIENZE
-      </p>
     </div>
   </div>
 </section>
@@ -496,6 +491,7 @@
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meshoptimizer@0.18.1/meshopt_decoder.js"></script>
+<script src="js/hero-video.js?v=20260915-2"></script>
 <script src="js/hero-ambient.js?v=20260723-opt1"></script>
 <script src="js/hero-scanner.js?v=20260728-unified15"></script>
 <script src="js/hero-water.js?v=20260722-client4"></script>
