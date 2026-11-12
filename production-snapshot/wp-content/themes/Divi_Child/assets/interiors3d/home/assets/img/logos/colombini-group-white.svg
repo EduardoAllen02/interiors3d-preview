@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" role="img" aria-labelledby="title">
+  <title id="title">Colombini Group</title>
+  <g fill="#fff">
+    <!-- Emblema reconstruido como geometría vectorial opaca. -->
+    <path d="M58 61h38v5c0 16 13 29 29 29s29-13 29-29v-5h38v8c0 37-30 67-67 67S58 106 58 69z"/>
+    <path d="M59 91c5 9 11 17 19 24v45H59z"/>
+    <path d="M86 121c6 4 12 7 19 9v30H86z"/>
+    <path d="M113 133c4 1 8 1 12 1s8 0 12-1v27h-24z"/>
+    <path d="M145 130c7-2 13-5 19-9v39h-19z"/>
+    <path d="M172 115c8-7 14-15 19-24v69h-19z"/>
+    <text x="125" y="191" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" letter-spacing="-0.7">COLOMBINI</text>
+    <text x="125" y="218" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" letter-spacing="-0.5">GROUP</text>
+  </g>
+</svg>

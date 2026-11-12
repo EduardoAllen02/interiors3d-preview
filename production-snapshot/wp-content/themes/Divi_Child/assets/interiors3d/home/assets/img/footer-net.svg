@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" fill="none">
+  <defs>
+    <linearGradient id="meshStroke" x1="18" y1="28" x2="454" y2="244" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00AEB3" stop-opacity=".18"/>
+      <stop offset=".43" stop-color="#18D5D8" stop-opacity=".78"/>
+      <stop offset="1" stop-color="#008D92" stop-opacity=".28"/>
+    </linearGradient>
+    <radialGradient id="meshFill" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(245 174) rotate(90) scale(122 224)">
+      <stop stop-color="#12C8CC" stop-opacity=".09"/>
+      <stop offset="1" stop-color="#00AEB3" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="surfaceClip">
+      <path d="M16 28C52 146 112 154 156 20C198 148 330 208 464 32C427 226 337 270 240 272C137 270 52 225 16 28Z"/>
+    </clipPath>
+  </defs>
+
+  <path d="M16 28C52 146 112 154 156 20C198 148 330 208 464 32C427 226 337 270 240 272C137 270 52 225 16 28Z" fill="url(#meshFill)"/>
+
+  <g clip-path="url(#surfaceClip)" stroke="url(#meshStroke)" stroke-width=".72" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Curvas tensadas: separación irregular para evitar una retícula mecánica. -->
+    <path d="M18 36C57 150 113 159 158 29C205 157 333 214 461 41"/>
+    <path d="M22 49C66 162 118 170 162 43C213 169 338 224 458 54"/>
+    <path d="M27 64C76 174 124 183 168 59C221 183 341 233 454 69"/>
+    <path d="M32 81C87 188 132 197 175 78C232 198 344 243 450 86"/>
+    <path d="M38 99C98 201 141 211 184 98C244 213 346 251 445 105"/>
+    <path d="M45 119C111 215 152 224 194 120C257 228 348 258 439 125"/>
+    <path d="M53 140C124 227 165 237 206 142C270 241 350 263 432 146"/>
+    <path d="M62 161C139 239 179 247 219 165C286 252 350 267 424 168"/>
+    <path d="M74 183C153 249 194 256 234 187C301 260 348 268 414 190"/>
+    <path d="M88 204C169 258 210 263 250 207C314 266 343 267 401 211"/>
+    <path d="M105 224C184 264 227 268 267 225C326 269 336 264 385 231"/>
+    <path d="M128 243C199 268 244 271 285 241C335 268 326 258 363 247"/>
+
+    <!-- Hilos longitudinales que se abren y convergen como una membrana. -->
+    <path d="M16 28C31 99 43 174 64 221"/>
+    <path d="M33 72C50 131 65 204 86 235"/>
+    <path d="M55 111C73 158 89 222 111 247"/>
+    <path d="M80 139C98 178 115 237 137 256"/>
+    <path d="M105 137C121 179 142 246 165 263"/>
+    <path d="M128 92C142 157 164 251 194 268"/>
+    <path d="M145 42C157 137 183 256 224 271"/>
+    <path d="M156 20C174 138 208 260 255 271"/>
+    <path d="M179 79C199 166 237 259 287 267"/>
+    <path d="M211 122C235 188 271 253 318 260"/>
+    <path d="M252 153C278 207 308 244 347 249"/>
+    <path d="M302 163C326 208 347 229 376 231"/>
+    <path d="M358 139C377 180 391 204 405 208"/>
+    <path d="M414 91C425 130 430 164 431 169"/>
+    <path d="M464 32C452 106 445 148 431 169"/>
+  </g>
+
+  <!-- Bordes estructurales: más definidos que el tejido interior. -->
+  <g fill="none" stroke="url(#meshStroke)" stroke-linecap="round">
+    <path d="M16 28C52 146 112 154 156 20C198 148 330 208 464 32" stroke-width="2.1"/>
+    <path d="M16 28C52 225 137 270 240 272C337 270 427 226 464 32" stroke-width="1.35" opacity=".86"/>
+  </g>
+
+  <!-- Nodos de tensión, deliberadamente escasos. -->
+  <g fill="#77F4F2">
+    <circle cx="16" cy="28" r="3.1" opacity=".84"/>
+    <circle cx="156" cy="20" r="3.5" opacity=".96"/>
+    <circle cx="464" cy="32" r="3.1" opacity=".84"/>
+    <circle cx="105" cy="137" r="2.2" opacity=".66"/>
+    <circle cx="252" cy="153" r="2.5" opacity=".74"/>
+    <circle cx="358" cy="139" r="2.2" opacity=".66"/>
+    <circle cx="240" cy="272" r="2.7" opacity=".76"/>
+  </g>
+</svg>

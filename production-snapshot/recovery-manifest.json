@@ -1,0 +1,614 @@
+{
+  "page": {
+    "url": "https://www.interiors3d.com/",
+    "sha256": "4dda7942049704848ffbcdf91b129ededa559a7e49f50630e347b77ae8d9b796",
+    "bytes": 299721
+  },
+  "css": {
+    "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/css/style.css",
+    "sha256": "747528d46b13c8ef65593add9f172260f8a20618e72c1c9e1baa530164196174",
+    "bytes": 90739
+  },
+  "resources": [
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story2_sap.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story2_sap.webp",
+      "bytes": 105684,
+      "sha256": "3b19a716c1865655ff886836081b4816b41d1bd9e7d0e4b6eb7862111422ec5f"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story4_unibo-mobile.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story4_unibo-mobile.webp",
+      "bytes": 38940,
+      "sha256": "409e49bfb54740273dec74bfcdb602684fd40d805a8f5d08844f32566c703090"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/style.css?ver=4.22.2",
+      "path": "wp-content/themes/Divi_Child/style.css",
+      "bytes": 1615,
+      "sha256": "628fb7f2ef334e2c9033e43e4dfb4eeb8b003c36a12662695a0be512ace9eb0b"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/TabletTour-mobile.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/TabletTour-mobile.webp",
+      "bytes": 42204,
+      "sha256": "eb25bfd34837cb903b13e8a6e992022b71bbb8ed86323cd83ba2435e86307886"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story3_promoturismo.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story3_promoturismo.webp",
+      "bytes": 299002,
+      "sha256": "bfea798e981d32cc4fc46e61e4d8585bff91ca62a31e27aee9eba7a224657e74"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/css/style.css?ver=1792116454",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/css/style.css",
+      "bytes": 90739,
+      "sha256": "747528d46b13c8ef65593add9f172260f8a20618e72c1c9e1baa530164196174"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card3_formare.jpg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card3_formare.jpg",
+      "bytes": 191607,
+      "sha256": "4899b55d7b86a8a26f28ce3cdb2514b1cd7743ae1ad3b7321603223fc1a41c94"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/hero_tour_preview.jpg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/hero_tour_preview.jpg",
+      "bytes": 1949943,
+      "sha256": "a8658f421abd682fd1733695ceec85865023bf9ed609ba1dd4c062e07cd3321d"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/TabletTour.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/TabletTour.webp",
+      "bytes": 108504,
+      "sha256": "b0154eba20a67bfca5cad3917cff9cc5b79b726370a13c2fd84f1ebdb937d48c"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-scanner.js",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-scanner.js",
+      "bytes": 25620,
+      "sha256": "995a5f8f2a5d29f9bc754ffc6ae0e4976260f4ff6c57c6601465cc9a2c61025c"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/gallery/gallery_overview.png",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/gallery/gallery_overview.png",
+      "bytes": 294262,
+      "sha256": "b43de0cd953a9d975a3f468a853850291d953292d977295d492c0055cf76bbee"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.0",
+      "path": "wp-includes/js/jquery/jquery.min.js",
+      "bytes": 87482,
+      "sha256": "5c93f77799d122fb5255ee24da285f9f228cc118cba11e6ceb2b6bda8cdf4164"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/plugins/superfly-menu/js/public.min.js?ver=5.0",
+      "path": "wp-content/plugins/superfly-menu/js/public.min.js",
+      "bytes": 87565,
+      "sha256": "738c4060690fdeb95b93a8d90ec45729735aca044b9f8044fa0d05a7607f43c8"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/sap.svg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/sap.svg",
+      "bytes": 1395,
+      "sha256": "a9ab0fc0074c049c7ca64bbde4f48d7e90a609a58119fc01cd6c55a8b82b9032"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card3_formare-mobile.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card3_formare-mobile.webp",
+      "bytes": 38940,
+      "sha256": "409e49bfb54740273dec74bfcdb602684fd40d805a8f5d08844f32566c703090"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card6_educare-mobile.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card6_educare-mobile.webp",
+      "bytes": 23046,
+      "sha256": "e2383822d85a325bb88968e70761a7175f6f8e0d3163f54f96f2761b416368ca"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/desiree.png",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/desiree.png",
+      "bytes": 94201,
+      "sha256": "6aa17eacad70282c91e6e18af2c8e8736d1547acf786c712058352657991c832"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story2_sap.jpg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story2_sap.jpg",
+      "bytes": 206965,
+      "sha256": "a514cfb8be45b433bd7ec87dbcf5eba607340aa2430fe5eb9074af08ef70a4ee"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/plugins/video-popup/css/vp-close-icon/close-button-icon.css?ver=1794356219",
+      "path": "wp-content/plugins/video-popup/css/vp-close-icon/close-button-icon.css",
+      "bytes": 832,
+      "sha256": "d86dcd439074b8bd3e05a28c5efe791ac9256792377f711751c725edbe76b465"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/plugins/video-popup/js/YouTubePopUp.jquery.js?ver=1794356219",
+      "path": "wp-content/plugins/video-popup/js/YouTubePopUp.jquery.js",
+      "bytes": 4406,
+      "sha256": "bc8419ce3011a0dce3b67bec9272b0f07f7199ebbc3337da54dfb21475ae4c13"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi/includes/builder/feature/dynamic-assets/assets/js/magnific-popup.js?ver=4.22.2",
+      "path": "wp-content/themes/Divi/includes/builder/feature/dynamic-assets/assets/js/magnific-popup.js",
+      "bytes": 22786,
+      "sha256": "0a47c6e6f24e634cb79f886e70bbfd65e1e85b0d2aa4fc133488fd1bc1910e3e"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/hfarm.png",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/hfarm.png",
+      "bytes": 2131,
+      "sha256": "f0448a219de52be8383c820d61b845a6d165f4ff22db8f18f1f36ecaf1076740"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/ica.png",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/ica.png",
+      "bytes": 25149,
+      "sha256": "e717fd12dd69caee85756670d019ad8ffd7253db6c8cdaab98656665444b38ca"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story1_hfarm.jpg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story1_hfarm.jpg",
+      "bytes": 1949943,
+      "sha256": "a8658f421abd682fd1733695ceec85865023bf9ed609ba1dd4c062e07cd3321d"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/tech-models.js",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/tech-models.js",
+      "bytes": 49945,
+      "sha256": "629a0f045deea154bdb39ead163f7e3c5d39011ad9a2677478f7bed52afe0372"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/favicon-192.png",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/favicon-192.png",
+      "bytes": 10079,
+      "sha256": "38637de7fbe336bc9d8c0d06d04443d32fed6fa29a53b3eedadd70f09ab25ea8"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story1_hfarm.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story1_hfarm.webp",
+      "bytes": 226982,
+      "sha256": "03f73de40f522c2db0931cba02d290c438a574cd81444619acdcc32996fb240c"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/plugins/superfly-menu/includes/vendor/looks_awesome/icon_manager/js/md5.js?ver=1.0,0",
+      "path": "wp-content/plugins/superfly-menu/includes/vendor/looks_awesome/icon_manager/js/md5.js",
+      "bytes": 6058,
+      "sha256": "66ae607f1430681c87a79558879fdf17345444c7ac905cbd417d99d659eb96ac"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-scanner.js?v=20260728-unified15",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-scanner.js",
+      "bytes": 25620,
+      "sha256": "995a5f8f2a5d29f9bc754ffc6ae0e4976260f4ff6c57c6601465cc9a2c61025c"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/uploads/la_icon_sets/style.min.css?ver=6.3.14",
+      "path": "wp-content/uploads/la_icon_sets/style.min.css",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card1_comunicare.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card1_comunicare.webp",
+      "bytes": 46848,
+      "sha256": "a90b67e244040f5966813313a35fcd1352c6d3bd6cd7fc9eff8f696761351d57"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/plugins/video-popup/css/YouTubePopUp.css?ver=1794356219",
+      "path": "wp-content/plugins/video-popup/css/YouTubePopUp.css",
+      "bytes": 3402,
+      "sha256": "73114854337c7316d1aeecb691f23196873eb1fb45d547eed86526e686d3f5d4"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story2_febal.png",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story2_febal.png",
+      "bytes": 270983,
+      "sha256": "a67aa401b957b6714978f89a9c46af883c3a9883a24e01e70fa3d2bfd2659eb5"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi/js/scripts.min.js?ver=4.22.2",
+      "path": "wp-content/themes/Divi/js/scripts.min.js",
+      "bytes": 274307,
+      "sha256": "9d11051974ce27674b687dbb3fec1c919eee2f0a59366cce8294d9582a557bad"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/mobile-experience.js",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/mobile-experience.js",
+      "bytes": 9583,
+      "sha256": "a792d9e2f1e2484d7af5c7413e761ab2fd3a1262c5c88d63621063c3a2505349"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/plugins/add-facebook/public/scripts/facebook.js?ver=6.3.14",
+      "path": "wp-content/plugins/add-facebook/public/scripts/facebook.js",
+      "bytes": 171118,
+      "sha256": "ce286d31e28de2c9e016899fed234899e2dc18a168a29fdc78e2043c60fa9c35"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/hero_bg.jpg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/hero_bg.jpg",
+      "bytes": 142035,
+      "sha256": "e0ebd2ffe94ce2626af19dc60bbce8d543b29ce70b56df503af7cdbe9f803069"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card1_comunicare.jpg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card1_comunicare.jpg",
+      "bytes": 92259,
+      "sha256": "28fe0722f9aa924c40103d60d5546d15873dc0906a9d5a27939d31a39de02031"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/video/hero-loop.mp4",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/video/hero-loop.mp4",
+      "bytes": 3811394,
+      "sha256": "0348effba0197e95118dc1f2a46487fbfdbe3917dc38cdf78d4232c6e6b0a033"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-video.js",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-video.js",
+      "bytes": 2646,
+      "sha256": "24c5139e2df98a89234f8effb4cdd2194c222e3001b6a82d5debfbf41500504d"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card4_coinvolgere-mobile.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card4_coinvolgere-mobile.webp",
+      "bytes": 17128,
+      "sha256": "441d9a77c4f4ca235cd7d925bfb45c5b53caca906cd338cfd69343801ebd1008"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card4_coinvolgere.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card4_coinvolgere.webp",
+      "bytes": 45882,
+      "sha256": "f582cab4801bd45219aea4cf97aa05b8579a4bb49a31685bbdf35bb356c872df"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card5_valorizzare-mobile.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card5_valorizzare-mobile.webp",
+      "bytes": 31070,
+      "sha256": "508657ec0cb3ad0b9477b74bcbd22e3de4b3f2f8ffbeb389c34246f8c7b0f095"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/plugins/superfly-menu/includes/vendor/looks_awesome/icon_manager/js/util.js?ver=1.0,0",
+      "path": "wp-content/plugins/superfly-menu/includes/vendor/looks_awesome/icon_manager/js/util.js",
+      "bytes": 979,
+      "sha256": "6f76d2867d7634ba2a3ab7c93925dcfefb6504046890a3455bc8894f200bcf2b"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/favicon-32.png",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/favicon-32.png",
+      "bytes": 957,
+      "sha256": "2cbc1c188dcc85535f0e198c1c437f24c2541635102ebf2bd8c8b2d7062d4b39"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card6_educare.jpg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card6_educare.jpg",
+      "bytes": 400895,
+      "sha256": "17c87d5bd861d76cf2b2fec9f68ca972ecb841b5f4f67c22ef0c37c7e6eaf4a7"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/colombini.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/colombini.webp",
+      "bytes": 9072,
+      "sha256": "62a5bcf3e8a0c1c816620c0998259e843a533ebe7d7d24eb1079c38ebc4efa1c"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/models/tablet.glb",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/models/tablet.glb",
+      "bytes": 92812,
+      "sha256": "8b8a4b4b9f6b793fa35a3ca67783e658f9f2fa4c776cfa87f664c9614f9e87fe"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card5_valorizzare.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card5_valorizzare.webp",
+      "bytes": 84102,
+      "sha256": "822f20ad6490303b22ca4328e51e66465f83746f4cadf79aceb845eafe71711e"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+      "path": "wp-includes/js/jquery/jquery-migrate.min.js",
+      "bytes": 13577,
+      "sha256": "5274f11e6fb32ae0cf2dfb9f8043272865c397a7c4223b4cfa7d50ea52fbde89"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/TabletTour.png",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/TabletTour.png",
+      "bytes": 1681817,
+      "sha256": "80c911514afccac1988f056d9e8380f3605f62f5d6e910c1f46c29872a30efa9"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card2_vendere-mobile.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card2_vendere-mobile.webp",
+      "bytes": 38144,
+      "sha256": "8d593b7cd90dd17cf3681967179006e422d94a14d3f4fd754b79a859efe2fe79"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/hero_bg.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/hero_bg.webp",
+      "bytes": 81102,
+      "sha256": "5ee2fc27a5b18f19bfd67510e832a2e68ccbd08da12c9f81c85110487e3ac793"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card2_vendere.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card2_vendere.webp",
+      "bytes": 120946,
+      "sha256": "9e2283859cbdf8acf4affdf0959db970277ce1bec5f9af414c362d95c0464971"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/scan-field.js",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/scan-field.js",
+      "bytes": 18628,
+      "sha256": "baa57aff3370f17c3753c0f9cea6e971829c14a1b42b3ac44939e585001aacd4"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-ambient.js?v=20260723-opt1",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-ambient.js",
+      "bytes": 4716,
+      "sha256": "f6bce69cfbcf65881fa3c3329c1a8a82e9a3c11bb936ccb5df42b26100be5076"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/models/scanner_hunyuan-mobile.glb",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/models/scanner_hunyuan-mobile.glb",
+      "bytes": 822876,
+      "sha256": "c410b88112c527d4b9bc9d0656df5401bf636c9cd49fdf35bf7b0cb55859a2e6"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card1_comunicare-mobile.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card1_comunicare-mobile.webp",
+      "bytes": 16914,
+      "sha256": "e49214b122b17d2b37eccc53ed127e86d3a9e2b9a2c40d55169b29f6ad366f37"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/translations.js",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/translations.js",
+      "bytes": 9900,
+      "sha256": "ac28d9974911ad227ed50ea8f9748ae8d3698fe1b20e00653a011a635757730a"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/febal-casa.svg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/febal-casa.svg",
+      "bytes": 3332,
+      "sha256": "49faa49b739b62aaa7806bf488f984e5405b1ff98cdd0d5ce6c8ad9cf3e9d7e7"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card5_valorizzare.jpg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card5_valorizzare.jpg",
+      "bytes": 123738,
+      "sha256": "342c33e2c9896f3eb7e1ca430c23fe2a4ceac5ee386414fd4082036adb5d0e4e"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story2_sap-mobile.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story2_sap-mobile.webp",
+      "bytes": 25956,
+      "sha256": "2161d30ab2b2e3650f880b53e38df54b99c1576fc504f081eec0859401ed6f43"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/plugins/video-popup/js/YouTubePopUp.js?ver=1794356219",
+      "path": "wp-content/plugins/video-popup/js/YouTubePopUp.js",
+      "bytes": 458,
+      "sha256": "490c2ae7ad27b58ae02cb15b529bc7e10f5967d883d81be4afb42cba72759540"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi/includes/builder/feature/dynamic-assets/assets/js/easypiechart.js?ver=4.22.2",
+      "path": "wp-content/themes/Divi/includes/builder/feature/dynamic-assets/assets/js/easypiechart.js",
+      "bytes": 9318,
+      "sha256": "5aa24e4ab926693e29ffb0d0ca1557141defd3ca61b3b4e7caebaa2fcd5bf327"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/css/style.css",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/css/style.css",
+      "bytes": 90739,
+      "sha256": "747528d46b13c8ef65593add9f172260f8a20618e72c1c9e1baa530164196174"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story4_unibo.jpg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story4_unibo.jpg",
+      "bytes": 191607,
+      "sha256": "4899b55d7b86a8a26f28ce3cdb2514b1cd7743ae1ad3b7321603223fc1a41c94"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/hero_tour_preview.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/hero_tour_preview.webp",
+      "bytes": 226982,
+      "sha256": "03f73de40f522c2db0931cba02d290c438a574cd81444619acdcc32996fb240c"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/unibo.png",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/unibo.png",
+      "bytes": 19920,
+      "sha256": "a54870b9264f880183e583ec9c55776e1d99a0aa39c19df19adfe38088beafc6"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/unibo.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/unibo.webp",
+      "bytes": 15146,
+      "sha256": "5ee4b304c74c060fe586250328c1396164e9d4ad0c32fcebb33cf9c2fc5eb51c"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story4_unibo.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story4_unibo.webp",
+      "bytes": 126182,
+      "sha256": "d17aac6d0c21092cd454e669fb5001fca80885a3c62deb1fff8d20096a64d0e3"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story3_promoturismo-mobile.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story3_promoturismo-mobile.webp",
+      "bytes": 56564,
+      "sha256": "e60b44de09fa64ff806d8c77e590d07a4e5c88f253e10912e3e00f829747d897"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-water.js?v=20260722-client4",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-water.js",
+      "bytes": 7927,
+      "sha256": "2ab06827af438a4f8b825ad8f05aa847a16967a055c9bd9d4adf626efbc0579a"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi/core/admin/js/common.js?ver=4.22.2",
+      "path": "wp-content/themes/Divi/core/admin/js/common.js",
+      "bytes": 1343,
+      "sha256": "1ca76922f55b389b8f590ae7e3bcc3a2dccdce3aff1e5a4335af081b76a414ea"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card3_formare.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card3_formare.webp",
+      "bytes": 126182,
+      "sha256": "d17aac6d0c21092cd454e669fb5001fca80885a3c62deb1fff8d20096a64d0e3"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/colombini-group.png",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/colombini-group.png",
+      "bytes": 28701,
+      "sha256": "e137fd6ce6d336cd82f3eae7901c0b735b0dcfc9d7fa6a176107ad2aa9d4d7d3"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-video.js?v=20260915-2",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-video.js",
+      "bytes": 2646,
+      "sha256": "24c5139e2df98a89234f8effb4cdd2194c222e3001b6a82d5debfbf41500504d"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/gallery/gallery_overview.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/gallery/gallery_overview.webp",
+      "bytes": 73012,
+      "sha256": "29e889dcd8dd07df64bf5b4eb6cff686fdf426f7cb41277736e8196305d8790c"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card6_educare.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card6_educare.webp",
+      "bytes": 98106,
+      "sha256": "68388baed6c6c8934da5b75ae01ce33ac8dd0ef0de2612d20d30533567863f6a"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/colombini-group-white.svg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/colombini-group-white.svg",
+      "bytes": 899,
+      "sha256": "758036dc218195a96e661dba58483f0bb6ece15634165adb5e4fb674a281e1c3"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/et-cache/global/et-divi-customizer-global.min.css?ver=1793709446",
+      "path": "wp-content/et-cache/global/et-divi-customizer-global.min.css",
+      "bytes": 9033,
+      "sha256": "933d860179497aabc5b51aab1f4227978084e8987ef95aabc72926303bbec438"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logo-interiors3d.png",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logo-interiors3d.png",
+      "bytes": 3010,
+      "sha256": "3f935397beff1971926251bf96d018cce8b73ef2f521300ff8bd016ac0979d99"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/immersive-field.js",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/immersive-field.js",
+      "bytes": 21406,
+      "sha256": "e212b420aca0d5e75a916b629990330c527f0bdfc8c6034276c2d5613f288276"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/plugins/cookie-law-info/lite/frontend/js/script.min.js?ver=3.3.4",
+      "path": "wp-content/plugins/cookie-law-info/lite/frontend/js/script.min.js",
+      "bytes": 21391,
+      "sha256": "4a7be62283ee6c1a56fb0e518c6d758add63d09855acf67e0f0ce05a215166bb"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/plugins/add-facebook/public/css/font-awesome.min.css?ver=6.3.14",
+      "path": "wp-content/plugins/add-facebook/public/css/font-awesome.min.css",
+      "bytes": 23551,
+      "sha256": "c15016fda0cd52a86f1a2201ce1c4c8848633f4c45395bff82366f783f931f61"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card2_vendere.jpg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card2_vendere.jpg",
+      "bytes": 172093,
+      "sha256": "7efe38bfe32a69f74b375c35c4f836d6c77c058b5d223eecf5d4d05f0c258e0f"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi/includes/builder/feature/dynamic-assets/assets/js/jquery.fitvids.js?ver=4.22.2",
+      "path": "wp-content/themes/Divi/includes/builder/feature/dynamic-assets/assets/js/jquery.fitvids.js",
+      "bytes": 3349,
+      "sha256": "462747422c6af30aa81a0373fa1cfd736455cef52bdbb816f67be9531d84eace"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/sap-white.svg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/sap-white.svg",
+      "bytes": 1323,
+      "sha256": "fb978f61e2b995c00f792c3612c82230c6401f2f06b7a2d02f3f2e8ea5b83186"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story1_hfarm-mobile.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story1_hfarm-mobile.webp",
+      "bytes": 38222,
+      "sha256": "1ca417322c2103c869a20ff4af6b239515dafdc32eba2e39be736fac4d5f5093"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/mobile-experience.js?v=20260726-cards-touch3",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/mobile-experience.js",
+      "bytes": 9583,
+      "sha256": "a792d9e2f1e2484d7af5c7413e761ab2fd3a1262c5c88d63621063c3a2505349"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/plugins/superfly-menu/css/public.min.css?ver=6.3.14",
+      "path": "wp-content/plugins/superfly-menu/css/public.min.css",
+      "bytes": 43648,
+      "sha256": "1f64fa599f9a5fada9a36c4ce17407909b8905ca2ea6d75233373b5a36e0177a"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/models/scanner_hunyuan.glb",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/models/scanner_hunyuan.glb",
+      "bytes": 917812,
+      "sha256": "866498a212737d2604833c72a39fb0690c324e1c1f13ccdceb3ae1a982f2893c"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-water.js",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-water.js",
+      "bytes": 7927,
+      "sha256": "2ab06827af438a4f8b825ad8f05aa847a16967a055c9bd9d4adf626efbc0579a"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi/includes/builder/feature/dynamic-assets/assets/js/salvattore.js?ver=4.22.2",
+      "path": "wp-content/themes/Divi/includes/builder/feature/dynamic-assets/assets/js/salvattore.js",
+      "bytes": 8574,
+      "sha256": "b6205029e1016596807b655c8f57818736a787e32ceb1407effa152ac3bb9380"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/hfarm.webp",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/hfarm.webp",
+      "bytes": 1036,
+      "sha256": "4a552429eb86dd8e49473dfdded2a4f3ce32784e2f9848eed344a973010ffe5c"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card4_coinvolgere.jpg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/cards/card4_coinvolgere.jpg",
+      "bytes": 84495,
+      "sha256": "4da958e29f3eac02fbe84451366a17a94b8a7728b3a61ad434f271df20de0445"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/colombini.png",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/logos/colombini.png",
+      "bytes": 20190,
+      "sha256": "b6aefbee3fb2486d1307ad31c49c825195964adc101fea4bcc23993a59ae54cc"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/gallery-cta-mesh.js",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/gallery-cta-mesh.js",
+      "bytes": 9081,
+      "sha256": "a346ee6c93778e913c91fe495fa091e95d245b0c587512d11da1f3f059e650de"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story3_promoturismo.jpg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/stories/story3_promoturismo.jpg",
+      "bytes": 337862,
+      "sha256": "0927e8c3bb31f656846d10e572d991abec072d57f9c29cf426776c8e48d11da7"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-ambient.js",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/js/hero-ambient.js",
+      "bytes": 4716,
+      "sha256": "f6bce69cfbcf65881fa3c3329c1a8a82e9a3c11bb936ccb5df42b26100be5076"
+    },
+    {
+      "url": "https://www.interiors3d.com/wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/footer-net.svg",
+      "path": "wp-content/themes/Divi_Child/assets/interiors3d/home/assets/img/footer-net.svg",
+      "bytes": 3659,
+      "sha256": "792084a21a707ee5a06791a437fb6cd6f6e57b315f9ad0524c51f482bfa70958"
+    }
+  ]
+}
