@@ -36,6 +36,32 @@
  .tech-panorama::after{inset:52% -35% -8% 0;opacity:.7}
 }
 
+/* On phones the panorama gives space back to the two text blocks. */
+@media(max-width:768px) and (orientation:portrait){
+ .tech-panorama #high-definition{box-sizing:border-box;height:calc(100svh - 70px);padding-bottom:64px}
+ #high-definition .hd-inner{height:100%;display:flex;flex-direction:column}
+ #high-definition .hd-heading{flex:none}
+ #high-definition .hd-preview{flex:1 1 0;height:auto;min-height:140px;max-height:330px}
+ #high-definition .hd-quality{flex:none}
+}
+@media(max-width:768px) and (orientation:portrait) and (max-height:720px){
+ .tech-panorama #high-definition{padding-top:16px}
+ #high-definition .hd-heading{gap:12px;margin-bottom:14px}
+ #high-definition .hd-eyebrow{font-size:11px;margin-bottom:8px}
+ #high-definition #hd-title{font-size:27px}
+ #high-definition .hd-intro{font-size:13px;line-height:1.45}
+ #high-definition .hd-quality{margin-top:14px}
+ #high-definition .hd-quality h3{font-size:20px;margin-bottom:8px}
+ #high-definition .hd-quality p{font-size:13px;line-height:1.45}
+}
+@media(max-width:768px) and (orientation:portrait) and (max-height:600px){
+ .tech-panorama #high-definition{padding-top:8px}
+ #high-definition .hd-eyebrow{margin-bottom:6px}
+ #high-definition #hd-title{font-size:25px}
+ #high-definition .hd-intro,#high-definition .hd-quality p{font-size:12.5px;line-height:1.4}
+ #high-definition .hd-preview{min-height:120px}
+}
+
 /* Keep the heading, panorama and closing copy together below the fixed nav. */
 @media(min-width:769px) and (min-height:600px){
  .tech-panorama #high-definition{box-sizing:border-box;height:min(900px,calc(100svh - 70px));padding-bottom:28px}

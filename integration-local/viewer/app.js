@@ -121,6 +121,7 @@ function updateLens() {
     const off = st.size / 2 + Math.max(22, st.size * 0.25);
     ly = vy - off;
     if (ly - st.size / 2 < 0) ly = vy + off;
+    ly = Math.max(st.size / 2, Math.min(mainEl.clientHeight - st.size / 2, ly));
     lx = Math.max(st.size / 2, Math.min(mainEl.clientWidth - st.size / 2, vx));
   }
   lensEl.style.transform = `translate(${lx - st.size / 2}px, ${ly - st.size / 2}px)`;
