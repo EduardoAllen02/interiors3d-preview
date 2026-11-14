@@ -70,3 +70,9 @@ Sección directa: https://eduardoallen02.github.io/interiors3d-preview/integrati
 La raíz abre la integración; la home anterior sigue disponible en `home/`. Las rutas a `production-snapshot/` son relativas para funcionar tanto en local como bajo el prefijo del proyecto en GitHub Pages. Los recursos recuperados y los tiles se sirven desde el mismo repositorio. `.nojekyll` conserva la estructura de archivos estáticos.
 
 La luz de fondo se extendió hacia abajo y hacia el centro, detrás de los canvases y del contenido. Esta publicación es una preview independiente de WordPress.
+
+## Correcciones de la revisión del cliente — 13 noviembre 2026
+
+La panorámica inicial de la sección es Val Cimoliana (`viewer/index.html?pano=val`); el selector sigue permitiendo abrir el showroom EUR. En móvil, la sección tiene su propio fondo oscuro opaco con la luz lateral, para mantener el contraste del texto sin depender del fondo del contenedor entre las capas sticky. La URL del CSS lleva versión `20261113` para renovar la copia en caché.
+
+En escritorio con altura desde 600 px, el encabezado y el texto inferior conservan su espacio y el visor ocupa el alto disponible debajo de la navegación fija. La sección completa se comprobó a 1024×768, 1280×720, 1366×768, 1440×900 y 1920×1080. La emulación móvil de 360×800, 390×844 y 412×780 confirmó el fondo oscuro, texto claro, montañas iniciales y ausencia de desbordamiento horizontal. Pendiente la comprobación en el teléfono físico del cliente.

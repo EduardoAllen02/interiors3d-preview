@@ -30,6 +30,22 @@
 @media(max-width:768px){
  .tech-panorama{--scan-bleed:110px;z-index:auto;isolation:auto}
  .tech-panorama #tech{padding-bottom:16px}
- .tech-panorama #high-definition{padding-top:24px}
+ /* Give the copy its own opaque surface instead of relying on an ancestor
+    behind the mobile sticky layers. Keep the same dark tone and side light. */
+ .tech-panorama #high-definition{padding-top:24px;isolation:isolate;color-scheme:dark;background:#080a0b radial-gradient(ellipse 140% 90% at 110% 65%,rgba(0,173,180,.12),transparent 72%)}
  .tech-panorama::after{inset:52% -35% -8% 0;opacity:.7}
+}
+
+/* Keep the heading, panorama and closing copy together below the fixed nav. */
+@media(min-width:769px) and (min-height:600px){
+ .tech-panorama #high-definition{box-sizing:border-box;height:min(900px,calc(100svh - 70px));padding-bottom:28px}
+ #high-definition .hd-inner{height:100%;display:flex;flex-direction:column}
+ #high-definition .hd-heading{flex:none;gap:36px;margin-bottom:20px}
+ #high-definition .hd-eyebrow{font-size:13px;margin-bottom:10px}
+ #high-definition #hd-title{font-size:clamp(30px,3.25vw,48px)}
+ #high-definition .hd-intro{font-size:clamp(15px,1.3vw,19px)}
+ #high-definition .hd-preview{flex:1 1 0;min-height:160px;height:auto}
+ #high-definition .hd-quality{flex:none;margin-top:18px}
+ #high-definition .hd-quality h3{font-size:clamp(21px,2.1vw,30px);margin-bottom:8px}
+ #high-definition .hd-quality p{font-size:clamp(14px,1.18vw,17px)}
 }
