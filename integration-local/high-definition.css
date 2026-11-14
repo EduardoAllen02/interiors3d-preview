@@ -64,7 +64,9 @@
 
 /* Keep the heading, panorama and closing copy together below the fixed nav. */
 @media(min-width:769px) and (min-height:600px){
- .tech-panorama #high-definition{box-sizing:border-box;height:min(900px,calc(100svh - 70px));padding-bottom:28px}
+ /* A dark landing area absorbs a normal wheel step before the white section. */
+ .tech-panorama{padding-bottom:calc(160px + max(0px,calc(100svh - 970px)))}
+ .tech-panorama #high-definition{box-sizing:border-box;height:min(900px,calc(100svh - 70px));padding-top:16px;padding-bottom:64px}
  #high-definition .hd-inner{height:100%;display:flex;flex-direction:column}
  #high-definition .hd-heading{flex:none;gap:36px;margin-bottom:20px}
  #high-definition .hd-eyebrow{font-size:13px;margin-bottom:10px}
