@@ -38,10 +38,10 @@
 
 /* On phones the panorama gives space back to the two text blocks. */
 @media(max-width:768px) and (orientation:portrait){
- .tech-panorama #high-definition{box-sizing:border-box;height:calc(100svh - 70px);padding-bottom:64px}
+ .tech-panorama #high-definition{box-sizing:border-box;height:calc(100svh - 70px);padding-bottom:20px}
  #high-definition .hd-inner{height:100%;display:flex;flex-direction:column}
  #high-definition .hd-heading{flex:none}
- #high-definition .hd-preview{flex:1 1 0;height:auto;min-height:140px;max-height:330px}
+ #high-definition .hd-preview{flex:1 1 0;height:auto;min-height:140px;max-height:440px}
  #high-definition .hd-quality{flex:none}
 }
 @media(max-width:768px) and (orientation:portrait) and (max-height:720px){

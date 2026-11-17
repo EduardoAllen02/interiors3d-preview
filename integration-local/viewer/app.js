@@ -63,7 +63,9 @@ const st = {
 function computeLensSize() {
   const w = mainEl.clientWidth, h = mainEl.clientHeight;
   if (st.fixedSize) return st.fixedSize;
-  return Math.round(Math.max(120, Math.min(280, Math.min(w, h * 2) * 0.22)));
+  // En pantallas táctiles la lupa es más chica (celular ~100 px); con mouse, entre 120 y 280 px.
+  const touch = matchMedia('(pointer: coarse)').matches;
+  return Math.round(Math.max(touch ? 100 : 120, Math.min(touch ? 200 : 280, Math.min(w, h * 2) * (touch ? 0.18 : 0.22))));
 }
 function applyLensSize() {
   st.size = computeLensSize();
@@ -118,11 +120,14 @@ function updateLens() {
   // Con touch la lupa se dibuja arriba del dedo (o debajo si no hay espacio) y dentro de pantalla.
   let lx = vx, ly = vy;
   if (p.touch) {
-    const off = st.size / 2 + Math.max(22, st.size * 0.25);
-    ly = vy - off;
-    if (ly - st.size / 2 < 0) ly = vy + off;
+    // Con el dedo la lupa va arriba y a la izquierda del punto tocado, para que el dedo no la tape;
+    // si no cabe se voltea hacia el otro lado, y siempre queda dentro del visor. Con mouse va centrada.
+    const k = st.size / 2 + Math.max(12, st.size * 0.14);
+    lx = vx - k; ly = vy - k;
+    if (lx - st.size / 2 < 0) lx = vx + k;
+    if (ly - st.size / 2 < 0) ly = vy + k;
+    lx = Math.max(st.size / 2, Math.min(mainEl.clientWidth - st.size / 2, lx));
     ly = Math.max(st.size / 2, Math.min(mainEl.clientHeight - st.size / 2, ly));
-    lx = Math.max(st.size / 2, Math.min(mainEl.clientWidth - st.size / 2, vx));
   }
   lensEl.style.transform = `translate(${lx - st.size / 2}px, ${ly - st.size / 2}px)`;
   lensEl.style.display = 'block';
