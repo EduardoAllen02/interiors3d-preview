@@ -21,7 +21,8 @@
 #high-definition{position:relative;z-index:5;scroll-margin-top:70px}
 
 /* A single dark environment carries the scan field into the panorama heading. */
-.tech-panorama{position:relative;isolation:isolate;overflow:hidden;background:#080a0b;z-index:5;--scan-bleed:190px}
+/* clip y no hidden: con hidden, el ancla #high-definition desplazaba el contenedor por dentro y dejaba un hueco oscuro abajo */
+.tech-panorama{position:relative;isolation:isolate;overflow:hidden;overflow:clip;background:#080a0b;z-index:5;--scan-bleed:190px}
 .tech-panorama::after{content:"";position:absolute;inset:36% -16% -12% 18%;z-index:0;pointer-events:none;background:radial-gradient(ellipse 80% 82% at 64% 54%,rgba(0,173,180,.18),rgba(0,111,127,.085) 40%,transparent 76%)}
 .tech-panorama #tech{padding-bottom:24px;background:transparent;overflow:visible}
 .tech-panorama #tech-canvas{height:calc(100% + var(--scan-bleed));bottom:auto;-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - var(--scan-bleed)),transparent 100%);mask-image:linear-gradient(to bottom,#000 calc(100% - var(--scan-bleed)),transparent 100%)}
