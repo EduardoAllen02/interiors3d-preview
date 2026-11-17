@@ -113,17 +113,16 @@ function updateLens() {
   const rect = mainEl.getBoundingClientRect();
   const vx = p.x - rect.left, vy = p.y - rect.top;
 
-  let sph;
-  try { sph = main.dataHelper.viewerCoordsToSphericalCoords({ x: vx, y: vy }); } catch (e) { sph = null; }
-  if (!sph) { lensEl.style.display = 'none'; return; }
-
   let lx = vx, ly = vy;
   if (p.touch) {
-    // Con el dedo la lupa va arriba y a la izquierda del punto tocado, para que el dedo no la tape;
-    // siempre del mismo lado aunque se corte en el borde (voltearla hacía que brincara al mover el dedo). Con mouse va centrada.
-    const k = st.size / 2 + Math.max(12, st.size * 0.14);
-    lx = vx - k; ly = vy - k;
+    // Con el dedo la lupa va justo arriba del punto tocado, para que el dedo no la tape; siempre a la misma
+    // distancia aunque se corte en el borde (voltearla o empujarla hacía que brincara). Con mouse va centrada.
+    ly = vy - (st.size / 2 + Math.max(12, st.size * 0.14));
   }
+  // La lupa aumenta lo que tiene debajo (su centro), no el punto donde está el dedo.
+  let sph;
+  try { sph = main.dataHelper.viewerCoordsToSphericalCoords({ x: lx, y: ly }); } catch (e) { sph = null; }
+  if (!sph) { lensEl.style.display = 'none'; return; }
   lensEl.style.transform = `translate(${lx - st.size / 2}px, ${ly - st.size / 2}px)`;
   lensEl.style.display = 'block';
   lens.resize({ width: st.size, height: st.size });

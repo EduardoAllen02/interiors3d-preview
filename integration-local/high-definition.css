@@ -28,10 +28,11 @@
  #high-definition{padding-top:32px;background:#080a0b radial-gradient(ellipse 140% 90% at 110% 65%,rgba(0,173,180,.12),transparent 72%)}
 }
 
-/* Celular vertical: la panorámica manda, alto generoso aunque la sección pase de una pantalla. */
+/* Celular vertical: visor cuadrado (alto = ancho del contenido), sin pasar de ~la mitad de la pantalla,
+   para que título, panorámica y el arranque del texto quepan juntos al llegar a la sección. */
 @media(max-width:768px) and (orientation:portrait){
  #high-definition{padding-bottom:24px}
- #high-definition .hd-preview{height:62vh;height:62svh;max-height:560px;min-height:300px}
+ #high-definition .hd-preview{height:min(calc(100vw - 40px),52vh);height:min(calc(100vw - 40px),52svh);max-height:none;min-height:280px}
 }
 @media(max-width:768px) and (orientation:portrait) and (max-height:720px){
  #high-definition .hd-heading{gap:12px;margin-bottom:14px}
