@@ -18,36 +18,22 @@
 #high-definition .hd-quality strong{color:#00adb4;font-weight:800}
 @media(max-width:768px){#high-definition{padding:44px 20px 36px}#high-definition .hd-heading{grid-template-columns:1fr;gap:18px;margin-bottom:22px}#high-definition .hd-eyebrow{font-size:12px;margin-bottom:12px}#high-definition #hd-title{font-size:clamp(29px,7.5vw,50px)}#high-definition .hd-intro{font-size:15px;margin:0}#high-definition .hd-preview{height:390px}#high-definition .hd-caption{font-size:9px;left:10px;bottom:12px;padding:7px 8px}#high-definition .hd-fullscreen{right:10px;bottom:12px;width:32px;height:32px;font-size:26px}#high-definition .hd-help{font-size:10px;margin-bottom:22px}#high-definition .hd-quality h3{font-size:23px}#high-definition .hd-quality p{font-size:15px}}
 
-#high-definition{position:relative;z-index:5;scroll-margin-top:70px}
+/* Sección independiente: NO envuelve ni modifica #tech ni su malla (#tech-canvas).
+   Fondo opaco y position:relative + z-index:2, igual que #stories, para quedar por
+   encima de #solutions, que en móvil es sticky. */
+#high-definition{position:relative;z-index:2;scroll-margin-top:70px;padding-top:56px;background:#080a0b radial-gradient(ellipse 80% 70% at 85% 60%,rgba(0,173,180,.14),transparent 72%)}
+#high-definition .hd-inner{position:relative}
 
-/* A single dark environment carries the scan field into the panorama heading. */
-/* clip y no hidden: con hidden, el ancla #high-definition desplazaba el contenedor por dentro y dejaba un hueco oscuro abajo */
-.tech-panorama{position:relative;isolation:isolate;overflow:hidden;overflow:clip;background:#080a0b;z-index:5;--scan-bleed:190px}
-.tech-panorama::after{content:"";position:absolute;inset:36% -16% -12% 18%;z-index:0;pointer-events:none;background:radial-gradient(ellipse 80% 82% at 64% 54%,rgba(0,173,180,.18),rgba(0,111,127,.085) 40%,transparent 76%)}
-.tech-panorama #tech{padding-bottom:24px;background:transparent;overflow:visible}
-.tech-panorama #tech-canvas{height:calc(100% + var(--scan-bleed));bottom:auto;-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - var(--scan-bleed)),transparent 100%);mask-image:linear-gradient(to bottom,#000 calc(100% - var(--scan-bleed)),transparent 100%)}
-.tech-panorama #high-definition{padding-top:40px;background:transparent;isolation:auto;z-index:2}
-.tech-panorama .hd-inner{position:relative;z-index:2}
 @media(max-width:768px){
- .tech-panorama{--scan-bleed:110px;z-index:auto;isolation:auto}
- .tech-panorama #tech{padding-bottom:16px}
- /* Give the copy its own opaque surface instead of relying on an ancestor
-    behind the mobile sticky layers. Keep the same dark tone and side light. */
- .tech-panorama #high-definition{padding-top:24px;isolation:isolate;color-scheme:dark;background:#080a0b radial-gradient(ellipse 140% 90% at 110% 65%,rgba(0,173,180,.12),transparent 72%)}
- .tech-panorama::after{inset:52% -35% -8% 0;opacity:.7}
+ #high-definition{padding-top:32px;background:#080a0b radial-gradient(ellipse 140% 90% at 110% 65%,rgba(0,173,180,.12),transparent 72%)}
 }
 
-/* On phones the panorama gives space back to the two text blocks. */
+/* Celular vertical: la panorámica manda, alto generoso aunque la sección pase de una pantalla. */
 @media(max-width:768px) and (orientation:portrait){
- /* La panorámica manda: alto fijo generoso aunque la sección pase de una pantalla. */
- .tech-panorama #high-definition{box-sizing:border-box;height:auto;padding-bottom:20px}
- #high-definition .hd-inner{display:flex;flex-direction:column}
- #high-definition .hd-heading{flex:none}
- #high-definition .hd-preview{flex:none;height:min(62svh,560px);min-height:300px;max-height:none}
- #high-definition .hd-quality{flex:none}
+ #high-definition{padding-bottom:24px}
+ #high-definition .hd-preview{height:62vh;height:62svh;max-height:560px;min-height:300px}
 }
 @media(max-width:768px) and (orientation:portrait) and (max-height:720px){
- .tech-panorama #high-definition{padding-top:16px}
  #high-definition .hd-heading{gap:12px;margin-bottom:14px}
  #high-definition .hd-eyebrow{font-size:11px;margin-bottom:8px}
  #high-definition #hd-title{font-size:27px}
@@ -55,19 +41,12 @@
  #high-definition .hd-quality{margin-top:14px}
  #high-definition .hd-quality h3{font-size:20px;margin-bottom:8px}
  #high-definition .hd-quality p{font-size:13px;line-height:1.45}
-}
-@media(max-width:768px) and (orientation:portrait) and (max-height:600px){
- .tech-panorama #high-definition{padding-top:8px}
- #high-definition .hd-eyebrow{margin-bottom:6px}
- #high-definition #hd-title{font-size:25px}
- #high-definition .hd-intro,#high-definition .hd-quality p{font-size:12.5px;line-height:1.4}
  #high-definition .hd-preview{min-height:280px}
 }
 
-/* Keep the heading, panorama and closing copy together below the fixed nav. */
+/* Desktop/tablet: título, panorámica y texto caben juntos en una pantalla. */
 @media(min-width:769px) and (min-height:600px){
- /* Spend the small extra height on the panorama itself. */
- .tech-panorama #high-definition{box-sizing:border-box;height:min(960px,calc(100svh - 10px));padding-top:16px;padding-bottom:64px}
+ #high-definition{box-sizing:border-box;height:min(960px,calc(100vh - 10px));padding-top:48px;padding-bottom:64px}
  #high-definition .hd-inner{height:100%;display:flex;flex-direction:column}
  #high-definition .hd-heading{flex:none;gap:36px;margin-bottom:20px}
  #high-definition .hd-eyebrow{font-size:13px;margin-bottom:10px}
