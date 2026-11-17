@@ -117,17 +117,12 @@ function updateLens() {
   try { sph = main.dataHelper.viewerCoordsToSphericalCoords({ x: vx, y: vy }); } catch (e) { sph = null; }
   if (!sph) { lensEl.style.display = 'none'; return; }
 
-  // Con touch la lupa se dibuja arriba del dedo (o debajo si no hay espacio) y dentro de pantalla.
   let lx = vx, ly = vy;
   if (p.touch) {
     // Con el dedo la lupa va arriba y a la izquierda del punto tocado, para que el dedo no la tape;
-    // si no cabe se voltea hacia el otro lado, y siempre queda dentro del visor. Con mouse va centrada.
+    // siempre del mismo lado aunque se corte en el borde (voltearla hacía que brincara al mover el dedo). Con mouse va centrada.
     const k = st.size / 2 + Math.max(12, st.size * 0.14);
     lx = vx - k; ly = vy - k;
-    if (lx - st.size / 2 < 0) lx = vx + k;
-    if (ly - st.size / 2 < 0) ly = vy + k;
-    lx = Math.max(st.size / 2, Math.min(mainEl.clientWidth - st.size / 2, lx));
-    ly = Math.max(st.size / 2, Math.min(mainEl.clientHeight - st.size / 2, ly));
   }
   lensEl.style.transform = `translate(${lx - st.size / 2}px, ${ly - st.size / 2}px)`;
   lensEl.style.display = 'block';
